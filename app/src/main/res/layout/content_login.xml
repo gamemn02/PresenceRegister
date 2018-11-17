@@ -208,4 +208,18 @@
         app:layout_constraintEnd_toEndOf="@+id/btn_digit_9"
         app:layout_constraintStart_toStartOf="@+id/btn_digit_7" />
 
+    <ImageView
+        android:id="@+id/btn_clear"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:src="@drawable/btn_clear"
+        android:clickable="true"
+        android:focusable="true"
+        android:onClick="onClickClear"
+        app:layout_constraintBottom_toBottomOf="@+id/et_pass_number"
+        app:layout_constraintEnd_toEndOf="@+id/et_pass_number"
+        app:layout_constraintTop_toTopOf="@+id/et_pass_number"/>
+
 </android.support.constraint.ConstraintLayout>

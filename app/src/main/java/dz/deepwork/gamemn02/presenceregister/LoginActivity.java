@@ -24,6 +24,11 @@ public class LoginActivity extends AppCompatActivity {
         addPassDigit(digitButton.getText().toString());
     }
 
+    public void onClickClear(View view) {
+        EditText passNumberEdit = (EditText) findViewById(R.id.et_pass_number);
+        passNumberEdit.setText("");
+    }
+
     public void addPassDigit(String digit) {
         EditText passNumberEdit = (EditText) findViewById(R.id.et_pass_number);
         String newPassNumber = passNumberEdit.getText() + digit;

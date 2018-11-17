@@ -64,4 +64,23 @@ public class LoginActivityTest {
         onView(withId(R.id.et_pass_number)).check(matches(withText("987452")));
     }
 
+    @Test
+    public void clickClearClearsPassNumberField() {
+        //when
+        onView(withId(R.id.btn_digit_9)).perform(click());
+        onView(withId(R.id.btn_digit_8)).perform(click());
+        onView(withId(R.id.btn_digit_7)).perform(click());
+        onView(withId(R.id.btn_digit_4)).perform(click());
+        onView(withId(R.id.btn_digit_5)).perform(click());
+
+        //then
+        onView(withId(R.id.et_pass_number)).check(matches(withText("98745")));
+
+        //when
+        onView(withId(R.id.btn_clear)).check(matches(isDisplayed())).perform(click());
+
+        //then
+        onView(withId(R.id.et_pass_number)).check(matches(withText("")));
+    }
+
 }
