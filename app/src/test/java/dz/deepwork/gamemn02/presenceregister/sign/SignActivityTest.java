@@ -13,7 +13,9 @@ import org.robolectric.android.controller.ActivityController;
 import org.robolectric.shadows.ShadowApplication;
 
 import dz.deepwork.gamemn02.presenceregister.R;
+import dz.deepwork.gamemn02.presenceregister.data.MemberRepo;
 import dz.deepwork.gamemn02.presenceregister.login.LoginActivity;
+import dz.deepwork.gamemn02.presenceregister.utils.StringFormats;
 
 import static org.junit.Assert.*;
 import static org.robolectric.Robolectric.setupActivity;
@@ -24,8 +26,6 @@ public class SignActivityTest {
     // EXAMPLE MEMBER PASS NUMBER AND ID
     public static final String MEMBER_PASS_NUMBER_EXAMPLE = "123456";
     private static final long MEMBER_ID_EXAMPLE = 1;
-    // CORRESPONDING MEMBER NAME, REQUIRED ROOM, START TIME, END TIME, DETAILS
-    public static final String MEMBER_NAME_EXAMPLE = "teacher1";
     private ActivityController<SignActivity> mSignActivityController;
 
     @Before
@@ -39,9 +39,12 @@ public class SignActivityTest {
     @Test
     public void showMemberNameBasedOnIntent() {
         SignActivity signActivity = mSignActivityController.get();
-        String actualMemberName =
-                ((TextView) signActivity.findViewById(R.id.tv_member_name)).getText().toString();
-        assertEquals(MEMBER_NAME_EXAMPLE, actualMemberName);
+        TextView memberNameText = (TextView) signActivity.findViewById(R.id.tv_member_name);
+        String actualMemberName = memberNameText.getText().toString();
+        String expectedMemberName = StringFormats.composeName(
+                MemberRepo.MEMBER_FIRST_NAME_EXAMPLE,
+                MemberRepo.MEMBER_LAST_NAME_EXAMPLE);
+        assertEquals(expectedMemberName, actualMemberName);
     }
 
     @After
