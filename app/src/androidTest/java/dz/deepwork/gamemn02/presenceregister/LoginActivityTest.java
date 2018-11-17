@@ -17,7 +17,6 @@ import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
-import static dz.deepwork.gamemn02.presenceregister.CustomMatchers.hasTextLength;
 import static org.junit.Assert.*;
 
 @RunWith(AndroidJUnit4.class)
