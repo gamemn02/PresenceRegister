@@ -198,7 +198,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
-        android:maxLength="6"
+        android:maxLength="@integer/pass_number_max_length"
         android:inputType="numberPassword"
         android:textSize="48sp"
         android:textAlignment="center"
