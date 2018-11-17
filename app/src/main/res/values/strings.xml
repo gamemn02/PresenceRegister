@@ -14,4 +14,6 @@
     <string name="digit_0">0</string>
     <string name="hint_pass_number_edit"> </string>
     <string name="desc_clear_btn">click to clear this field</string>
+    <string name="pass_number_field_hint">Enter your pass number</string>
+    <string name="title_activity_sign">SignActivity</string>
 </resources>
