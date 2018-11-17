@@ -1,15 +1,14 @@
-package dz.deepwork.gamemn02.presenceregister;
+package dz.deepwork.gamemn02.presenceregister.login;
 
 import android.widget.Button;
 import android.widget.EditText;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.robolectric.Robolectric;
 import org.robolectric.RobolectricTestRunner;
-import org.robolectric.RuntimeEnvironment;
-import org.robolectric.shadow.api.Shadow;
-import org.robolectric.shadows.ShadowApplication;
+
+import dz.deepwork.gamemn02.presenceregister.R;
+import dz.deepwork.gamemn02.presenceregister.login.LoginActivity;
 
 import static org.junit.Assert.*;
 import static org.robolectric.Robolectric.setupActivity;

@@ -1,4 +1,4 @@
-package dz.deepwork.gamemn02.presenceregister;
+package dz.deepwork.gamemn02.presenceregister.login;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -10,6 +10,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.EditText;
+
+import dz.deepwork.gamemn02.presenceregister.R;
 
 public class LoginActivity extends AppCompatActivity {
 
