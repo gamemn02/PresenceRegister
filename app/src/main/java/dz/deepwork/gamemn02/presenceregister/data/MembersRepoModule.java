@@ -1,5 +1,7 @@
 package dz.deepwork.gamemn02.presenceregister.data;
 
+import javax.inject.Singleton;
+
 import dagger.Module;
 import dagger.Provides;
 import dz.deepwork.gamemn02.presenceregister.data.MembersRepo;
@@ -13,6 +15,7 @@ public class MembersRepoModule {
         mMembersRepo = membersRepo;
     }
 
+    @Singleton
     @Provides
     MembersRepo provideMembersRepo() {
         return mMembersRepo;
