@@ -7,7 +7,6 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.Mockito;
 import org.robolectric.Robolectric;
 import org.robolectric.RobolectricTestRunner;
 import org.robolectric.RuntimeEnvironment;
@@ -15,8 +14,8 @@ import org.robolectric.android.controller.ActivityController;
 
 import dz.deepwork.gamemn02.presenceregister.PresenceRegisterApplication;
 import dz.deepwork.gamemn02.presenceregister.R;
-import dz.deepwork.gamemn02.presenceregister.data.Member;
-import dz.deepwork.gamemn02.presenceregister.data.MembersRepo;
+import dz.deepwork.gamemn02.presenceregister.data.members.Member;
+import dz.deepwork.gamemn02.presenceregister.data.members.MembersRepo;
 import dz.deepwork.gamemn02.presenceregister.utils.StringFormats;
 
 import static junit.framework.Assert.assertEquals;
@@ -57,6 +56,7 @@ public class SignActivityTest {
 
     @Test
     public void showMemberNameBasedOnIntent() {
+
         SignActivity signActivity = mSignActivityController.get();
         TextView memberNameText = (TextView) signActivity.findViewById(R.id.tv_member_name);
 

@@ -1,10 +1,9 @@
-package dz.deepwork.gamemn02.presenceregister.data;
+package dz.deepwork.gamemn02.presenceregister.data.members;
 
 import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
-import dz.deepwork.gamemn02.presenceregister.data.MembersRepo;
 
 @Module
 public class MembersRepoModule {

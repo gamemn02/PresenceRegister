@@ -3,11 +3,10 @@ package dz.deepwork.gamemn02.presenceregister;
 import android.app.Application;
 import android.content.Context;
 
-import dagger.Component;
-import dz.deepwork.gamemn02.presenceregister.data.DaggerMembersRepoComponent;
-import dz.deepwork.gamemn02.presenceregister.data.MembersRepo;
-import dz.deepwork.gamemn02.presenceregister.data.MembersRepoComponent;
-import dz.deepwork.gamemn02.presenceregister.data.MembersRepoModule;
+import dz.deepwork.gamemn02.presenceregister.data.members.DaggerMembersRepoComponent;
+import dz.deepwork.gamemn02.presenceregister.data.members.MembersRepo;
+import dz.deepwork.gamemn02.presenceregister.data.members.MembersRepoComponent;
+import dz.deepwork.gamemn02.presenceregister.data.members.MembersRepoModule;
 
 public class PresenceRegisterApplication extends Application {
 

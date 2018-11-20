@@ -8,8 +8,8 @@ import javax.inject.Inject;
 
 import dz.deepwork.gamemn02.presenceregister.PresenceRegisterApplication;
 import dz.deepwork.gamemn02.presenceregister.R;
-import dz.deepwork.gamemn02.presenceregister.data.Member;
-import dz.deepwork.gamemn02.presenceregister.data.MembersRepo;
+import dz.deepwork.gamemn02.presenceregister.data.members.Member;
+import dz.deepwork.gamemn02.presenceregister.data.members.MembersRepo;
 import dz.deepwork.gamemn02.presenceregister.utils.StringFormats;
 
 public class SignActivity extends AppCompatActivity {
