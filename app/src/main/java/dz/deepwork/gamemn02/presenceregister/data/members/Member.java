@@ -2,46 +2,23 @@ package dz.deepwork.gamemn02.presenceregister.data.members;
 
 public class Member {
 
-    public static final long ID_NOT_MEMBER = -1;
+    public static final int ID_NOT_MEMBER = -1;
 
-    private long mId;
-    private String mFirstName;
-    private String mLastName;
-    private String mPassNumber;
-    private boolean mIsAdmin;
+    public int id;
+    public String name;
+    public String passNumber;
+    public boolean isAdmin;
 
-    public Member(String firstName, String lastName, String passNumber, boolean isAdmin) {
-        this.mFirstName = firstName;
-        this.mLastName = lastName;
-        this.mPassNumber = passNumber;
-        this.mIsAdmin = isAdmin;
+    public Member(String name, String passNumber, boolean isAdmin) {
+        this.name = name;
+        this.passNumber = passNumber;
+        this.isAdmin = isAdmin;
     }
 
-    public Member(long id, String firstName, String lastName, String passNumber, boolean isAdmin) {
-        this.mId = id;
-        this.mFirstName = firstName;
-        this.mLastName = lastName;
-        this.mPassNumber = passNumber;
-        this.mIsAdmin = isAdmin;
-    }
-
-    public long getId() {
-        return mId;
-    }
-
-    public String getFirstName() {
-        return mFirstName;
-    }
-
-    public String getLastName() {
-        return mLastName;
-    }
-
-    public String getPassNumber() {
-        return mPassNumber;
-    }
-
-    public boolean isAdmin() {
-        return mIsAdmin;
+    public Member(int id, String name, String passNumber, boolean isAdmin) {
+        this.id = id;
+        this.name = name;
+        this.passNumber = passNumber;
+        this.isAdmin = isAdmin;
     }
 }

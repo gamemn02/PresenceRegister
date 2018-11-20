@@ -18,7 +18,7 @@ public class SignActivity extends AppCompatActivity {
     public static final String EXTRA_ID = "dz.deepwork.gamemn02.extra-id";
 
     private TextView mMemberNameText;
-    private Member mCorrespondingMember;
+    private Member mLogedInMember;
 
     @Inject
     MembersRepo mMembersRepo;
@@ -34,15 +34,13 @@ public class SignActivity extends AppCompatActivity {
     }
 
     private void findMember() {
-        long memberId = getIntent().getLongExtra(EXTRA_ID, Member.ID_NOT_MEMBER);
-        mCorrespondingMember = mMembersRepo.findCorrespondingMember(memberId);
+        long memberId = getIntent().getIntExtra(EXTRA_ID, Member.ID_NOT_MEMBER);
+        mLogedInMember = mMembersRepo.findCorrespondingMember(memberId);
     }
 
     private void showMemberName() {
-        String memberName = StringFormats.composeName(
-                mCorrespondingMember.getFirstName(), mCorrespondingMember.getLastName());
         mMemberNameText = (TextView) findViewById(R.id.tv_member_name);
-        mMemberNameText.setText(memberName);
+        mMemberNameText.setText(mLogedInMember.name);
     }
 
 }
