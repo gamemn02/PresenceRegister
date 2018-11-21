@@ -12,12 +12,14 @@ public class MembersRepoModule {
 
     @Singleton
     @Provides
-    public MembersRepo provideMembersRepo() {
-        return new MembersRepo() {
-            @Override
-            public Member findMember(String passNumber) {
-                return null;
-            }
+    public MemberDao provideMemberDao() {
+        return new MemberDao() {
         };
+    }
+
+    @Singleton
+    @Provides
+    public MembersRepo provideMembersRepo() {
+        return new MembersDbRepo();
     }
 }

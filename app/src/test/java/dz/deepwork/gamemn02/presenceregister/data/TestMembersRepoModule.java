@@ -4,6 +4,7 @@ import org.robolectric.RuntimeEnvironment;
 
 import dz.deepwork.gamemn02.presenceregister.PresenceRegisterApplication;
 import dz.deepwork.gamemn02.presenceregister.data.members.Member;
+import dz.deepwork.gamemn02.presenceregister.data.members.MemberDao;
 import dz.deepwork.gamemn02.presenceregister.data.members.MembersRepo;
 import dz.deepwork.gamemn02.presenceregister.data.members.MembersRepoModule;
 
