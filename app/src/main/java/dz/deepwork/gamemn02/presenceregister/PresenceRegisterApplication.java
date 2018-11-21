@@ -10,8 +10,6 @@ import dz.deepwork.gamemn02.presenceregister.data.members.MembersRepoModule;
 
 public class PresenceRegisterApplication extends Application {
 
-    private MembersRepoComponent mMembersRepoComponent;
-
     public static PresenceRegisterApplication get(Context context) {
         return (PresenceRegisterApplication) context.getApplicationContext();
     }
@@ -19,16 +17,12 @@ public class PresenceRegisterApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-    }
 
-    public void setMemberRepo(MembersRepo memberRepo) {
-        mMembersRepoComponent = DaggerMembersRepoComponent
+        MembersRepoComponent daggerMembersRepoComponent = DaggerMembersRepoComponent
                 .builder()
-                .membersRepoModule(new MembersRepoModule(memberRepo))
+                .membersRepoModule(new MembersRepoModule())
                 .build();
+        MembersRepoComponent.Singleton.set(daggerMembersRepoComponent);
     }
 
-    public MembersRepoComponent getMemberRepo() {
-        return mMembersRepoComponent;
-    }
 }

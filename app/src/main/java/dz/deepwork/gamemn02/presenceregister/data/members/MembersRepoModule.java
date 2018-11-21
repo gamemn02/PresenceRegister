@@ -8,15 +8,16 @@ import dagger.Provides;
 @Module
 public class MembersRepoModule {
 
-    private MembersRepo mMembersRepo;
-
-    public MembersRepoModule(MembersRepo membersRepo) {
-        mMembersRepo = membersRepo;
-    }
+    public MembersRepoModule() { }
 
     @Singleton
     @Provides
-    MembersRepo provideMembersRepo() {
-        return mMembersRepo;
+    public MembersRepo provideMembersRepo() {
+        return new MembersRepo() {
+            @Override
+            public Member findMember(String passNumber) {
+                return null;
+            }
+        };
     }
 }

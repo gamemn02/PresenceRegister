@@ -10,6 +10,7 @@ import dz.deepwork.gamemn02.presenceregister.PresenceRegisterApplication;
 import dz.deepwork.gamemn02.presenceregister.R;
 import dz.deepwork.gamemn02.presenceregister.data.members.Member;
 import dz.deepwork.gamemn02.presenceregister.data.members.MembersRepo;
+import dz.deepwork.gamemn02.presenceregister.data.members.MembersRepoComponent;
 import dz.deepwork.gamemn02.presenceregister.utils.StringFormats;
 
 public class SignActivity extends AppCompatActivity {
@@ -27,7 +28,7 @@ public class SignActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign);
 
-        PresenceRegisterApplication.get(this).getMemberRepo().inject(this);
+        MembersRepoComponent.Singleton.getInstance().inject(this);
         findMember();
         showMemberName();
     }
