@@ -43,13 +43,12 @@ public class SignActivityTest {
     public void before() {
 
         MembersRepo mockedMembersRepo = mock(MembersRepo.class);
-        when(mockedMembersRepo.findCorrespondingMember(MEMBER_ID_EXAMPLE)).thenReturn(sTestedMember);
+        when(mockedMembersRepo.findMember(MEMBER_PASS_NUMBER_EXAMPLE)).thenReturn(sTestedMember);
         ((PresenceRegisterApplication) RuntimeEnvironment.application).setMemberRepo(mockedMembersRepo);
 
-        System.out.print("expected name:" + mockedMembersRepo.findCorrespondingMember(MEMBER_ID_EXAMPLE).name);
+        System.out.print("expected name:" + mockedMembersRepo.findMember(MEMBER_PASS_NUMBER_EXAMPLE).name);
         Intent intent = new Intent(Intent.ACTION_VIEW);
         intent.putExtra(SignActivity.EXTRA_PASS_NUMBER, MEMBER_PASS_NUMBER_EXAMPLE);
-        intent.putExtra(SignActivity.EXTRA_ID, MEMBER_ID_EXAMPLE);
         mSignActivityController = Robolectric.buildActivity(SignActivity.class, intent).create();
     }
 

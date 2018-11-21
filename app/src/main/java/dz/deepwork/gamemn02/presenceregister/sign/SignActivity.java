@@ -15,7 +15,6 @@ import dz.deepwork.gamemn02.presenceregister.utils.StringFormats;
 public class SignActivity extends AppCompatActivity {
 
     public static final String EXTRA_PASS_NUMBER = "dz.deepwork.gamemn02.extra-pass-number";
-    public static final String EXTRA_ID = "dz.deepwork.gamemn02.extra-id";
 
     private TextView mMemberNameText;
     private Member mLogedInMember;
@@ -34,8 +33,8 @@ public class SignActivity extends AppCompatActivity {
     }
 
     private void findMember() {
-        long memberId = getIntent().getIntExtra(EXTRA_ID, Member.ID_NOT_MEMBER);
-        mLogedInMember = mMembersRepo.findCorrespondingMember(memberId);
+        String memberPassNumber = getIntent().getStringExtra(EXTRA_PASS_NUMBER);
+        mLogedInMember = mMembersRepo.findMember(memberPassNumber);
     }
 
     private void showMemberName() {
