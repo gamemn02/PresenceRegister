@@ -24,7 +24,7 @@ public class TestMembersRepoModule extends MembersRepoModule {
 
 
     @Override
-    public MembersRepo provideMembersRepo() {
+    public MembersRepo provideMembersRepo(MemberDao memberDao) {
         MembersRepo mockedMembersRepo = mock(MembersRepo.class);
         when(mockedMembersRepo.findMember(MEMBER_PASS_NUMBER_EXAMPLE)).thenReturn(sTestedMember);
         return mockedMembersRepo;

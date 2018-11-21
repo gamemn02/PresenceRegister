@@ -19,7 +19,7 @@ public class MembersRepoModule {
 
     @Singleton
     @Provides
-    public MembersRepo provideMembersRepo() {
-        return new MembersDbRepo();
+    public MembersRepo provideMembersRepo(MemberDao memberDao) {
+        return new MembersDbRepo(memberDao);
     }
 }
