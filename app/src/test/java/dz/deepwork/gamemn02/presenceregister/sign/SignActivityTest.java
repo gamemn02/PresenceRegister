@@ -27,12 +27,10 @@ public class SignActivityTest {
 
     // EXAMPLE MEMBER INFO
     private static final String MEMBER_PASS_NUMBER_EXAMPLE = "123456";
-    private static final int MEMBER_ID_EXAMPLE = 1;
     private static final String MEMBER_NAME_EXAMPLE = "FirstName LastName";
     private static final boolean MEMBER_IS_ADMIN_EXAMPLE = false;
     // CORRESPONDING MEMBER
     private static final Member sTestedMember = new Member(
-            MEMBER_ID_EXAMPLE,
             MEMBER_NAME_EXAMPLE,
             MEMBER_PASS_NUMBER_EXAMPLE,
             MEMBER_IS_ADMIN_EXAMPLE);

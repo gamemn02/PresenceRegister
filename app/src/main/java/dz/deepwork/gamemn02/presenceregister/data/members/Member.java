@@ -14,11 +14,4 @@ public class Member {
         this.passNumber = passNumber;
         this.isAdmin = isAdmin;
     }
-
-    public Member(int id, String name, String passNumber, boolean isAdmin) {
-        this.id = id;
-        this.name = name;
-        this.passNumber = passNumber;
-        this.isAdmin = isAdmin;
-    }
 }
