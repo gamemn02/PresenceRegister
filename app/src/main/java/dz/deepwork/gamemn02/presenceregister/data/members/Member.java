@@ -11,24 +11,24 @@ public class Member {
     public static final int ID_NOT_MEMBER = -1;
 
     //TODO rename columns
-    @NonNull
     @PrimaryKey()
+    public int uId;
     @ColumnInfo(name = "pass_number")
     public String passNumber;
     public String name;
     public boolean isAdmin;
 
-    public Member(String passNumber, String name, boolean isAdmin) {
-        this.passNumber = passNumber;
+    public Member(String name, String passNumber, boolean isAdmin) {
         this.name = name;
+        this.passNumber = passNumber;
         this.isAdmin = isAdmin;
     }
 
     @Override
     public boolean equals(Object obj) {
         Member member = (Member) obj;
-        return passNumber.equals(member.passNumber) &&
-                name.equals(member.name) &&
+        return name.equals(member.name) &&
+                passNumber.equals(member.passNumber) &&
                 isAdmin == member.isAdmin;
     }
 }

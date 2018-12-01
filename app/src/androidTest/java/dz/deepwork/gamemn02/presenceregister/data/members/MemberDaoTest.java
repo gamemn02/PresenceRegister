@@ -21,9 +21,9 @@ import static org.junit.Assert.assertNotEquals;
 @RunWith(AndroidJUnit4.class)
 public class MemberDaoTest {
 
-    private static final Member[] TEST_MEMBERS = {new Member("123456", "name1", true),
-                                                  new Member("654321", "name2", false),
-                                                  new Member("456789", "name3", false)};
+    private static final Member[] TEST_MEMBERS = {new Member("name1", "123456", true),
+                                                  new Member("name2", "654321", false),
+                                                  new Member("name3", "456789", false)};
     AppDatabase appDatabase;
     MemberDao memberDao;
 
