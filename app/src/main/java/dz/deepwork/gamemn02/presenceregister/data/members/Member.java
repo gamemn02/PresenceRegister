@@ -10,13 +10,15 @@ public class Member {
 
     public static final int ID_NOT_MEMBER = -1;
 
-    //TODO rename columns
     @PrimaryKey(autoGenerate = true)
     public int uId;
     @ColumnInfo(name = "pass_number")
     public String passNumber;
+    @ColumnInfo(name = "name")
     public String name;
+    @ColumnInfo(name = "is_admin")
     public boolean isAdmin;
+
 
     public Member(String name, String passNumber, boolean isAdmin) {
         this.name = name;

@@ -3,9 +3,11 @@ package dz.deepwork.gamemn02.presenceregister.data.sessions;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
 
+//TODO rename session table name to sessions
 @Entity
 public class Session {
 
+    //TODO rename columns
     @PrimaryKey
     public int id;
     public int beginTime;
