@@ -8,6 +8,7 @@ import dagger.Provides;
 @Module
 public class ApplicationContextModule {
 
+    // TODO: make it singleton
     @Provides
     public Context provideApplicationContext() {
         return null;
