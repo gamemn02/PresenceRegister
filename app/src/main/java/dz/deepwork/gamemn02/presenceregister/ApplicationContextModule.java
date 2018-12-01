@@ -8,9 +8,15 @@ import dagger.Provides;
 @Module
 public class ApplicationContextModule {
 
+    private Context applicationContext;
+
+    public ApplicationContextModule(Context applicationContext) {
+        this.applicationContext = applicationContext;
+    }
+
     // TODO: make it singleton
     @Provides
     public Context provideApplicationContext() {
-        return null;
+        return applicationContext;
     }
 }

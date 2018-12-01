@@ -9,9 +9,13 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.robolectric.Robolectric;
 import org.robolectric.RobolectricTestRunner;
+import org.robolectric.RuntimeEnvironment;
 import org.robolectric.android.controller.ActivityController;
+import org.robolectric.internal.bytecode.RobolectricInternals;
 
+import dz.deepwork.gamemn02.presenceregister.ApplicationContextModule;
 import dz.deepwork.gamemn02.presenceregister.R;
+import dz.deepwork.gamemn02.presenceregister.data.AppDatabaseModule;
 import dz.deepwork.gamemn02.presenceregister.data.TestMembersRepoModule;
 import dz.deepwork.gamemn02.presenceregister.data.members.DaggerMembersRepoComponent;
 import dz.deepwork.gamemn02.presenceregister.data.members.MembersRepoComponent;
@@ -28,6 +32,8 @@ public class SignActivityTest {
     public void before() {
         MembersRepoComponent daggerMembersRepoComponent = DaggerMembersRepoComponent
                 .builder()
+                .applicationContextModule(new ApplicationContextModule(RuntimeEnvironment.application))
+                .appDatabaseModule(new AppDatabaseModule())
                 .membersRepoModule(new TestMembersRepoModule())
                 .build();
         MembersRepoComponent.Singleton.set(daggerMembersRepoComponent);

@@ -3,6 +3,7 @@ package dz.deepwork.gamemn02.presenceregister;
 import android.app.Application;
 import android.content.Context;
 
+import dz.deepwork.gamemn02.presenceregister.data.AppDatabaseModule;
 import dz.deepwork.gamemn02.presenceregister.data.members.DaggerMembersRepoComponent;
 import dz.deepwork.gamemn02.presenceregister.data.members.MembersRepo;
 import dz.deepwork.gamemn02.presenceregister.data.members.MembersRepoComponent;
@@ -20,6 +21,8 @@ public class PresenceRegisterApplication extends Application {
 
         MembersRepoComponent daggerMembersRepoComponent = DaggerMembersRepoComponent
                 .builder()
+                .applicationContextModule(new ApplicationContextModule(getApplicationContext()))
+                .appDatabaseModule(new AppDatabaseModule())
                 .membersRepoModule(new MembersRepoModule())
                 .build();
         MembersRepoComponent.Singleton.set(daggerMembersRepoComponent);

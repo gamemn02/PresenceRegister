@@ -4,10 +4,12 @@ import javax.inject.Singleton;
 
 import dagger.Component;
 import dagger.internal.Preconditions;
+import dz.deepwork.gamemn02.presenceregister.ApplicationContextModule;
+import dz.deepwork.gamemn02.presenceregister.data.AppDatabaseModule;
 import dz.deepwork.gamemn02.presenceregister.sign.SignActivity;
 
 @Singleton
-@Component(modules = MembersRepoModule.class)
+@Component(modules = {MembersRepoModule.class, ApplicationContextModule.class, AppDatabaseModule.class})
 public interface MembersRepoComponent {
 
     void inject(SignActivity signActivity);

@@ -4,6 +4,7 @@ import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
+import dz.deepwork.gamemn02.presenceregister.data.AppDatabase;
 
 @Module
 public class MembersRepoModule {
@@ -12,8 +13,8 @@ public class MembersRepoModule {
 
     @Singleton
     @Provides
-    public MemberDao provideMemberDao() {
-        return null;
+    public MemberDao provideMemberDao(AppDatabase appDatabase) {
+        return appDatabase.getMemberDao();
     }
 
     @Singleton
