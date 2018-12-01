@@ -13,8 +13,7 @@ public class MembersRepoModule {
     @Singleton
     @Provides
     public MemberDao provideMemberDao() {
-        return new MemberDao() {
-        };
+        return null;
     }
 
     @Singleton
