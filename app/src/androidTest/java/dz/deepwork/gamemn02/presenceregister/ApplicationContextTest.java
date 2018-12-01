@@ -1,12 +1,10 @@
-package dz.deepwork.gamemn02.presenceregister.login;
+package dz.deepwork.gamemn02.presenceregister;
 
 import android.content.Context;
 import android.support.test.runner.AndroidJUnit4;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
-
-import dz.deepwork.gamemn02.presenceregister.ApplicationContextComponent;
 
 import static junit.framework.Assert.assertNotNull;
 

@@ -1,10 +1,7 @@
-package dz.deepwork.gamemn02.presenceregister.login;
+package dz.deepwork.gamemn02.presenceregister.data;
 
 import android.arch.persistence.room.Room;
 import android.content.Context;
-
-import dz.deepwork.gamemn02.presenceregister.data.AppDatabase;
-import dz.deepwork.gamemn02.presenceregister.data.AppDatabaseModule;
 
 class TestAppDatabaseModule extends AppDatabaseModule {
     @Override

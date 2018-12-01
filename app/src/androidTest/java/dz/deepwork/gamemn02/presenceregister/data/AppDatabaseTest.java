@@ -1,4 +1,4 @@
-package dz.deepwork.gamemn02.presenceregister.login;
+package dz.deepwork.gamemn02.presenceregister.data;
 
 import android.arch.persistence.room.Room;
 import android.content.Context;
@@ -9,13 +9,9 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import javax.inject.Inject;
-
-import dz.deepwork.gamemn02.presenceregister.data.AppDatabase;
-import dz.deepwork.gamemn02.presenceregister.data.DaggerAppDatabaseComponent;
+import dz.deepwork.gamemn02.presenceregister.TestApplicationContextModule;
 
 import static junit.framework.Assert.assertNotNull;
-import static junit.framework.Assert.assertTrue;
 
 @RunWith(AndroidJUnit4.class)
 public class AppDatabaseTest {
@@ -29,26 +25,25 @@ public class AppDatabaseTest {
     }
 
     @Test
-    public void appDatabaseIsBuildingSuccessfully() {
+    public void buildAppDatabase() {
+        System.out.print("test building app database");
         //when
         AppDatabase appDatabase = Room.inMemoryDatabaseBuilder(context, AppDatabase.class).build();
 
         //then
         assertNotNull(appDatabase);
+        System.out.print("app database is successfully built");
 
         //after
         appDatabase.close();
+
     }
 
     @Test
     public void provideAppDatabaseUsingDagger() {
         //when
-        appDatabase = DaggerAppDatabaseComponent
-                .builder()
-                .applicationContextModule(new TestApplicationContextModule())
-                .appDatabaseModule(new TestAppDatabaseModule())
-                .build()
-                .getAppDatabase();
+        appDatabase = DaggerAppDatabaseComponent.Singleton
+                .getAppDatabase(new TestApplicationContextModule(), new TestAppDatabaseModule());
 
         //then
         assertNotNull(appDatabase);
