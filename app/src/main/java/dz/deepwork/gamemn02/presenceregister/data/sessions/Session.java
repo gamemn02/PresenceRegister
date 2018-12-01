@@ -8,7 +8,7 @@ import android.arch.persistence.room.PrimaryKey;
 public class Session {
 
     //TODO rename columns
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
     public int id;
     public int beginTime;
     public int endTime;
@@ -16,12 +16,21 @@ public class Session {
     public String room;
     public String details;
 
-    public Session(int id, int beginTime, int endTime, int memberId, String room, String details) {
-        this.id = id;
+    public Session(int beginTime, int endTime, int memberId, String room, String details) {
         this.beginTime = beginTime;
         this.endTime = endTime;
         this.memberId = memberId;
         this.room = room;
         this.details = details;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        Session session = (Session) obj;
+        return beginTime == session.beginTime &&
+                endTime == session.endTime &&
+                memberId == session.memberId &&
+                room.equals(session.room) &&
+                details.equals(session.details);
     }
 }
