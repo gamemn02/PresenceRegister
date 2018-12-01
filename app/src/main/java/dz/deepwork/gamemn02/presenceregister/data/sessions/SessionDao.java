@@ -10,6 +10,6 @@ public interface SessionDao {
     @Insert
     void insert(Session... sessions);
 
-    @Query("SELECT * FROM session WHERE memberId = :memberId")
+    @Query("SELECT * FROM sessions WHERE member_Id = :memberId")
     Session findSession(int memberId);
 }

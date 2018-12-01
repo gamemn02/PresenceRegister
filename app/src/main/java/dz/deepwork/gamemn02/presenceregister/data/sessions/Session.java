@@ -1,19 +1,23 @@
 package dz.deepwork.gamemn02.presenceregister.data.sessions;
 
+import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
 
-//TODO rename session table name to sessions
-@Entity
+@Entity(tableName = "sessions")
 public class Session {
 
-    //TODO rename columns
     @PrimaryKey(autoGenerate = true)
     public int id;
+    @ColumnInfo(name = "begin_time")
     public int beginTime;
+    @ColumnInfo(name = "end_time")
     public int endTime;
+    @ColumnInfo(name = "member_Id")
     public int memberId;
+    @ColumnInfo(name = "room")
     public String room;
+    @ColumnInfo(name = "details")
     public String details;
 
     public Session(int beginTime, int endTime, int memberId, String room, String details) {
