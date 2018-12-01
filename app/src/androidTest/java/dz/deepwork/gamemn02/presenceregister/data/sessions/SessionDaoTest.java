@@ -13,11 +13,17 @@ import dz.deepwork.gamemn02.presenceregister.data.AppDatabase;
 import dz.deepwork.gamemn02.presenceregister.data.DaggerAppDatabaseComponent;
 import dz.deepwork.gamemn02.presenceregister.data.TestAppDatabaseModule;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNotNull;
 
 @RunWith(AndroidJUnit4.class)
 public class SessionDaoTest {
 
+    private static final Session[] TEST_SESSIONS = {
+            new Session(0, 0, 0, "B007", ""),
+            new Session(0, 4, 1, "C101", ""),
+            new Session(1, 3, 2, "B005", "")};
     AppDatabase appDatabase;
     SessionDao sessionDao;
 
@@ -26,12 +32,20 @@ public class SessionDaoTest {
         appDatabase = DaggerAppDatabaseComponent.Singleton
                 .getAppDatabase(new TestApplicationContextModule(), new TestAppDatabaseModule());
         sessionDao = appDatabase.getSessionDao();
+        sessionDao.insert(TEST_SESSIONS);
         assertNotNull(sessionDao);
     }
 
     @Test
-    public void run() {
+    public void findSession() {
+        //when
+        Session actualSession = sessionDao.findSession(TEST_SESSIONS[1].memberId);
+        Session expectedSession = TEST_SESSIONS[1];
+        Session wrongSession = TEST_SESSIONS[2];
 
+        //then
+        assertEquals(expectedSession, actualSession);
+        assertNotEquals(wrongSession, actualSession);
     }
 
     @After
