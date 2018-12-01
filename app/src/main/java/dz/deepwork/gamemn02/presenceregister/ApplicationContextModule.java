@@ -14,7 +14,6 @@ public class ApplicationContextModule {
         this.applicationContext = applicationContext;
     }
 
-    // TODO: make it singleton
     @Provides
     public Context provideApplicationContext() {
         return applicationContext;
