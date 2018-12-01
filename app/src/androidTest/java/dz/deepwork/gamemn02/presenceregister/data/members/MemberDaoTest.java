@@ -41,10 +41,11 @@ public class MemberDaoTest {
     public void findMember() {
         //when
         Member actualMember = memberDao.find(TEST_MEMBERS[1].passNumber);
-
-        //then
         Member expectedMember = TEST_MEMBERS[1];
         Member wrongMember = TEST_MEMBERS[2];
+
+        //TODO: change between actualMember and expectedMember in assert functions
+        //then
         assertEquals("actual member does't match the expected member",actualMember, expectedMember);
         assertNotEquals("wrong member matches the expected member",wrongMember, expectedMember);
 
