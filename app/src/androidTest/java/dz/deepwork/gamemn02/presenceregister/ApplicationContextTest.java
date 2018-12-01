@@ -18,6 +18,6 @@ public class ApplicationContextTest {
                 .getApplicationContext(new TestApplicationContextModule());
 
         //then
-        assertNotNull(applicationContext);
+        assertNotNull("application context object provided via dagger is null", applicationContext);
     }
 }

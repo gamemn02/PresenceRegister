@@ -19,20 +19,14 @@ public class AppDatabaseTest {
     Context context;
     AppDatabase appDatabase;
 
-    @Before
-    public void beforeTest() {
-        context = InstrumentationRegistry.getTargetContext();
-    }
-
     @Test
     public void buildAppDatabase() {
-        System.out.print("test building app database");
         //when
+        context = InstrumentationRegistry.getTargetContext();
         AppDatabase appDatabase = Room.inMemoryDatabaseBuilder(context, AppDatabase.class).build();
 
         //then
-        assertNotNull(appDatabase);
-        System.out.print("app database is successfully built");
+        assertNotNull("app database object built using room builder is null", appDatabase);
 
         //after
         appDatabase.close();
@@ -46,7 +40,7 @@ public class AppDatabaseTest {
                 .getAppDatabase(new TestApplicationContextModule(), new TestAppDatabaseModule());
 
         //then
-        assertNotNull(appDatabase);
+        assertNotNull("app database object provided via dagger is null", appDatabase);
 
         appDatabase.close();
     }
