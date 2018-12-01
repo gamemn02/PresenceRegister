@@ -11,7 +11,6 @@ public interface MemberDao {
     @Insert
     void insert(Member... members);
 
-    //TODO rename member table name to members
-    @Query("SELECT * FROM member WHERE pass_number = :passNumber")
+    @Query("SELECT * FROM members WHERE pass_number = :passNumber")
     Member find(String passNumber);
 }
