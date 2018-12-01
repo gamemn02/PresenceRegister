@@ -18,6 +18,7 @@ public class SignActivity extends AppCompatActivity {
     public static final String EXTRA_PASS_NUMBER = "dz.deepwork.gamemn02.extra-pass-number";
 
     private TextView mMemberNameText;
+    // TODO rename mLogedInMember to mLoggedInMember
     private Member mLogedInMember;
 
     @Inject
