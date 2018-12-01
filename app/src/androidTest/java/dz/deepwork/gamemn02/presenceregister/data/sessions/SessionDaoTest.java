@@ -44,8 +44,8 @@ public class SessionDaoTest {
         Session wrongSession = TEST_SESSIONS[2];
 
         //then
-        assertEquals(expectedSession, actualSession);
-        assertNotEquals(wrongSession, actualSession);
+        assertEquals("actual session does't match the expected session", expectedSession, actualSession);
+        assertNotEquals("actual session matches the wrong session", wrongSession, actualSession);
     }
 
     @After

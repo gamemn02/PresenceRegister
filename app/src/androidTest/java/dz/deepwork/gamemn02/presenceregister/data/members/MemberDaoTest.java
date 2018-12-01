@@ -44,10 +44,9 @@ public class MemberDaoTest {
         Member expectedMember = TEST_MEMBERS[1];
         Member wrongMember = TEST_MEMBERS[2];
 
-        //TODO: change between actualMember and expectedMember in assert functions
         //then
-        assertEquals("actual member does't match the expected member",actualMember, expectedMember);
-        assertNotEquals("wrong member matches the expected member",wrongMember, expectedMember);
+        assertEquals("actual member does't match the expected member", expectedMember, actualMember);
+        assertNotEquals("actual member matches the wrong member", wrongMember, actualMember);
 
     }
 
