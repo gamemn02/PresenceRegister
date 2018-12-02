@@ -7,8 +7,7 @@ public class SignIn {
     public long signInTime;
     public String room;
 
-    public SignIn(int id, int sessionId, long signInTime, String room) {
-        this.id = id;
+    public SignIn(int sessionId, long signInTime, String room) {
         this.sessionId = sessionId;
         this.signInTime = signInTime;
         this.room = room;
