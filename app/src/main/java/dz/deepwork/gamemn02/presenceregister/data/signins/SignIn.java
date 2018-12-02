@@ -8,7 +8,7 @@ import android.arch.persistence.room.PrimaryKey;
 public class SignIn {
 
     @PrimaryKey(autoGenerate = true)
-    public long id;
+    public long uId;
     @ColumnInfo(name = "session_id")
     public int sessionId;
     @ColumnInfo(name = "time")
@@ -25,7 +25,8 @@ public class SignIn {
     @Override
     public boolean equals(Object obj) {
         SignIn signIn = (SignIn) obj;
-        return sessionId == signIn.sessionId &&
+        return uId == signIn.uId &&
+                sessionId == signIn.sessionId &&
                 time == signIn.time &&
                 room.equals(signIn.room);
     }

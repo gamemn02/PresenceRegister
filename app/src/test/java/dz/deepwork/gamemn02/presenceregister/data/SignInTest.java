@@ -42,6 +42,9 @@ public class SignInTest {
         SignIn signIn = new SignIn(TEST_SIGN_IN_1_SESSION_ID, TEST_SIGN_IN_1_TIME, TEST_SIGN_IN_1_ROOM);
         SignIn signIn2 = new SignIn(TEST_SIGN_IN_2_SESSION_ID, TEST_SIGN_IN_2_TIME, TEST_SIGN_IN_2_ROOM);
         SignIn signIn3 = new SignIn(TEST_SIGN_IN_3_SESSION_ID, TEST_SIGN_IN_3_TIME, TEST_SIGN_IN_3_ROOM);
+        signIn.uId = 1;
+        signIn2.uId = 1;
+        signIn3.uId = 2;
 
         //then
         assertEquals(signIn, signIn2);

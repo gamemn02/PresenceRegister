@@ -55,6 +55,9 @@ public class SessionTest {
                 TEST_SESSION2_MEMBER_ID, TEST_SESSION2_ROOM, TEST_SESSION2_DETAILS);
         Session session3 = new Session(TEST_SESSION3_BEGIN_TIME, TEST_SESSION3_END_TIME,
                 TEST_SESSION3_MEMBER_ID, TEST_SESSION3_ROOM, TEST_SESSION3_DETAILS);
+        session.uId = 1;
+        session2.uId = 1;
+        session3.uId = 2;
 
         //then
         assertEquals(session, session2);

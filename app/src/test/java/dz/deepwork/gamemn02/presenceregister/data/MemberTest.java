@@ -41,6 +41,9 @@ public class MemberTest {
         Member member = new Member(TEST_MEMBER1_NAME, TEST_MEMBER1_PASS_NUMBER, TEST_MEMBER1_IS_ADMIN);
         Member member2 = new Member(TEST_MEMBER2_NAME, TEST_MEMBER2_PASS_NUMBER, TEST_MEMBER2_IS_ADMIN);
         Member member3 = new Member(TEST_MEMBER3_NAME, TEST_MEMBER3_PASS_NUMBER, TEST_MEMBER3_IS_ADMIN);
+        member.uId = 1;
+        member2.uId = 1;
+        member3.uId = 2;
 
         //then
         assertEquals(member, member2);

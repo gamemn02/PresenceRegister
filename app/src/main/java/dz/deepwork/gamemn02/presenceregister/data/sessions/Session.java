@@ -8,7 +8,7 @@ import android.arch.persistence.room.PrimaryKey;
 public class Session {
 
     @PrimaryKey(autoGenerate = true)
-    public long id;
+    public long uId;
     @ColumnInfo(name = "begin_time")
     public int beginTime;
     @ColumnInfo(name = "end_time")
@@ -31,7 +31,8 @@ public class Session {
     @Override
     public boolean equals(Object obj) {
         Session session = (Session) obj;
-        return beginTime == session.beginTime &&
+        return uId == session.uId &&
+                beginTime == session.beginTime &&
                 endTime == session.endTime &&
                 memberId == session.memberId &&
                 room.equals(session.room) &&
