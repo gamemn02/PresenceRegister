@@ -9,7 +9,7 @@ import android.arch.persistence.room.Query;
 public interface MemberDao {
 
     @Insert
-    void insert(Member... members);
+    long[] insert(Member... members);
 
     @Query("SELECT * FROM members WHERE pass_number = :passNumber")
     Member find(String passNumber);

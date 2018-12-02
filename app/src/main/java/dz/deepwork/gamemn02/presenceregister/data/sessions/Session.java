@@ -8,7 +8,7 @@ import android.arch.persistence.room.PrimaryKey;
 public class Session {
 
     @PrimaryKey(autoGenerate = true)
-    public int id;
+    public long id;
     @ColumnInfo(name = "begin_time")
     public int beginTime;
     @ColumnInfo(name = "end_time")

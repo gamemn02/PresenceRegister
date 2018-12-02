@@ -8,7 +8,7 @@ import android.arch.persistence.room.Query;
 public interface SignInDao {
 
     @Insert
-    void insert(SignIn... signIns);
+    long[] insert(SignIn... signIns);
 
     @Query("SELECT * FROM sign_ins  WHERE session_id = :sessionId")
     SignIn findSignIn(int sessionId);

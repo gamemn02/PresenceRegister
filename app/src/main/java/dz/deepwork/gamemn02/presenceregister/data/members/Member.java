@@ -11,7 +11,7 @@ public class Member {
     public static final int ID_NOT_MEMBER = -1;
 
     @PrimaryKey(autoGenerate = true)
-    public int uId;
+    public long uId;
     @ColumnInfo(name = "pass_number")
     public String passNumber;
     @ColumnInfo(name = "name")

@@ -8,7 +8,7 @@ import android.arch.persistence.room.PrimaryKey;
 public class SignIn {
 
     @PrimaryKey(autoGenerate = true)
-    public int id;
+    public long id;
     @ColumnInfo(name = "session_id")
     public int sessionId;
     @ColumnInfo(name = "time")

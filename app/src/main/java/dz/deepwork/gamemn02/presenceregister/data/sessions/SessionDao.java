@@ -8,7 +8,7 @@ import android.arch.persistence.room.Query;
 public interface SessionDao {
 
     @Insert
-    void insert(Session... sessions);
+    long[] insert(Session... sessions);
 
     @Query("SELECT * FROM sessions WHERE member_Id = :memberId")
     Session findSession(int memberId);
