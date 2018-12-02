@@ -32,13 +32,13 @@ public class SessionDaoTest {
         appDatabase = DaggerAppDatabaseComponent.Singleton
                 .getAppDatabase(new TestApplicationContextModule(), new TestAppDatabaseModule());
         sessionDao = appDatabase.getSessionDao();
-        sessionDao.insert(TEST_SESSIONS);
         assertNotNull(sessionDao);
     }
 
     @Test
-    public void findSession() {
+    public void insertAndFindSession() {
         //when
+        sessionDao.insert(TEST_SESSIONS);
         Session actualSession = sessionDao.findSession(TEST_SESSIONS[1].memberId);
         Session expectedSession = TEST_SESSIONS[1];
         Session wrongSession = TEST_SESSIONS[2];

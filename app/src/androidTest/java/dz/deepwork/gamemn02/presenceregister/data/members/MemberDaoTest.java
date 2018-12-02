@@ -32,14 +32,13 @@ public class MemberDaoTest {
         appDatabase = DaggerAppDatabaseComponent.Singleton
                 .getAppDatabase(new TestApplicationContextModule(), new TestAppDatabaseModule());
         memberDao = appDatabase.getMemberDao();
-        memberDao.insert(TEST_MEMBERS);
-
     }
 
 
     @Test
-    public void findMember() {
+    public void insertAndFindMember() {
         //when
+        memberDao.insert(TEST_MEMBERS);
         Member actualMember = memberDao.find(TEST_MEMBERS[1].passNumber);
         Member expectedMember = TEST_MEMBERS[1];
         Member wrongMember = TEST_MEMBERS[2];
