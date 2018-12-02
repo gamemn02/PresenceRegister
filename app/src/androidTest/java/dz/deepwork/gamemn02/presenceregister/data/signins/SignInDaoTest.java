@@ -15,6 +15,7 @@ import dz.deepwork.gamemn02.presenceregister.data.TestAppDatabaseModule;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 
 @RunWith(AndroidJUnit4.class)
 public class SignInDaoTest {
@@ -37,11 +38,11 @@ public class SignInDaoTest {
 
     @Test
     public void insertAndFindSignIn() {
+        //when
         long ids[] = signInDao.insert(TEST_SIGN_INS);
         SignIn actualSignIn = signInDao.findSignIn(TEST_SIGN_INS[1].sessionId);
         SignIn expectedSignIn = TEST_SIGN_INS[1];
         SignIn wrongSignIn = TEST_SIGN_INS[2];
-        actualSignIn.uId = ids[1];
         expectedSignIn.uId = ids[1];
         wrongSignIn.uId = ids[2];
 

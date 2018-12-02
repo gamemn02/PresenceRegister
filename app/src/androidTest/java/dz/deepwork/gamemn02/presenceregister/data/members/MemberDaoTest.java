@@ -42,7 +42,6 @@ public class MemberDaoTest {
         Member actualMember = memberDao.find(TEST_MEMBERS[1].passNumber);
         Member expectedMember = TEST_MEMBERS[1];
         Member wrongMember = TEST_MEMBERS[2];
-        actualMember.uId = ids[1];
         expectedMember.uId = ids[1];
         wrongMember.uId = ids[2];
 

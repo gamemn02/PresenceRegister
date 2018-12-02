@@ -42,7 +42,6 @@ public class SessionDaoTest {
         Session actualSession = sessionDao.findSession(TEST_SESSIONS[1].memberId);
         Session expectedSession = TEST_SESSIONS[1];
         Session wrongSession = TEST_SESSIONS[2];
-        actualSession.uId = ids[1];
         expectedSession.uId = ids[1];
         wrongSession.uId = ids[2];
 
