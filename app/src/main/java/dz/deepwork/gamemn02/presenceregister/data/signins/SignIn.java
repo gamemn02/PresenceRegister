@@ -12,4 +12,12 @@ public class SignIn {
         this.time = time;
         this.room = room;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        SignIn signIn = (SignIn) obj;
+        return sessionId == signIn.sessionId &&
+                time == signIn.time &&
+                room.equals(signIn.room);
+    }
 }
