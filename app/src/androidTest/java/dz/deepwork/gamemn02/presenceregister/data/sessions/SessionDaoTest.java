@@ -38,10 +38,13 @@ public class SessionDaoTest {
     @Test
     public void insertAndFindSession() {
         //when
-        sessionDao.insert(TEST_SESSIONS);
+        long[] ids = sessionDao.insert(TEST_SESSIONS);
         Session actualSession = sessionDao.findSession(TEST_SESSIONS[1].memberId);
         Session expectedSession = TEST_SESSIONS[1];
         Session wrongSession = TEST_SESSIONS[2];
+        actualSession.uId = ids[1];
+        expectedSession.uId = ids[1];
+        wrongSession.uId = ids[2];
 
         //then
         assertEquals("actual session does't match the expected session", expectedSession, actualSession);

@@ -38,10 +38,13 @@ public class MemberDaoTest {
     @Test
     public void insertAndFindMember() {
         //when
-        memberDao.insert(TEST_MEMBERS);
+        long[] ids = memberDao.insert(TEST_MEMBERS);
         Member actualMember = memberDao.find(TEST_MEMBERS[1].passNumber);
         Member expectedMember = TEST_MEMBERS[1];
         Member wrongMember = TEST_MEMBERS[2];
+        actualMember.uId = ids[1];
+        expectedMember.uId = ids[1];
+        wrongMember.uId = ids[2];
 
         //then
         assertEquals("actual member does't match the expected member", expectedMember, actualMember);

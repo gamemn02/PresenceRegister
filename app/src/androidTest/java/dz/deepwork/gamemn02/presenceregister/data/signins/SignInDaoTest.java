@@ -37,10 +37,13 @@ public class SignInDaoTest {
 
     @Test
     public void insertAndFindSignIn() {
-        signInDao.insert(TEST_SIGN_INS);
+        long ids[] = signInDao.insert(TEST_SIGN_INS);
         SignIn actualSignIn = signInDao.findSignIn(TEST_SIGN_INS[1].sessionId);
         SignIn expectedSignIn = TEST_SIGN_INS[1];
         SignIn wrongSignIn = TEST_SIGN_INS[2];
+        actualSignIn.uId = ids[1];
+        expectedSignIn.uId = ids[1];
+        wrongSignIn.uId = ids[2];
 
         //then
         assertEquals("actual signIn does't match the expected signIn", expectedSignIn, actualSignIn);
