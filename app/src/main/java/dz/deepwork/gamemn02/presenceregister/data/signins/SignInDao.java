@@ -1,6 +1,7 @@
 package dz.deepwork.gamemn02.presenceregister.data.signins;
 
 import android.arch.persistence.room.Dao;
+import android.arch.persistence.room.Delete;
 import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.Query;
 
@@ -12,4 +13,7 @@ public interface SignInDao {
 
     @Query("SELECT * FROM sign_ins  WHERE session_id = :sessionId")
     SignIn findSignIn(int sessionId);
+
+    @Delete
+    void delete(SignIn... signIn);
 }

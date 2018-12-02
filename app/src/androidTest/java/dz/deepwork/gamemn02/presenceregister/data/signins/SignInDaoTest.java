@@ -51,6 +51,19 @@ public class SignInDaoTest {
         assertNotEquals("actual signIn matches the wrong signIn", wrongSignIn, actualSignIn);
     }
 
+    @Test
+    public void delete() {
+        //when
+        long ids[] = signInDao.insert(TEST_SIGN_INS);
+        SignIn signInToDelete = new SignIn(0, 0, "");
+        signInToDelete.uId = ids[1];
+        signInDao.delete(signInToDelete);
+        SignIn actualSignIn = signInDao.findSignIn(TEST_SIGN_INS[1].sessionId);
+
+        //then
+        assertNull("deleted sign in row still exists", actualSignIn);
+    }
+
     @After
     public void after() {
         appDatabase.close();
