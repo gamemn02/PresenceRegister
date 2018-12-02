@@ -4,12 +4,12 @@ public class SignIn {
 
     public int id;
     public int sessionId;
-    public long signInTime;
+    public long time;
     public String room;
 
-    public SignIn(int sessionId, long signInTime, String room) {
+    public SignIn(int sessionId, long time, String room) {
         this.sessionId = sessionId;
-        this.signInTime = signInTime;
+        this.time = time;
         this.room = room;
     }
 }
