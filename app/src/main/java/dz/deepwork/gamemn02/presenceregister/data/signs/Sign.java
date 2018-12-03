@@ -1,5 +1,7 @@
 package dz.deepwork.gamemn02.presenceregister.data.signs;
 
+import dz.deepwork.gamemn02.presenceregister.data.signins.SignIn;
+
 public class Sign {
 
     public int uId;
@@ -15,5 +17,16 @@ public class Sign {
         this.signOutTime = signOutTime;
         this.room = room;
         this.details = details;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        Sign sign = (Sign) obj;
+        return uId == sign.uId &&
+                memberName.equals(sign.memberName) &&
+                signInTime == sign.signInTime &&
+                signOutTime == signOutTime &&
+                room.equals(sign.room) &&
+                details.equals(sign.details);
     }
 }
