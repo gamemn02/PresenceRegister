@@ -26,9 +26,9 @@ public class SessionTest {
     private static final int TEST_SESSION2_MEMBER_ID = 0;
     private static final String TEST_SESSION2_ROOM = "B007";
     private static final String TEST_SESSION2_DETAILS = "Recitation E415";
-    private static final int TEST_SESSION3_BEGIN_TIME = 0;
-    private static final int TEST_SESSION3_END_TIME = 2;
-    private static final int TEST_SESSION3_MEMBER_ID = 0;
+    private static final int TEST_SESSION3_BEGIN_TIME = 1;
+    private static final int TEST_SESSION3_END_TIME = 4;
+    private static final int TEST_SESSION3_MEMBER_ID = 2;
     private static final String TEST_SESSION3_ROOM = "C101";
     private static final String TEST_SESSION3_DETAILS = "Recitation E411";
 
