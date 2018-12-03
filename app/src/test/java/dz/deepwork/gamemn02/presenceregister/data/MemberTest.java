@@ -22,7 +22,7 @@ public class MemberTest {
     private static final boolean TEST_MEMBER2_IS_ADMIN = false;
     private static final String TEST_MEMBER3_NAME = "name3";
     private static final String TEST_MEMBER3_PASS_NUMBER = "654321";
-    private static final boolean TEST_MEMBER3_IS_ADMIN = false;
+    private static final boolean TEST_MEMBER3_IS_ADMIN = true;
 
     @Test
     public void createMember() {
