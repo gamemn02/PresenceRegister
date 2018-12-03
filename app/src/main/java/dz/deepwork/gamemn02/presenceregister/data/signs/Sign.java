@@ -4,7 +4,7 @@ import dz.deepwork.gamemn02.presenceregister.data.signins.SignIn;
 
 public class Sign {
 
-    public int uId;
+    public long uId;
     public String memberName;
     public long signInTime;
     public long signOutTime;
