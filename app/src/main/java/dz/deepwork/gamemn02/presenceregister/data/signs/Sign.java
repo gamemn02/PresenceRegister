@@ -1,14 +1,24 @@
 package dz.deepwork.gamemn02.presenceregister.data.signs;
 
-import dz.deepwork.gamemn02.presenceregister.data.signins.SignIn;
 
+import android.arch.persistence.room.ColumnInfo;
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.PrimaryKey;
+
+@Entity(tableName = "signs")
 public class Sign {
 
+    @PrimaryKey(autoGenerate = true)
     public long uId;
+    @ColumnInfo(name = "member_name")
     public String memberName;
+    @ColumnInfo(name = "sign_in_time")
     public long signInTime;
+    @ColumnInfo(name = "sign_out_time")
     public long signOutTime;
+    @ColumnInfo(name = "room")
     public String room;
+    @ColumnInfo(name = "details")
     public String details;
 
     public Sign(String memberName, long signInTime, long signOutTime, String room, String details) {
