@@ -4,10 +4,9 @@ import android.app.Application;
 import android.content.Context;
 
 import dz.deepwork.gamemn02.presenceregister.data.AppDatabaseModule;
-import dz.deepwork.gamemn02.presenceregister.data.members.DaggerMembersRepoComponent;
-import dz.deepwork.gamemn02.presenceregister.data.members.MembersRepo;
-import dz.deepwork.gamemn02.presenceregister.data.members.MembersRepoComponent;
-import dz.deepwork.gamemn02.presenceregister.data.members.MembersRepoModule;
+import dz.deepwork.gamemn02.presenceregister.data.members.DaggerSignComponent;
+import dz.deepwork.gamemn02.presenceregister.sign.SignComponent;
+import dz.deepwork.gamemn02.presenceregister.data.members.MembersModule;
 
 public class PresenceRegisterApplication extends Application {
 
@@ -19,13 +18,13 @@ public class PresenceRegisterApplication extends Application {
     public void onCreate() {
         super.onCreate();
 
-        MembersRepoComponent daggerMembersRepoComponent = DaggerMembersRepoComponent
+        SignComponent daggerSignComponent = DaggerSignComponent
                 .builder()
                 .applicationContextModule(new ApplicationContextModule(getApplicationContext()))
                 .appDatabaseModule(new AppDatabaseModule())
-                .membersRepoModule(new MembersRepoModule())
+                .membersRepoModule(new MembersModule())
                 .build();
-        MembersRepoComponent.Singleton.set(daggerMembersRepoComponent);
+        SignComponent.Singleton.set(daggerSignComponent);
     }
 
 }

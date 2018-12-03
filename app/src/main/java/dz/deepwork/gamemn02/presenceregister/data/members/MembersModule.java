@@ -7,9 +7,9 @@ import dagger.Provides;
 import dz.deepwork.gamemn02.presenceregister.data.AppDatabase;
 
 @Module
-public class MembersRepoModule {
+public class MembersModule {
 
-    public MembersRepoModule() { }
+    public MembersModule() { }
 
     @Singleton
     @Provides
@@ -20,6 +20,6 @@ public class MembersRepoModule {
     @Singleton
     @Provides
     public MembersRepo provideMembersRepo(MemberDao memberDao) {
-        return new MembersDbRepo(memberDao);
+        return new RealMembersRepo(memberDao);
     }
 }

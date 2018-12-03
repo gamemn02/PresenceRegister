@@ -1,17 +1,14 @@
 package dz.deepwork.gamemn02.presenceregister.data;
 
-import org.robolectric.RuntimeEnvironment;
-
-import dz.deepwork.gamemn02.presenceregister.PresenceRegisterApplication;
 import dz.deepwork.gamemn02.presenceregister.data.members.Member;
 import dz.deepwork.gamemn02.presenceregister.data.members.MemberDao;
 import dz.deepwork.gamemn02.presenceregister.data.members.MembersRepo;
-import dz.deepwork.gamemn02.presenceregister.data.members.MembersRepoModule;
+import dz.deepwork.gamemn02.presenceregister.data.members.MembersModule;
 
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-public class TestMembersRepoModule extends MembersRepoModule {
+public class TestMembersModule extends MembersModule {
     // EXAMPLE MEMBER INFO
     private static final String MEMBER_PASS_NUMBER_EXAMPLE = "123456";
     private static final String MEMBER_NAME_EXAMPLE = "FirstName LastName";

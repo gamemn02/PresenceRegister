@@ -2,11 +2,11 @@ package dz.deepwork.gamemn02.presenceregister.data.members;
 
 import javax.inject.Inject;
 
-public class MembersDbRepo implements MembersRepo{
+public class RealMembersRepo implements MembersRepo{
     private MemberDao mMemberDao;
 
     @Inject
-    public MembersDbRepo(MemberDao memberDao) {
+    public RealMembersRepo(MemberDao memberDao) {
         this.mMemberDao = memberDao;
     }
 

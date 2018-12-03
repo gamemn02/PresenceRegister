@@ -11,10 +11,8 @@ import dz.deepwork.gamemn02.presenceregister.TestApplicationContextModule;
 import dz.deepwork.gamemn02.presenceregister.data.AppDatabase;
 import dz.deepwork.gamemn02.presenceregister.data.DaggerAppDatabaseComponent;
 import dz.deepwork.gamemn02.presenceregister.data.TestAppDatabaseModule;
-import dz.deepwork.gamemn02.presenceregister.data.signins.SignIn;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNotNull;
 
 @RunWith(AndroidJUnit4.class)

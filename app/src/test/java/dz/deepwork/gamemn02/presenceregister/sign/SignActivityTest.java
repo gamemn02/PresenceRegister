@@ -11,14 +11,12 @@ import org.robolectric.Robolectric;
 import org.robolectric.RobolectricTestRunner;
 import org.robolectric.RuntimeEnvironment;
 import org.robolectric.android.controller.ActivityController;
-import org.robolectric.internal.bytecode.RobolectricInternals;
 
 import dz.deepwork.gamemn02.presenceregister.ApplicationContextModule;
 import dz.deepwork.gamemn02.presenceregister.R;
 import dz.deepwork.gamemn02.presenceregister.data.AppDatabaseModule;
-import dz.deepwork.gamemn02.presenceregister.data.TestMembersRepoModule;
-import dz.deepwork.gamemn02.presenceregister.data.members.DaggerMembersRepoComponent;
-import dz.deepwork.gamemn02.presenceregister.data.members.MembersRepoComponent;
+import dz.deepwork.gamemn02.presenceregister.data.TestMembersModule;
+import dz.deepwork.gamemn02.presenceregister.data.members.DaggerSignComponent;
 
 import static junit.framework.Assert.assertEquals;
 import static org.mockito.Mockito.mock;
@@ -30,16 +28,16 @@ public class SignActivityTest {
 
     @Before
     public void before() {
-        MembersRepoComponent daggerMembersRepoComponent = DaggerMembersRepoComponent
+        SignComponent daggerSignComponent = DaggerSignComponent
                 .builder()
                 .applicationContextModule(new ApplicationContextModule(RuntimeEnvironment.application))
                 .appDatabaseModule(new AppDatabaseModule())
-                .membersRepoModule(new TestMembersRepoModule())
+                .membersRepoModule(new TestMembersModule())
                 .build();
-        MembersRepoComponent.Singleton.set(daggerMembersRepoComponent);
+        SignComponent.Singleton.set(daggerSignComponent);
 
         Intent intent = new Intent(Intent.ACTION_VIEW);
-        intent.putExtra(SignActivity.EXTRA_PASS_NUMBER, TestMembersRepoModule.getTestedPassNumber());
+        intent.putExtra(SignActivity.EXTRA_PASS_NUMBER, TestMembersModule.getTestedPassNumber());
         mSignActivityController = Robolectric.buildActivity(SignActivity.class, intent).create();
     }
 
@@ -49,7 +47,7 @@ public class SignActivityTest {
         SignActivity signActivity = mSignActivityController.get();
         TextView memberNameText = (TextView) signActivity.findViewById(R.id.tv_member_name);
 
-        String expectedMemberName = TestMembersRepoModule.getTestedMember().name;
+        String expectedMemberName = TestMembersModule.getTestedMember().name;
         String actualMemberName = memberNameText.getText().toString();
         assertEquals(expectedMemberName, actualMemberName);
     }
