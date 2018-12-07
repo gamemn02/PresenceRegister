@@ -1,4 +1,4 @@
-package dz.deepwork.gamemn02.presenceregister.data;
+package dz.deepwork.gamemn02.presenceregister.data.members;
 
 import junit.framework.Assert;
 

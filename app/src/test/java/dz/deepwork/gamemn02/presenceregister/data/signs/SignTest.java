@@ -1,4 +1,4 @@
-package dz.deepwork.gamemn02.presenceregister.data;
+package dz.deepwork.gamemn02.presenceregister.data.signs;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
