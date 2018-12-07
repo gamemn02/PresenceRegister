@@ -12,6 +12,6 @@ public class RealMembersRepo implements MembersRepo{
 
     @Override
     public Member findMember(String passNumber) {
-        return null;
+        return mMemberDao.find(passNumber);
     }
 }
