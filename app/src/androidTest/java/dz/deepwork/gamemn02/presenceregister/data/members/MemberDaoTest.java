@@ -51,6 +51,21 @@ public class MemberDaoTest {
 
     }
 
+    @Test
+    public void get() {
+        //when
+        long[] ids = memberDao.insert(TEST_MEMBERS);
+        Member actualMember = memberDao.get(ids[1]);
+        Member expectedMember = TEST_MEMBERS[1];
+        Member wrongMember = TEST_MEMBERS[2];
+        expectedMember.uId = ids[1];
+        wrongMember.uId = ids[2];
+
+        //then
+        assertEquals("actual member does't match the expected member", expectedMember, actualMember);
+        assertNotEquals("actual member matches the wrong member", wrongMember, actualMember);
+    }
+
     @After
     public void after() {
         appDatabase.close();
