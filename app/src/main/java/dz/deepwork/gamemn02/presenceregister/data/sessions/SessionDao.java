@@ -12,4 +12,7 @@ public interface SessionDao {
 
     @Query("SELECT * FROM sessions WHERE member_Id = :memberId")
     Session find(long memberId);
+
+    @Query("SELECT * FROM sessions WHERE uId = :sessionId")
+    Session get(long sessionId);
 }

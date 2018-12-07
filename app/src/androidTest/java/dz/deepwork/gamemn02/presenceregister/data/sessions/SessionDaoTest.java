@@ -49,6 +49,21 @@ public class SessionDaoTest {
         assertNotEquals("actual session matches the wrong session", wrongSession, actualSession);
     }
 
+    @Test
+    public void get() {
+        //when
+        long[] ids = sessionDao.insert(TEST_SESSIONS);
+        Session actualSession = sessionDao.get(ids[1]);
+        Session expectedSession = TEST_SESSIONS[1];
+        Session wrongSession = TEST_SESSIONS[2];
+        expectedSession.uId = ids[1];
+        wrongSession.uId = ids[2];
+
+        //then
+        assertEquals("actual session does't match the expected session", expectedSession, actualSession);
+        assertNotEquals("actual session matches the wrong session", wrongSession, actualSession);
+    }
+
     @After
     public void after() {
         appDatabase.close();
