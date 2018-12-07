@@ -16,9 +16,9 @@ public class RealSessionsRepoTest {
             new Session(0, 1, 2, "B007", "Rec E114");
 
     @Mock
-    private SessionDao sessionDao;
+    SessionDao sessionDao;
     @InjectMocks
-    private RealSessionsRepo realSessionsRepo;
+    RealSessionsRepo realSessionsRepo;
 
     @Test
     public void findSessionCallsSessionDaoFind() {

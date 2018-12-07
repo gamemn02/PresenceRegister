@@ -18,9 +18,9 @@ public class RealMembersRepoTest {
             new Member("name1", "123456", true);
 
     @Mock
-    private MemberDao memberDao;
+    MemberDao memberDao;
     @InjectMocks
-    private RealMembersRepo realMembersRepo;
+    RealMembersRepo realMembersRepo;
 
     @Test
     public void addMembersCallsMemberDaoInsert() {
