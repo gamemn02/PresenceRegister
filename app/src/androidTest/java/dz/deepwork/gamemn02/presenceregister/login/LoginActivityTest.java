@@ -9,7 +9,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import dz.deepwork.gamemn02.presenceregister.R;
-import dz.deepwork.gamemn02.presenceregister.login.LoginActivity;
 
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;
@@ -34,6 +33,8 @@ public class LoginActivityTest {
         }
     }
 
+    public static final String TEST_PASS_NUMBER_1 = "012345";
+
     @Test
     public void typingPassNumber() {
         //when
@@ -45,8 +46,10 @@ public class LoginActivityTest {
         onView(withId(R.id.btn_digit_5)).check(matches(isDisplayed())).perform(click());
 
         //then
-        onView(withId(R.id.et_pass_number)).check(matches(isDisplayed())).check(matches(withText("012345")));
+        onView(withId(R.id.et_pass_number)).check(matches(isDisplayed())).check(matches(withText(TEST_PASS_NUMBER_1)));
     }
+
+    public static final String TEST_PASS_NUMBER_2 = "987452";
 
     @Test
     public void typingAnotherPassNumber() {
@@ -59,8 +62,10 @@ public class LoginActivityTest {
         onView(withId(R.id.btn_digit_2)).perform(click());
 
         //then
-        onView(withId(R.id.et_pass_number)).check(matches(withText("987452")));
+        onView(withId(R.id.et_pass_number)).check(matches(withText(TEST_PASS_NUMBER_2)));
     }
+
+    public static final String TEST_PASS_NUMBER_3 = "98745";
 
     @Test
     public void clickClearClearsPassNumberField() {
@@ -72,7 +77,7 @@ public class LoginActivityTest {
         onView(withId(R.id.btn_digit_5)).perform(click());
 
         //then
-        onView(withId(R.id.et_pass_number)).check(matches(withText("98745")));
+        onView(withId(R.id.et_pass_number)).check(matches(withText(TEST_PASS_NUMBER_3)));
 
         //when
         onView(withId(R.id.btn_clear)).check(matches(isDisplayed())).perform(click());
@@ -80,5 +85,7 @@ public class LoginActivityTest {
         //then
         onView(withId(R.id.et_pass_number)).check(matches(withText("")));
     }
+
+
 
 }
