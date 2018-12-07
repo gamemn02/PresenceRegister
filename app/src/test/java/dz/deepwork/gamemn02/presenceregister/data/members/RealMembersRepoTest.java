@@ -26,10 +26,10 @@ public class RealMembersRepoTest {
     }
 
     @Test
-    public void addMemberCallsMemberDaoInsert() {
+    public void addMembersCallsMemberDaoInsert() {
 
         //when
-        realMembersRepo.addMember(TEST_MEMBER);
+        realMembersRepo.addMembers(TEST_MEMBER);
 
         //then
         verify(memberDao).insert(TEST_MEMBER);

@@ -16,7 +16,7 @@ public class RealMembersRepo implements MembersRepo{
     }
 
     @Override
-    public void addMember(Member... members) {
+    public void addMembers(Member... members) {
         mMemberDao.insert(members);
     }
 }

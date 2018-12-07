@@ -33,7 +33,7 @@ public class RealSessionsRepoTest {
     }
 
     @Test
-    public void addSessionCallsSessionDaoInsert() {
+    public void addSessionsCallsSessionDaoInsert() {
         //when
         realSessionsRepo.addSessions(TEST_SESSION);
 
