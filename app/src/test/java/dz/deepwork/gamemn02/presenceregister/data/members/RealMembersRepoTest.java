@@ -3,27 +3,24 @@ package dz.deepwork.gamemn02.presenceregister.data.members;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.junit.runners.JUnit4;
+import org.mockito.Mock;
+import org.mockito.junit.MockitoJUnitRunner;
 
-import dz.deepwork.gamemn02.presenceregister.data.members.Member;
-import dz.deepwork.gamemn02.presenceregister.data.members.MemberDao;
-import dz.deepwork.gamemn02.presenceregister.data.members.RealMembersRepo;
-
-import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
-@RunWith(JUnit4.class)
+@RunWith(MockitoJUnitRunner.class)
 public class RealMembersRepoTest {
 
 
     private static final String TEST_PASS_NUMBER = "123456";
     public static final Member TEST_MEMBER = new Member("name1", "123456", true);
+
     private RealMembersRepo realMembersRepo;
+    @Mock
     private MemberDao memberDao;
 
     @Before
     public void beforeTest() {
-        memberDao = mock(MemberDao.class);
         realMembersRepo = new RealMembersRepo(memberDao);
     }
 
