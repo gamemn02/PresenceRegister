@@ -1,12 +1,10 @@
 package dz.deepwork.gamemn02.presenceregister.data;
 
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
 
 import dz.deepwork.gamemn02.presenceregister.data.members.Member;
@@ -17,6 +15,9 @@ import dz.deepwork.gamemn02.presenceregister.data.signins.SignIn;
 import dz.deepwork.gamemn02.presenceregister.data.signins.SignInDao;
 import dz.deepwork.gamemn02.presenceregister.data.signs.Sign;
 import dz.deepwork.gamemn02.presenceregister.data.signs.SignDao;
+
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
 public class RealSignsRepoTest {
@@ -48,33 +49,32 @@ public class RealSignsRepoTest {
         realSignsRepo.signIn(TEST_SIGN_IN);
 
         //then
-        Mockito.verify(signInDao).insert(TEST_SIGN_IN);
+        verify(signInDao).insert(TEST_SIGN_IN);
     }
 
     @Test
     public void findSignInCallsFind() {
 
         //when
-        Mockito.when(signInDao.find(TEST_SIGN_IN.sessionId)).thenReturn(TEST_SIGN_IN);
+        when(signInDao.find(TEST_SIGN_IN.sessionId)).thenReturn(TEST_SIGN_IN);
         SignIn returnedSignIn = realSignsRepo.findSignIn(TEST_SIGN_IN.sessionId);
 
         //then
-        Mockito.verify(signInDao).find(TEST_SIGN_IN.sessionId);
+        verify(signInDao).find(TEST_SIGN_IN.sessionId);
         Assert.assertEquals(TEST_SIGN_IN, returnedSignIn);
     }
 
     @Test
     public void signOutCallsSignInDaoDeleteAndSignDaoInsert() {
 
-        // TODO use static import when possible
         //when
-        Mockito.when(memberDao.get(TEST_SESSION.memberId)).thenReturn(TEST_MEMBER);
-        Mockito.when(sessionDao.get(TEST_SIGN_IN.sessionId)).thenReturn(TEST_SESSION);
+        when(memberDao.get(TEST_SESSION.memberId)).thenReturn(TEST_MEMBER);
+        when(sessionDao.get(TEST_SIGN_IN.sessionId)).thenReturn(TEST_SESSION);
         realSignsRepo.signOut(TEST_SIGN_IN);
 
         //then
-        Mockito.verify(signInDao).delete(TEST_SIGN_IN);
-        Mockito.verify(signDao).insert(TEST_SIGN);
+        verify(signInDao).delete(TEST_SIGN_IN);
+        verify(signDao).insert(TEST_SIGN);
 
     }
 
