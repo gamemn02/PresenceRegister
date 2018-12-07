@@ -12,7 +12,7 @@ public class RealSessionsRepo {
         return mSessionDao.find(memberId);
     }
 
-    public void addSession(Session... sessions) {
+    public void addSessions(Session... sessions) {
         mSessionDao.insert(sessions);
     }
 }

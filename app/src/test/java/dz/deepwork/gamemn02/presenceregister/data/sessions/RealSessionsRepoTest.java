@@ -35,7 +35,7 @@ public class RealSessionsRepoTest {
     @Test
     public void addSessionCallsSessionDaoInsert() {
         //when
-        realSessionsRepo.addSession(TEST_SESSION);
+        realSessionsRepo.addSessions(TEST_SESSION);
 
         //then
         verify(sessionDao).insert(TEST_SESSION);
