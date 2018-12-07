@@ -16,7 +16,6 @@ import dz.deepwork.gamemn02.presenceregister.ApplicationContextModule;
 import dz.deepwork.gamemn02.presenceregister.R;
 import dz.deepwork.gamemn02.presenceregister.data.AppDatabaseModule;
 import dz.deepwork.gamemn02.presenceregister.data.TestMembersModule;
-import dz.deepwork.gamemn02.presenceregister.data.members.DaggerSignComponent;
 
 import static junit.framework.Assert.assertEquals;
 import static org.mockito.Mockito.mock;
@@ -32,7 +31,7 @@ public class SignActivityTest {
                 .builder()
                 .applicationContextModule(new ApplicationContextModule(RuntimeEnvironment.application))
                 .appDatabaseModule(new AppDatabaseModule())
-                .membersRepoModule(new TestMembersModule())
+                .membersModule(new TestMembersModule())
                 .build();
         SignComponent.Singleton.set(daggerSignComponent);
 
