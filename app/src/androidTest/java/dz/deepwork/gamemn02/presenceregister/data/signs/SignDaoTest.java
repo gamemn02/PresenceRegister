@@ -35,7 +35,7 @@ public class SignDaoTest {
     }
 
     @Test
-    public void insertAndFindSignIn() {
+    public void insertAndFind() {
         //when
         int i = 0;
         long ids[] = signDao.insert(TEST_SIGNS);

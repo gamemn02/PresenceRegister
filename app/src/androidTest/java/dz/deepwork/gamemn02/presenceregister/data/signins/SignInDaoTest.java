@@ -37,10 +37,10 @@ public class SignInDaoTest {
     }
 
     @Test
-    public void insertAndFindSignIn() {
+    public void insertAndFind() {
         //when
         long ids[] = signInDao.insert(TEST_SIGN_INS);
-        SignIn actualSignIn = signInDao.findSignIn(TEST_SIGN_INS[1].sessionId);
+        SignIn actualSignIn = signInDao.find(TEST_SIGN_INS[1].sessionId);
         SignIn expectedSignIn = TEST_SIGN_INS[1];
         SignIn wrongSignIn = TEST_SIGN_INS[2];
         expectedSignIn.uId = ids[1];
@@ -58,7 +58,7 @@ public class SignInDaoTest {
         SignIn signInToDelete = new SignIn(0, 0, "");
         signInToDelete.uId = ids[1];
         signInDao.delete(signInToDelete);
-        SignIn actualSignIn = signInDao.findSignIn(TEST_SIGN_INS[1].sessionId);
+        SignIn actualSignIn = signInDao.find(TEST_SIGN_INS[1].sessionId);
 
         //then
         assertNull("deleted sign in row still exists", actualSignIn);

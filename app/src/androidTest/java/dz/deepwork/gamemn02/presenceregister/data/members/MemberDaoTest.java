@@ -36,7 +36,7 @@ public class MemberDaoTest {
 
 
     @Test
-    public void insertAndFindMember() {
+    public void insertAndFind() {
         //when
         long[] ids = memberDao.insert(TEST_MEMBERS);
         Member actualMember = memberDao.find(TEST_MEMBERS[1].passNumber);

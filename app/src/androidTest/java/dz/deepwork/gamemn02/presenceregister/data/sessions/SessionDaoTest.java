@@ -35,7 +35,7 @@ public class SessionDaoTest {
     }
 
     @Test
-    public void insertAndFindSession() {
+    public void insertAndFind() {
         //when
         long[] ids = sessionDao.insert(TEST_SESSIONS);
         Session actualSession = sessionDao.find(TEST_SESSIONS[1].memberId);
