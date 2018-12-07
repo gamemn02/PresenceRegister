@@ -10,13 +10,13 @@ public class SignIn {
     @PrimaryKey(autoGenerate = true)
     public long uId;
     @ColumnInfo(name = "session_id")
-    public int sessionId;
+    public long sessionId;
     @ColumnInfo(name = "time")
     public long time;
     @ColumnInfo(name = "room")
     public String room;
 
-    public SignIn(int sessionId, long time, String room) {
+    public SignIn(long sessionId, long time, String room) {
         this.sessionId = sessionId;
         this.time = time;
         this.room = room;

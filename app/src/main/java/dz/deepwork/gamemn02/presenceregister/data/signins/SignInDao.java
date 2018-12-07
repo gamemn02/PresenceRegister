@@ -12,7 +12,7 @@ public interface SignInDao {
     long[] insert(SignIn... signIns);
 
     @Query("SELECT * FROM sign_ins  WHERE session_id = :sessionId")
-    SignIn find(int sessionId);
+    SignIn find(long sessionId);
 
     @Delete
     void delete(SignIn... signIn);
