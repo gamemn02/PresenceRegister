@@ -3,6 +3,7 @@ package dz.deepwork.gamemn02.presenceregister.data.members;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 
@@ -16,14 +17,10 @@ public class RealMembersRepoTest {
     public static final Member TEST_MEMBER =
             new Member("name1", "123456", true);
 
-    private RealMembersRepo realMembersRepo;
     @Mock
     private MemberDao memberDao;
-
-    @Before
-    public void beforeTest() {
-        realMembersRepo = new RealMembersRepo(memberDao);
-    }
+    @InjectMocks
+    private RealMembersRepo realMembersRepo;
 
     @Test
     public void addMembersCallsMemberDaoInsert() {
