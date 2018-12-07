@@ -3,7 +3,6 @@ package dz.deepwork.gamemn02.presenceregister.data.sessions;
 import android.support.test.runner.AndroidJUnit4;
 
 import org.junit.After;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -39,7 +38,7 @@ public class SessionDaoTest {
     public void insertAndFindSession() {
         //when
         long[] ids = sessionDao.insert(TEST_SESSIONS);
-        Session actualSession = sessionDao.findSession(TEST_SESSIONS[1].memberId);
+        Session actualSession = sessionDao.find(TEST_SESSIONS[1].memberId);
         Session expectedSession = TEST_SESSIONS[1];
         Session wrongSession = TEST_SESSIONS[2];
         expectedSession.uId = ids[1];

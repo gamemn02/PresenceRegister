@@ -11,5 +11,5 @@ public interface SessionDao {
     long[] insert(Session... sessions);
 
     @Query("SELECT * FROM sessions WHERE member_Id = :memberId")
-    Session findSession(int memberId);
+    Session find(int memberId);
 }
