@@ -1,4 +1,4 @@
-package dz.deepwork.gamemn02.presenceregister.data;
+package dz.deepwork.gamemn02.presenceregister.data.members;
 
 import org.junit.Before;
 import org.junit.Test;
