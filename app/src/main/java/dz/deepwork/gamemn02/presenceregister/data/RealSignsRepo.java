@@ -14,4 +14,8 @@ public class RealSignsRepo {
     public void signIn(SignIn signIn) {
         mSignInDao.insert(signIn);
     }
+
+    public SignIn findSignIn(long sessionId) {
+        return mSignInDao.find(sessionId);
+    }
 }
