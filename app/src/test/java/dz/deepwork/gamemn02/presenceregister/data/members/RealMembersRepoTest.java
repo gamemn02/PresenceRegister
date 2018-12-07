@@ -13,7 +13,8 @@ public class RealMembersRepoTest {
 
 
     private static final String TEST_PASS_NUMBER = "123456";
-    public static final Member TEST_MEMBER = new Member("name1", "123456", true);
+    public static final Member TEST_MEMBER =
+            new Member("name1", "123456", true);
 
     private RealMembersRepo realMembersRepo;
     @Mock

@@ -11,4 +11,8 @@ public class RealSessionsRepo {
     public Session findSession(long memberId) {
         return mSessionDao.find(memberId);
     }
+
+    public void addSession(Session... sessions) {
+        mSessionDao.insert(sessions);
+    }
 }

@@ -11,6 +11,8 @@ import static org.mockito.Mockito.verify;
 public class RealSessionsRepoTest {
 
     private static final long TEST_MEMBER_ID = 0;
+    private static final Session TEST_SESSION =
+            new Session(0, 1, 2, "B007", "Rec E114");
     private RealSessionsRepo realSessionsRepo;
     @Mock
     private SessionDao sessionDao;
@@ -28,5 +30,14 @@ public class RealSessionsRepoTest {
 
         //then
         verify(sessionDao).find(TEST_MEMBER_ID);
+    }
+
+    @Test
+    public void addSessionCallsSessionDaoInsert() {
+        //when
+        realSessionsRepo.addSession(TEST_SESSION);
+
+        //then
+        verify(sessionDao).insert(TEST_SESSION);
     }
 }
