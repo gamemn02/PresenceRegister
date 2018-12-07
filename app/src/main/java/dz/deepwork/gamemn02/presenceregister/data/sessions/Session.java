@@ -14,13 +14,13 @@ public class Session {
     @ColumnInfo(name = "end_time")
     public int endTime;
     @ColumnInfo(name = "member_Id")
-    public int memberId;
+    public long memberId;
     @ColumnInfo(name = "room")
     public String room;
     @ColumnInfo(name = "details")
     public String details;
 
-    public Session(int beginTime, int endTime, int memberId, String room, String details) {
+    public Session(int beginTime, int endTime, long memberId, String room, String details) {
         this.beginTime = beginTime;
         this.endTime = endTime;
         this.memberId = memberId;
