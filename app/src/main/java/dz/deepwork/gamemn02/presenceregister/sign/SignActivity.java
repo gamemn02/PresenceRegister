@@ -7,6 +7,7 @@ import android.widget.TextView;
 import javax.inject.Inject;
 
 import dz.deepwork.gamemn02.presenceregister.R;
+import dz.deepwork.gamemn02.presenceregister.data.RepoComponent;
 import dz.deepwork.gamemn02.presenceregister.data.members.Member;
 import dz.deepwork.gamemn02.presenceregister.data.members.MembersRepo;
 
@@ -25,7 +26,7 @@ public class SignActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign);
 
-        SignComponent.Singleton.getInstance().inject(this);
+        RepoComponent.Singleton.getInstance().inject(this);
         findMember();
         showMemberName();
     }

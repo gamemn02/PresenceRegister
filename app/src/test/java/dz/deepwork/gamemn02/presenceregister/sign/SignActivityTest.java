@@ -15,6 +15,8 @@ import org.robolectric.android.controller.ActivityController;
 import dz.deepwork.gamemn02.presenceregister.ApplicationContextModule;
 import dz.deepwork.gamemn02.presenceregister.R;
 import dz.deepwork.gamemn02.presenceregister.data.AppDatabaseModule;
+import dz.deepwork.gamemn02.presenceregister.data.DaggerRepoComponent;
+import dz.deepwork.gamemn02.presenceregister.data.RepoComponent;
 import dz.deepwork.gamemn02.presenceregister.data.TestMembersModule;
 
 import static junit.framework.Assert.assertEquals;
@@ -27,13 +29,13 @@ public class SignActivityTest {
 
     @Before
     public void before() {
-        SignComponent daggerSignComponent = DaggerSignComponent
+        RepoComponent daggerRepoComponent = DaggerRepoComponent
                 .builder()
                 .applicationContextModule(new ApplicationContextModule(RuntimeEnvironment.application))
                 .appDatabaseModule(new AppDatabaseModule())
                 .membersModule(new TestMembersModule())
                 .build();
-        SignComponent.Singleton.set(daggerSignComponent);
+        RepoComponent.Singleton.set(daggerRepoComponent);
 
         Intent intent = new Intent(Intent.ACTION_VIEW);
         intent.putExtra(SignActivity.EXTRA_PASS_NUMBER, TestMembersModule.getTestedPassNumber());
