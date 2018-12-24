@@ -13,6 +13,7 @@ import dz.deepwork.gamemn02.presenceregister.data.AppDatabase;
 import dz.deepwork.gamemn02.presenceregister.data.DaggerAppDatabaseComponent;
 import dz.deepwork.gamemn02.presenceregister.data.LiveDataTestUtils;
 import dz.deepwork.gamemn02.presenceregister.data.TestAppDatabaseModule;
+import dz.deepwork.gamemn02.presenceregister.data.TestData;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
@@ -21,10 +22,6 @@ import static org.junit.Assert.assertNotNull;
 @RunWith(AndroidJUnit4.class)
 public class SessionDaoTest {
 
-    private static final Session[] TEST_SESSIONS = {
-            new Session(0, 0, 0, "B007", ""),
-            new Session(0, 4, 1, "C101", ""),
-            new Session(1, 3, 2, "B005", "")};
     AppDatabase appDatabase;
     SessionDao sessionDao;
 
@@ -39,11 +36,11 @@ public class SessionDaoTest {
     @Test
     public void insertAndFind() throws InterruptedException {
         //when
-        long[] ids = sessionDao.insert(TEST_SESSIONS);
-        LiveData<Session> actualSessionLiveData = sessionDao.find(TEST_SESSIONS[1].memberId);
+        long[] ids = sessionDao.insert(TestData.SESSIONS);
+        LiveData<Session> actualSessionLiveData = sessionDao.find(TestData.SESSIONS[1].memberId);
         Session actualSession = LiveDataTestUtils.getValue(actualSessionLiveData);
-        Session expectedSession = TEST_SESSIONS[1];
-        Session wrongSession = TEST_SESSIONS[2];
+        Session expectedSession = TestData.SESSIONS[1];
+        Session wrongSession = TestData.SESSIONS[2];
         expectedSession.uId = ids[1];
         wrongSession.uId = ids[2];
 
@@ -55,10 +52,10 @@ public class SessionDaoTest {
     @Test
     public void get() {
         //when
-        long[] ids = sessionDao.insert(TEST_SESSIONS);
+        long[] ids = sessionDao.insert(TestData.SESSIONS);
         Session actualSession = sessionDao.get(ids[1]);
-        Session expectedSession = TEST_SESSIONS[1];
-        Session wrongSession = TEST_SESSIONS[2];
+        Session expectedSession = TestData.SESSIONS[1];
+        Session wrongSession = TestData.SESSIONS[2];
         expectedSession.uId = ids[1];
         wrongSession.uId = ids[2];
 

@@ -6,6 +6,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 
+import dz.deepwork.gamemn02.presenceregister.data.TestData;
 import dz.deepwork.gamemn02.presenceregister.data.members.Member;
 
 import static junit.framework.Assert.assertEquals;
@@ -14,41 +15,31 @@ import static org.junit.Assert.assertNotEquals;
 @RunWith(JUnit4.class)
 public class MemberTest {
 
-    private static final String TEST_MEMBER1_NAME = "name";
-    private static final String TEST_MEMBER1_PASS_NUMBER = "123456";
-    private static final boolean TEST_MEMBER1_IS_ADMIN = false;
-    private static final String TEST_MEMBER2_NAME = "name";
-    private static final String TEST_MEMBER2_PASS_NUMBER = "123456";
-    private static final boolean TEST_MEMBER2_IS_ADMIN = false;
-    private static final String TEST_MEMBER3_NAME = "name3";
-    private static final String TEST_MEMBER3_PASS_NUMBER = "654321";
-    private static final boolean TEST_MEMBER3_IS_ADMIN = true;
-
     @Test
     public void createMember() {
         //when
-        Member member = new Member(TEST_MEMBER1_NAME, TEST_MEMBER1_PASS_NUMBER, TEST_MEMBER1_IS_ADMIN);
+        Member member = new Member(TestData.MEMBER1_NAME, TestData.MEMBER1_PASS_NUMBER, TestData.MEMBER1_IS_ADMIN);
 
         //then
-        assertEquals(member.name, TEST_MEMBER1_NAME);
-        assertEquals(member.passNumber, TEST_MEMBER1_PASS_NUMBER);
-        assertEquals(member.isAdmin, TEST_MEMBER1_IS_ADMIN);
+        assertEquals(member.name, TestData.MEMBER1_NAME);
+        assertEquals(member.passNumber, TestData.MEMBER1_PASS_NUMBER);
+        assertEquals(member.isAdmin, TestData.MEMBER1_IS_ADMIN);
     }
 
     @Test
     public void equals() {
         //when
-        Member member = new Member(TEST_MEMBER1_NAME, TEST_MEMBER1_PASS_NUMBER, TEST_MEMBER1_IS_ADMIN);
-        Member member2 = new Member(TEST_MEMBER2_NAME, TEST_MEMBER2_PASS_NUMBER, TEST_MEMBER2_IS_ADMIN);
-        Member member3 = new Member(TEST_MEMBER3_NAME, TEST_MEMBER3_PASS_NUMBER, TEST_MEMBER3_IS_ADMIN);
+        Member member = new Member(TestData.MEMBER1_NAME, TestData.MEMBER1_PASS_NUMBER, TestData.MEMBER1_IS_ADMIN);
+        Member equalMember = new Member(TestData.MEMBER1_NAME, TestData.MEMBER1_PASS_NUMBER, TestData.MEMBER1_IS_ADMIN);
+        Member NotEqualMember3 = new Member(TestData.MEMBER2_NAME, TestData.MEMBER2_PASS_NUMBER, TestData.MEMBER2_IS_ADMIN);
         member.uId = 1;
-        member2.uId = 1;
-        member3.uId = 2;
+        equalMember.uId = 1;
+        NotEqualMember3.uId = 2;
 
         //then
-        assertEquals(member, member2);
-        assertNotEquals(member, member3);
-        assertNotEquals(member2, member3);
+        assertEquals(member, equalMember);
+        assertNotEquals(member, NotEqualMember3);
+        assertNotEquals(equalMember, NotEqualMember3);
 
     }
 }

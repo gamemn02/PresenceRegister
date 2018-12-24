@@ -10,15 +10,13 @@ import org.mockito.junit.MockitoJUnitRunner;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
+import dz.deepwork.gamemn02.presenceregister.data.TestData;
+
 import static org.mockito.Mockito.verify;
 
 @RunWith(MockitoJUnitRunner.class)
 public class RealMembersRepoTest {
 
-
-    private static final String TEST_PASS_NUMBER = "123456";
-    public static final Member TEST_MEMBER =
-            new Member("name1", "123456", true);
 
     @Mock
     MemberDao memberDao;
@@ -31,21 +29,21 @@ public class RealMembersRepoTest {
     public void addMembersCallsMemberDaoInsert() throws InterruptedException {
 
         //when
-        realMembersRepo.addMembers(TEST_MEMBER);
+        realMembersRepo.addMembers(TestData.MEMBERS[0]);
         Thread.sleep(100);
 
         //then
-        verify(memberDao).insert(TEST_MEMBER);
+        verify(memberDao).insert(TestData.MEMBERS[0]);
     }
 
     @Test
     public void findMemberCallsMemberDaoFind() throws InterruptedException {
 
         //when
-        realMembersRepo.findMember(TEST_PASS_NUMBER);
+        realMembersRepo.findMember(TestData.MEMBER1_PASS_NUMBER);
         Thread.sleep(100);
 
         //then
-        verify(memberDao).find(TEST_PASS_NUMBER);
+        verify(memberDao).find(TestData.MEMBER1_PASS_NUMBER);
     }
 }

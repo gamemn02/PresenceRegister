@@ -26,15 +26,6 @@ import static org.mockito.Mockito.when;
 @RunWith(MockitoJUnitRunner.class)
 public class RealSignsRepoTest {
 
-    private static final Member TEST_MEMBER =
-            new Member("name1", "123456", false);
-    private static final Session TEST_SESSION =
-            new Session(0, 0, TEST_MEMBER.uId, "B007", "Rec E114");
-    private static final SignIn TEST_SIGN_IN =
-            new SignIn(1, 4, "B007");
-    private static final Sign TEST_SIGN =
-            new Sign("name1", 4, 5, "B007", "Rec E114");
-
     @Mock
     MemberDao memberDao;
     @Mock
@@ -53,38 +44,38 @@ public class RealSignsRepoTest {
     public void signInCallsSignInDaoInsert() throws InterruptedException {
 
         //when
-        realSignsRepo.signIn(TEST_SIGN_IN);
+        realSignsRepo.signIn(TestData.SIGN_INS[0]);
         Thread.sleep(100);
 
         //then
-        verify(signInDao).insert(TEST_SIGN_IN);
+        verify(signInDao).insert(TestData.SIGN_INS[0]);
     }
 
     @Test
     public void findSignInCallsFind() throws InterruptedException {
 
         //when
-        when(signInDao.find(TEST_SIGN_IN.sessionId)).thenReturn(TEST_SIGN_IN);
-        SignIn returnedSignIn = realSignsRepo.findSignIn(TEST_SIGN_IN.sessionId);
+        when(signInDao.find(TestData.SIGN_INS[0].sessionId)).thenReturn(TestData.SIGN_INS[0]);
+        SignIn returnedSignIn = realSignsRepo.findSignIn(TestData.SIGN_INS[0].sessionId);
         Thread.sleep(100);
 
         //then
-        verify(signInDao).find(TEST_SIGN_IN.sessionId);
-        Assert.assertEquals(TEST_SIGN_IN, returnedSignIn);
+        verify(signInDao).find(TestData.SIGN_INS[0].sessionId);
+        Assert.assertEquals(TestData.SIGN_INS[0], returnedSignIn);
     }
 
     @Test
     public void signOutCallsSignInDaoDeleteAndSignDaoInsert() throws InterruptedException {
 
         //when
-        when(memberDao.get(TEST_SESSION.memberId)).thenReturn(TEST_MEMBER);
-        when(sessionDao.get(TEST_SIGN_IN.sessionId)).thenReturn(TEST_SESSION);
-        realSignsRepo.signOut(TEST_SIGN_IN);
+        when(memberDao.get(TestData.SESSIONS[0].memberId)).thenReturn(TestData.MEMBERS[0]);
+        when(sessionDao.get(TestData.SIGN_INS[0].sessionId)).thenReturn(TestData.SESSIONS[0]);
+        realSignsRepo.signOut(TestData.SIGN_INS[0]);
         Thread.sleep(100);
 
         //then
-        verify(signInDao).delete(TEST_SIGN_IN);
-        verify(signDao).insert(TEST_SIGN);
+        verify(signInDao).delete(TestData.SIGN_INS[0]);
+        verify(signDao).insert(TestData.SIGNS[0]);
 
     }
 

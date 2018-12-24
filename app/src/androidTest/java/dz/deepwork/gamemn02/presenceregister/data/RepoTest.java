@@ -37,20 +37,9 @@ import static org.junit.Assert.*;
 
 public class RepoTest {
 
-    private static final Member[] TEST_MEMBERS = {
-            new Member("name1", "123456", false)
-    };
-    private static final Session[] TEST_SESSIONS = {
-            new Session(1, 2, 1, "B001", "Rec E147")
-    };
-    private static final SignIn TEST_SIGN_IN = new SignIn(1, 1, "B007");
-    private static final String TEST_PASS_NUMBER = "123456";
-    private static final long TEST_MEMBER_ID = 1;
-
     @Rule
     public ActivityTestRule<LoginActivity> mActivityRule = new ActivityTestRule<>(
             LoginActivity.class);
-
 
     AppDatabase appDatabase;
     MembersRepo membersRepo;
@@ -81,7 +70,7 @@ public class RepoTest {
             mActivityRule.runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    membersRepo.addMembers(TEST_MEMBERS);
+                    membersRepo.addMembers(TestData.MEMBERS);
                     countDownLatch.countDown();
                 }
             });
@@ -100,7 +89,7 @@ public class RepoTest {
             mActivityRule.runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    membersRepo.findMember(TEST_PASS_NUMBER);
+                    membersRepo.findMember(TestData.MEMBER1_PASS_NUMBER);
                     countDownLatch.countDown();
                 }
             });
@@ -119,7 +108,7 @@ public class RepoTest {
             mActivityRule.runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    sessionsRepo.addSessions(TEST_SESSIONS);
+                    sessionsRepo.addSessions(TestData.SESSIONS);
                     countDownLatch.countDown();
                 }
             });
@@ -138,7 +127,7 @@ public class RepoTest {
             mActivityRule.runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    sessionsRepo.findSession(TEST_MEMBER_ID);
+                    sessionsRepo.findSession(TestData.SESSION1_MEMBER_ID);
                     countDownLatch.countDown();
                 }
             });
@@ -157,7 +146,7 @@ public class RepoTest {
             mActivityRule.runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    signsRepo.signIn(TEST_SIGN_IN);
+                    signsRepo.signIn(TestData.SIGN_INS[0]);
                     countDownLatch.countDown();
                 }
             });
@@ -176,7 +165,7 @@ public class RepoTest {
             mActivityRule.runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    signsRepo.signOut(TEST_SIGN_IN);
+                    signsRepo.signOut(TestData.SIGN_INS[0]);
                     countDownLatch.countDown();
                 }
             });
@@ -192,5 +181,3 @@ public class RepoTest {
         appDatabase.close();
     }
 }
-
-// TODO: make all constant test fields in public class

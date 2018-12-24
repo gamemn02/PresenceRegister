@@ -11,17 +11,13 @@ import dz.deepwork.gamemn02.presenceregister.TestApplicationContextModule;
 import dz.deepwork.gamemn02.presenceregister.data.AppDatabase;
 import dz.deepwork.gamemn02.presenceregister.data.DaggerAppDatabaseComponent;
 import dz.deepwork.gamemn02.presenceregister.data.TestAppDatabaseModule;
+import dz.deepwork.gamemn02.presenceregister.data.TestData;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 @RunWith(AndroidJUnit4.class)
 public class SignDaoTest {
-
-    private static final Sign[] TEST_SIGNS = {
-            new Sign("name1", 0, 1, "B007", ""),
-            new Sign("name2", 1, 3, "C101", "Rec E114"),
-            new Sign("name3", 2, 4, "A302", "Lab E404")};
 
     AppDatabase appDatabase;
     SignDao signDao;
@@ -38,15 +34,15 @@ public class SignDaoTest {
     public void insertAndFind() {
         //when
         int i = 0;
-        long ids[] = signDao.insert(TEST_SIGNS);
+        long ids[] = signDao.insert(TestData.SIGNS);
         Sign[] actualSigns = signDao.queryAll();
-        Sign[] expectedSigns = TEST_SIGNS;
+        Sign[] expectedSigns = TestData.SIGNS;
         for(i = 0; i < actualSigns.length; i++) {
             expectedSigns[i].uId = ids[i];
         }
 
         //then
-        for(i = 0; i < TEST_SIGNS.length; i++) {
+        for(i = 0; i < TestData.SIGNS.length; i++) {
             assertEquals("actual signs does't match the expected signs", expectedSigns[i], actualSigns[i]);
         }
     }

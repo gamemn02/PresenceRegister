@@ -9,6 +9,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import dz.deepwork.gamemn02.presenceregister.R;
+import dz.deepwork.gamemn02.presenceregister.data.TestData;
 
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;
@@ -33,39 +34,19 @@ public class LoginActivityTest {
         }
     }
 
-    public static final String TEST_PASS_NUMBER_1 = "012345";
-
     @Test
     public void typingPassNumber() {
         //when
-        onView(ViewMatchers.withId(R.id.btn_digit_0)).check(matches(isDisplayed())).perform(click());
         onView(withId(R.id.btn_digit_1)).check(matches(isDisplayed())).perform(click());
         onView(withId(R.id.btn_digit_2)).check(matches(isDisplayed())).perform(click());
         onView(withId(R.id.btn_digit_3)).check(matches(isDisplayed())).perform(click());
         onView(withId(R.id.btn_digit_4)).check(matches(isDisplayed())).perform(click());
         onView(withId(R.id.btn_digit_5)).check(matches(isDisplayed())).perform(click());
+        onView(withId(R.id.btn_digit_6)).check(matches(isDisplayed())).perform(click());
 
         //then
-        onView(withId(R.id.et_pass_number)).check(matches(isDisplayed())).check(matches(withText(TEST_PASS_NUMBER_1)));
+        onView(withId(R.id.et_pass_number)).check(matches(isDisplayed())).check(matches(withText(TestData.PASS_NUMBER_1)));
     }
-
-    public static final String TEST_PASS_NUMBER_2 = "987452";
-
-    @Test
-    public void typingAnotherPassNumber() {
-        //when
-        onView(withId(R.id.btn_digit_9)).perform(click());
-        onView(withId(R.id.btn_digit_8)).perform(click());
-        onView(withId(R.id.btn_digit_7)).perform(click());
-        onView(withId(R.id.btn_digit_4)).perform(click());
-        onView(withId(R.id.btn_digit_5)).perform(click());
-        onView(withId(R.id.btn_digit_2)).perform(click());
-
-        //then
-        onView(withId(R.id.et_pass_number)).check(matches(withText(TEST_PASS_NUMBER_2)));
-    }
-
-    public static final String TEST_PASS_NUMBER_3 = "98745";
 
     @Test
     public void clickClearClearsPassNumberField() {
@@ -77,7 +58,7 @@ public class LoginActivityTest {
         onView(withId(R.id.btn_digit_5)).perform(click());
 
         //then
-        onView(withId(R.id.et_pass_number)).check(matches(withText(TEST_PASS_NUMBER_3)));
+        onView(withId(R.id.et_pass_number)).check(matches(withText(TestData.PASS_NUMBER_4)));
 
         //when
         onView(withId(R.id.btn_clear)).check(matches(isDisplayed())).perform(click());

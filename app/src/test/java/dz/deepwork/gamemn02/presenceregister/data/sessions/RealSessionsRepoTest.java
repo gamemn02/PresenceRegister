@@ -10,14 +10,12 @@ import org.mockito.junit.MockitoJUnitRunner;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
+import dz.deepwork.gamemn02.presenceregister.data.TestData;
+
 import static org.mockito.Mockito.verify;
 
 @RunWith(MockitoJUnitRunner.class)
 public class RealSessionsRepoTest {
-
-    private static final long TEST_MEMBER_ID = 0;
-    private static final Session TEST_SESSION =
-            new Session(0, 1, 2, "B007", "Rec E114");
 
     @Mock
     SessionDao sessionDao;
@@ -30,20 +28,20 @@ public class RealSessionsRepoTest {
     public void findSessionCallsSessionDaoFind() throws InterruptedException {
 
         //when
-        realSessionsRepo.findSession(TEST_MEMBER_ID);
+        realSessionsRepo.findSession(TestData.SESSIONS[0].memberId);
         Thread.sleep(100);
 
         //then
-        verify(sessionDao).find(TEST_MEMBER_ID);
+        verify(sessionDao).find(TestData.SESSIONS[0].memberId);
     }
 
     @Test
     public void addSessionsCallsSessionDaoInsert() throws InterruptedException {
         //when
-        realSessionsRepo.addSessions(TEST_SESSION);
+        realSessionsRepo.addSessions(TestData.SESSIONS);
         Thread.sleep(100);
 
         //then
-        verify(sessionDao).insert(TEST_SESSION);
+        verify(sessionDao).insert(TestData.SESSIONS);
     }
 }

@@ -11,6 +11,7 @@ import dz.deepwork.gamemn02.presenceregister.TestApplicationContextModule;
 import dz.deepwork.gamemn02.presenceregister.data.AppDatabase;
 import dz.deepwork.gamemn02.presenceregister.data.DaggerAppDatabaseComponent;
 import dz.deepwork.gamemn02.presenceregister.data.TestAppDatabaseModule;
+import dz.deepwork.gamemn02.presenceregister.data.TestData;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
@@ -19,11 +20,6 @@ import static org.junit.Assert.assertNull;
 
 @RunWith(AndroidJUnit4.class)
 public class SignInDaoTest {
-
-    private static final SignIn[] TEST_SIGN_INS = {
-            new SignIn(1, 2, "B007"),
-            new SignIn(2, 3, "C101"),
-            new SignIn(3, 4, "B007")};
 
     AppDatabase appDatabase;
     SignInDao signInDao;
@@ -39,10 +35,10 @@ public class SignInDaoTest {
     @Test
     public void insertAndFind() {
         //when
-        long ids[] = signInDao.insert(TEST_SIGN_INS);
-        SignIn actualSignIn = signInDao.find(TEST_SIGN_INS[1].sessionId);
-        SignIn expectedSignIn = TEST_SIGN_INS[1];
-        SignIn wrongSignIn = TEST_SIGN_INS[2];
+        long ids[] = signInDao.insert(TestData.SIGN_INS);
+        SignIn actualSignIn = signInDao.find(TestData.SIGN_INS[1].sessionId);
+        SignIn expectedSignIn = TestData.SIGN_INS[1];
+        SignIn wrongSignIn = TestData.SIGN_INS[2];
         expectedSignIn.uId = ids[1];
         wrongSignIn.uId = ids[2];
 
@@ -54,11 +50,11 @@ public class SignInDaoTest {
     @Test
     public void delete() {
         //when
-        long ids[] = signInDao.insert(TEST_SIGN_INS);
+        long ids[] = signInDao.insert(TestData.SIGN_INS);
         SignIn signInToDelete = new SignIn(0, 0, "");
         signInToDelete.uId = ids[1];
         signInDao.delete(signInToDelete);
-        SignIn actualSignIn = signInDao.find(TEST_SIGN_INS[1].sessionId);
+        SignIn actualSignIn = signInDao.find(TestData.SIGN_INS[1].sessionId);
 
         //then
         assertNull("deleted sign in row still exists", actualSignIn);
