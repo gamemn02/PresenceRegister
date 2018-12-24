@@ -5,6 +5,7 @@ import android.widget.TextView;
 
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.robolectric.Robolectric;
@@ -26,6 +27,7 @@ import static org.mockito.Mockito.mock;
 public class SignActivityTest {
 
     private ActivityController<SignActivity> mSignActivityController;
+    private SignActivity mSignActivity;
 
     @Before
     public void before() {
@@ -40,21 +42,23 @@ public class SignActivityTest {
         Intent intent = new Intent(Intent.ACTION_VIEW);
         intent.putExtra(SignActivity.EXTRA_PASS_NUMBER, TestMembersModule.getTestedPassNumber());
         mSignActivityController = Robolectric.buildActivity(SignActivity.class, intent).create();
+        mSignActivity = mSignActivityController.get();
+        mSignActivityController.start().resume();
     }
 
     @Test
     public void showMemberNameBasedOnIntent() {
 
-        SignActivity signActivity = mSignActivityController.get();
-        TextView memberNameText = (TextView) signActivity.findViewById(R.id.tv_member_name);
-
+        // when
+        TextView memberNameText = (TextView) mSignActivity.findViewById(R.id.tv_member_name);
         String expectedMemberName = TestMembersModule.getTestedMember().name;
         String actualMemberName = memberNameText.getText().toString();
+        // then
         assertEquals(expectedMemberName, actualMemberName);
     }
 
     @After
     public void after() {
-        mSignActivityController.destroy();
+        mSignActivityController.pause().stop().destroy();
     }
 }

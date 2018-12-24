@@ -1,6 +1,10 @@
 package dz.deepwork.gamemn02.presenceregister.sign;
 
+import android.arch.lifecycle.LifecycleOwner;
+import android.arch.lifecycle.Observer;
+import android.arch.lifecycle.ViewModelProvider;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
 
@@ -28,15 +32,21 @@ public class SignActivity extends AppCompatActivity {
 
         RepoComponent.Singleton.getInstance().inject(this);
         findMember();
-        showMemberName();
     }
 
     private void findMember() {
         String memberPassNumber = getIntent().getStringExtra(EXTRA_PASS_NUMBER);
-//        mLoggedInMember = mMembersRepo.findMember(memberPassNumber);
+        mMembersRepo.findMember(memberPassNumber).observe(this, new Observer<Member>() {
+            @Override
+            public void onChanged(@Nullable Member member) {
+                setupLoggedInMember(member);
+            }
+        });
     }
 
-    private void showMemberName() {
+    private void setupLoggedInMember(Member loggedInMember) {
+        mLoggedInMember = loggedInMember;
+        // Update UI
         mMemberNameText = (TextView) findViewById(R.id.tv_member_name);
         mMemberNameText.setText(mLoggedInMember.name);
     }

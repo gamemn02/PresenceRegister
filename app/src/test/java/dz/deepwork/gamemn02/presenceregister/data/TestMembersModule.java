@@ -1,5 +1,12 @@
 package dz.deepwork.gamemn02.presenceregister.data;
 
+import android.arch.lifecycle.LiveData;
+import android.arch.lifecycle.MutableLiveData;
+
+import java.util.concurrent.Executor;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
 import dz.deepwork.gamemn02.presenceregister.data.members.Member;
 import dz.deepwork.gamemn02.presenceregister.data.members.MemberDao;
 import dz.deepwork.gamemn02.presenceregister.data.members.MembersRepo;
@@ -21,9 +28,11 @@ public class TestMembersModule extends MembersModule {
 
 
     @Override
-    public MembersRepo provideMembersRepo(MemberDao memberDao) {
+    public MembersRepo provideMembersRepo(MemberDao memberDao, Executor dbExecutor) {
         MembersRepo mockedMembersRepo = mock(MembersRepo.class);
-        when(mockedMembersRepo.findMember(MEMBER_PASS_NUMBER_EXAMPLE)).thenReturn(sTestedMember);
+        final MutableLiveData<Member> testedMemberLiveData = new MutableLiveData<>();
+        testedMemberLiveData.postValue(sTestedMember);
+        when(mockedMembersRepo.findMember(MEMBER_PASS_NUMBER_EXAMPLE)).thenReturn(testedMemberLiveData);
         return mockedMembersRepo;
     }
 
