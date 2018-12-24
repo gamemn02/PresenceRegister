@@ -128,6 +128,25 @@ public class RepoTest {
         }
     }
 
+    @Test
+    public void runSignsRepoSignOutInUIThreadWithoutThrowing() {
+
+        final CountDownLatch countDownLatch = new CountDownLatch(1);
+        try {
+            mActivityRule.runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    signsRepo.signOut(TEST_SIGN_IN);
+                    countDownLatch.countDown();
+                }
+            });
+            countDownLatch.await(1, TimeUnit.MINUTES);
+        } catch (Throwable throwable) {
+            throwable.printStackTrace();
+            fail();
+        }
+    }
+
     @After
     public void closeDatabase() {
         appDatabase.close();
