@@ -19,7 +19,7 @@ public class SessionsModule {
 
     @Singleton
     @Provides
-    public SessionsRepo provideMembersRepo(SessionDao sessionDao) {
-        return new RealSessionsRepo(sessionDao);
+    public SessionsRepo provideMembersRepo(SessionDao sessionDao, Executor dbExecutor) {
+        return new RealSessionsRepo(sessionDao, dbExecutor);
     }
 }

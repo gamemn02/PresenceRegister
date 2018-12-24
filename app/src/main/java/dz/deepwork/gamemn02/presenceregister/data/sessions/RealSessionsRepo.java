@@ -6,9 +6,11 @@ import java.util.concurrent.Executors;
 public class RealSessionsRepo implements SessionsRepo{
 
     private SessionDao mSessionDao;
+    private Executor mDbExecutor;
 
-    public RealSessionsRepo(SessionDao sessionDao) {
+    public RealSessionsRepo(SessionDao sessionDao, Executor dbExecutor) {
         this.mSessionDao = sessionDao;
+        this.mDbExecutor = dbExecutor;
     }
 
     public Session findSession(long memberId) {
@@ -16,8 +18,7 @@ public class RealSessionsRepo implements SessionsRepo{
     }
 
     public void addSessions(final Session... sessions) {
-        Executor executor = Executors.newSingleThreadExecutor();
-        executor.execute(new Runnable() {
+        mDbExecutor.execute(new Runnable() {
             @Override
             public void run() {
                 mSessionDao.insert(sessions);
