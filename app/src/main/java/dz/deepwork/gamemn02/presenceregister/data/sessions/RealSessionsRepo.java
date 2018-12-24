@@ -1,5 +1,7 @@
 package dz.deepwork.gamemn02.presenceregister.data.sessions;
 
+import android.arch.lifecycle.LiveData;
+
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
@@ -13,7 +15,7 @@ public class RealSessionsRepo implements SessionsRepo{
         this.mDbExecutor = dbExecutor;
     }
 
-    public Session findSession(long memberId) {
+    public LiveData<Session> findSession(long memberId) {
         return mSessionDao.find(memberId);
     }
 

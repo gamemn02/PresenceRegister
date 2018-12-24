@@ -1,5 +1,6 @@
 package dz.deepwork.gamemn02.presenceregister.data.sessions;
 
+import android.arch.lifecycle.LiveData;
 import android.support.test.runner.AndroidJUnit4;
 
 import org.junit.After;
@@ -10,6 +11,7 @@ import org.junit.runner.RunWith;
 import dz.deepwork.gamemn02.presenceregister.TestApplicationContextModule;
 import dz.deepwork.gamemn02.presenceregister.data.AppDatabase;
 import dz.deepwork.gamemn02.presenceregister.data.DaggerAppDatabaseComponent;
+import dz.deepwork.gamemn02.presenceregister.data.LiveDataTestUtils;
 import dz.deepwork.gamemn02.presenceregister.data.TestAppDatabaseModule;
 
 import static org.junit.Assert.assertEquals;
@@ -35,10 +37,11 @@ public class SessionDaoTest {
     }
 
     @Test
-    public void insertAndFind() {
+    public void insertAndFind() throws InterruptedException {
         //when
         long[] ids = sessionDao.insert(TEST_SESSIONS);
-        Session actualSession = sessionDao.find(TEST_SESSIONS[1].memberId);
+        LiveData<Session> actualSessionLiveData = sessionDao.find(TEST_SESSIONS[1].memberId);
+        Session actualSession = LiveDataTestUtils.getValue(actualSessionLiveData);
         Session expectedSession = TEST_SESSIONS[1];
         Session wrongSession = TEST_SESSIONS[2];
         expectedSession.uId = ids[1];
