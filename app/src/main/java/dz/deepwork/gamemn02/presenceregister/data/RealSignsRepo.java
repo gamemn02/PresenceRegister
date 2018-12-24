@@ -43,8 +43,7 @@ public class RealSignsRepo implements SignsRepo {
 
     public void signOut(final SignIn signIn) {
 
-        Executor executor = Executors.newSingleThreadExecutor();
-        executor.execute(new Runnable() {
+        mDbExecutor.execute(new Runnable() {
             @Override
             public void run() {
                 mSignInDao.delete(signIn);
