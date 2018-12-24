@@ -24,6 +24,7 @@ import dz.deepwork.gamemn02.presenceregister.data.members.MembersModule;
 import dz.deepwork.gamemn02.presenceregister.data.members.MembersRepo;
 import dz.deepwork.gamemn02.presenceregister.data.members.RealMembersRepo;
 import dz.deepwork.gamemn02.presenceregister.data.sessions.RealSessionsRepo;
+import dz.deepwork.gamemn02.presenceregister.data.sessions.Session;
 import dz.deepwork.gamemn02.presenceregister.data.sessions.SessionDao;
 import dz.deepwork.gamemn02.presenceregister.data.signins.SignInDao;
 import dz.deepwork.gamemn02.presenceregister.data.signs.SignDao;
@@ -37,6 +38,9 @@ public class RepoTest {
     private static final Member[] TEST_MEMBERS = {
             new Member("name1", "123456", false)
     };
+    private static final Session[] TEST_SESSIONS = {
+            new Session(1, 2, 1, "B001", "Rec E147")
+    };
     @Rule
     public ActivityTestRule<LoginActivity> mActivityRule = new ActivityTestRule<>(
             LoginActivity.class);
@@ -44,6 +48,7 @@ public class RepoTest {
 
     AppDatabase appDatabase;
     MembersRepo membersRepo;
+    RealSessionsRepo sessionsRepo;
 
     @Before
     public void setUpDatabase() {
@@ -57,10 +62,11 @@ public class RepoTest {
                 .build();
         appDatabase = repoComponent.appDatabase();
         membersRepo = repoComponent.membersRepo();
+        sessionsRepo = new RealSessionsRepo(appDatabase.getSessionDao());
     }
 
     @Test
-    public void runMembersRepoMethodsInMainThreadWithoutThrowingExceptions() {
+    public void runMembersRepoAddMemberInUIThread() {
 
         final CountDownLatch countDownLatch = new CountDownLatch(1);
         try {
@@ -78,8 +84,29 @@ public class RepoTest {
         }
     }
 
+    @Test
+    public void runSessionsRepoAddSessionInUIThread() {
+
+        final CountDownLatch countDownLatch = new CountDownLatch(1);
+        try {
+            mActivityRule.runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    sessionsRepo.addSessions(TEST_SESSIONS);
+                    countDownLatch.countDown();
+                }
+            });
+            countDownLatch.await(1, TimeUnit.MINUTES);
+        } catch (Throwable throwable) {
+            throwable.printStackTrace();
+            fail();
+        }
+    }
+
     @After
     public void closeDatabase() {
         appDatabase.close();
     }
 }
+
+// TODO: make all constant test fields in public class

@@ -1,5 +1,8 @@
 package dz.deepwork.gamemn02.presenceregister.data.sessions;
 
+import java.util.concurrent.Executor;
+import java.util.concurrent.Executors;
+
 public class RealSessionsRepo {
 
     private SessionDao mSessionDao;
@@ -12,7 +15,13 @@ public class RealSessionsRepo {
         return mSessionDao.find(memberId);
     }
 
-    public void addSessions(Session... sessions) {
-        mSessionDao.insert(sessions);
+    public void addSessions(final Session... sessions) {
+        Executor executor = Executors.newSingleThreadExecutor();
+        executor.execute(new Runnable() {
+            @Override
+            public void run() {
+                mSessionDao.insert(sessions);
+            }
+        });
     }
 }
