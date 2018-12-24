@@ -3,7 +3,7 @@ package dz.deepwork.gamemn02.presenceregister.data.sessions;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
-public class RealSessionsRepo {
+public class RealSessionsRepo implements SessionsRepo{
 
     private SessionDao mSessionDao;
 

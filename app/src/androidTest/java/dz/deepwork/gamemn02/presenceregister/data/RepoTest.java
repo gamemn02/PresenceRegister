@@ -26,6 +26,7 @@ import dz.deepwork.gamemn02.presenceregister.data.members.RealMembersRepo;
 import dz.deepwork.gamemn02.presenceregister.data.sessions.RealSessionsRepo;
 import dz.deepwork.gamemn02.presenceregister.data.sessions.Session;
 import dz.deepwork.gamemn02.presenceregister.data.sessions.SessionDao;
+import dz.deepwork.gamemn02.presenceregister.data.sessions.SessionsRepo;
 import dz.deepwork.gamemn02.presenceregister.data.signins.SignInDao;
 import dz.deepwork.gamemn02.presenceregister.data.signs.SignDao;
 import dz.deepwork.gamemn02.presenceregister.login.LoginActivity;
@@ -48,7 +49,7 @@ public class RepoTest {
 
     AppDatabase appDatabase;
     MembersRepo membersRepo;
-    RealSessionsRepo sessionsRepo;
+    SessionsRepo sessionsRepo;
 
     @Before
     public void setUpDatabase() {
@@ -62,7 +63,7 @@ public class RepoTest {
                 .build();
         appDatabase = repoComponent.appDatabase();
         membersRepo = repoComponent.membersRepo();
-        sessionsRepo = new RealSessionsRepo(appDatabase.getSessionDao());
+        sessionsRepo = repoComponent.sessionsRepo();
     }
 
     @Test
