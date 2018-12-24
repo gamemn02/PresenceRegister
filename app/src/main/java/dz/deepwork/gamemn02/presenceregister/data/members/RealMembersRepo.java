@@ -1,13 +1,18 @@
 package dz.deepwork.gamemn02.presenceregister.data.members;
 
+import java.util.concurrent.Executor;
+import java.util.concurrent.Executors;
+
 import javax.inject.Inject;
 
 public class RealMembersRepo implements MembersRepo{
     private MemberDao mMemberDao;
+    private Executor mDbExecutor;
 
     @Inject
-    public RealMembersRepo(MemberDao memberDao) {
+    public RealMembersRepo(MemberDao memberDao, Executor dbExecutor) {
         this.mMemberDao = memberDao;
+        this.mDbExecutor = dbExecutor;
     }
 
     @Override
@@ -16,7 +21,12 @@ public class RealMembersRepo implements MembersRepo{
     }
 
     @Override
-    public void addMembers(Member... members) {
-        mMemberDao.insert(members);
+    public void addMembers(final Member... members) {
+        mDbExecutor.execute(new Runnable() {
+            @Override
+            public void run() {
+                mMemberDao.insert(members);
+            }
+        });
     }
 }

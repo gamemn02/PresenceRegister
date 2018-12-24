@@ -1,5 +1,7 @@
 package dz.deepwork.gamemn02.presenceregister.data.members;
 
+import java.util.concurrent.Executor;
+
 import javax.inject.Singleton;
 
 import dagger.Module;
@@ -19,7 +21,7 @@ public class MembersModule {
 
     @Singleton
     @Provides
-    public MembersRepo provideMembersRepo(MemberDao memberDao) {
-        return new RealMembersRepo(memberDao);
+    public MembersRepo provideMembersRepo(MemberDao memberDao, Executor dbExecutor) {
+        return new RealMembersRepo(memberDao, dbExecutor);
     }
 }
