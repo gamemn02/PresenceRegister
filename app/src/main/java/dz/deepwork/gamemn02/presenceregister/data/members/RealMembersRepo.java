@@ -1,5 +1,7 @@
 package dz.deepwork.gamemn02.presenceregister.data.members;
 
+import android.arch.lifecycle.LiveData;
+
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
@@ -16,7 +18,7 @@ public class RealMembersRepo implements MembersRepo{
     }
 
     @Override
-    public Member findMember(String passNumber) {
+    public LiveData<Member> findMember(String passNumber) {
         return mMemberDao.find(passNumber);
     }
 

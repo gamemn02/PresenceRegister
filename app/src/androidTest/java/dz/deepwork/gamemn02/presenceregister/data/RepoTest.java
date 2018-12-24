@@ -44,6 +44,7 @@ public class RepoTest {
             new Session(1, 2, 1, "B001", "Rec E147")
     };
     private static final SignIn TEST_SIGN_IN = new SignIn(1, 1, "B007");
+    private static final String TEST_PASS_NUMBER = "123456";
 
     @Rule
     public ActivityTestRule<LoginActivity> mActivityRule = new ActivityTestRule<>(
@@ -80,6 +81,25 @@ public class RepoTest {
                 @Override
                 public void run() {
                     membersRepo.addMembers(TEST_MEMBERS);
+                    countDownLatch.countDown();
+                }
+            });
+            countDownLatch.await(1, TimeUnit.MINUTES);
+        } catch (Throwable throwable) {
+            throwable.printStackTrace();
+            fail();
+        }
+    }
+
+    @Test
+    public void runMembersRepoFindMemberInUIThreadWithoutThrowing() {
+
+        final CountDownLatch countDownLatch = new CountDownLatch(1);
+        try {
+            mActivityRule.runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    membersRepo.findMember(TEST_PASS_NUMBER);
                     countDownLatch.countDown();
                 }
             });

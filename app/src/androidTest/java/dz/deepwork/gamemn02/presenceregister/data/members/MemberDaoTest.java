@@ -1,5 +1,6 @@
 package dz.deepwork.gamemn02.presenceregister.data.members;
 
+import android.arch.lifecycle.LiveData;
 import android.support.test.runner.AndroidJUnit4;
 
 import org.junit.After;
@@ -12,6 +13,7 @@ import dz.deepwork.gamemn02.presenceregister.TestApplicationContextModule;
 import dz.deepwork.gamemn02.presenceregister.data.AppDatabase;
 import dz.deepwork.gamemn02.presenceregister.data.AppDatabaseModule;
 import dz.deepwork.gamemn02.presenceregister.data.DaggerAppDatabaseComponent;
+import dz.deepwork.gamemn02.presenceregister.data.LiveDataTestUtils;
 import dz.deepwork.gamemn02.presenceregister.data.TestAppDatabaseModule;
 
 import static junit.framework.Assert.assertEquals;
@@ -37,10 +39,11 @@ public class MemberDaoTest {
 
 
     @Test
-    public void insertAndFind() {
+    public void insertAndFind() throws InterruptedException {
         //when
         long[] ids = memberDao.insert(TEST_MEMBERS);
-        Member actualMember = memberDao.find(TEST_MEMBERS[1].passNumber);
+        LiveData<Member> actualMemberLiveData = memberDao.find(TEST_MEMBERS[1].passNumber);
+        Member actualMember = LiveDataTestUtils.getValue(actualMemberLiveData);
         Member expectedMember = TEST_MEMBERS[1];
         Member wrongMember = TEST_MEMBERS[2];
         expectedMember.uId = ids[1];

@@ -33,7 +33,7 @@ public class SignActivity extends AppCompatActivity {
 
     private void findMember() {
         String memberPassNumber = getIntent().getStringExtra(EXTRA_PASS_NUMBER);
-        mLoggedInMember = mMembersRepo.findMember(memberPassNumber);
+//        mLoggedInMember = mMembersRepo.findMember(memberPassNumber);
     }
 
     private void showMemberName() {
