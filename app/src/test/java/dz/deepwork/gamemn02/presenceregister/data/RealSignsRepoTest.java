@@ -5,7 +5,11 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.Spy;
 import org.mockito.junit.MockitoJUnitRunner;
+
+import java.util.concurrent.Executor;
+import java.util.concurrent.Executors;
 
 import dz.deepwork.gamemn02.presenceregister.data.members.Member;
 import dz.deepwork.gamemn02.presenceregister.data.members.MemberDao;
@@ -39,25 +43,30 @@ public class RealSignsRepoTest {
     SignInDao signInDao;
     @Mock
     SignDao signDao;
+
+    Executor mDbExecutor = Executors.newSingleThreadExecutor();
     @InjectMocks
-    RealSignsRepo realSignsRepo;
+    RealSignsRepo realSignsRepo =
+            new RealSignsRepo(memberDao, sessionDao, signInDao, signDao, mDbExecutor);
 
     @Test
-    public void signInCallsSignInDaoInsert() {
+    public void signInCallsSignInDaoInsert() throws InterruptedException {
 
         //when
         realSignsRepo.signIn(TEST_SIGN_IN);
+        Thread.sleep(100);
 
         //then
         verify(signInDao).insert(TEST_SIGN_IN);
     }
 
     @Test
-    public void findSignInCallsFind() {
+    public void findSignInCallsFind() throws InterruptedException {
 
         //when
         when(signInDao.find(TEST_SIGN_IN.sessionId)).thenReturn(TEST_SIGN_IN);
         SignIn returnedSignIn = realSignsRepo.findSignIn(TEST_SIGN_IN.sessionId);
+        Thread.sleep(100);
 
         //then
         verify(signInDao).find(TEST_SIGN_IN.sessionId);
@@ -65,12 +74,13 @@ public class RealSignsRepoTest {
     }
 
     @Test
-    public void signOutCallsSignInDaoDeleteAndSignDaoInsert() {
+    public void signOutCallsSignInDaoDeleteAndSignDaoInsert() throws InterruptedException {
 
         //when
         when(memberDao.get(TEST_SESSION.memberId)).thenReturn(TEST_MEMBER);
         when(sessionDao.get(TEST_SIGN_IN.sessionId)).thenReturn(TEST_SESSION);
         realSignsRepo.signOut(TEST_SIGN_IN);
+        Thread.sleep(100);
 
         //then
         verify(signInDao).delete(TEST_SIGN_IN);

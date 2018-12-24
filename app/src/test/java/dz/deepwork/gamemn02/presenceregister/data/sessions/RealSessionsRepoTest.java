@@ -6,6 +6,10 @@ import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
+
+import java.util.concurrent.Executor;
+import java.util.concurrent.Executors;
+
 import static org.mockito.Mockito.verify;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -17,23 +21,27 @@ public class RealSessionsRepoTest {
 
     @Mock
     SessionDao sessionDao;
+
+    Executor mDbExecutor = Executors.newSingleThreadExecutor();
     @InjectMocks
-    RealSessionsRepo realSessionsRepo;
+    RealSessionsRepo realSessionsRepo = new RealSessionsRepo(sessionDao, mDbExecutor);
 
     @Test
-    public void findSessionCallsSessionDaoFind() {
+    public void findSessionCallsSessionDaoFind() throws InterruptedException {
 
         //when
         realSessionsRepo.findSession(TEST_MEMBER_ID);
+        Thread.sleep(100);
 
         //then
         verify(sessionDao).find(TEST_MEMBER_ID);
     }
 
     @Test
-    public void addSessionsCallsSessionDaoInsert() {
+    public void addSessionsCallsSessionDaoInsert() throws InterruptedException {
         //when
         realSessionsRepo.addSessions(TEST_SESSION);
+        Thread.sleep(100);
 
         //then
         verify(sessionDao).insert(TEST_SESSION);
