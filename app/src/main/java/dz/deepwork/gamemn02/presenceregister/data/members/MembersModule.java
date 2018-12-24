@@ -11,6 +11,7 @@ import dz.deepwork.gamemn02.presenceregister.data.AppDatabase;
 @Module
 public class MembersModule {
 
+    // TODO: remove that unused constructor
     public MembersModule() { }
 
     @Singleton

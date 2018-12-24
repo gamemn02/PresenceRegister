@@ -18,6 +18,7 @@ import dz.deepwork.gamemn02.presenceregister.sign.SignActivity;
 @Component(modules = {
         MembersModule.class,
         SessionsModule.class,
+        SignsModule.class,
         AppExecutorsModule.class,
         ApplicationContextModule.class,
         AppDatabaseModule.class})
@@ -26,6 +27,7 @@ public interface RepoComponent {
     void inject(SignActivity signActivity);
     MembersRepo membersRepo();
     SessionsRepo sessionsRepo();
+    SignsRepo signRepo();
     AppDatabase appDatabase();
 
     class Singleton {

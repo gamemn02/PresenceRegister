@@ -53,7 +53,7 @@ public class RepoTest {
     AppDatabase appDatabase;
     MembersRepo membersRepo;
     SessionsRepo sessionsRepo;
-    RealSignsRepo signsRepo;
+    SignsRepo signsRepo;
 
     @Before
     public void setUpDatabase() {
@@ -68,12 +68,11 @@ public class RepoTest {
         appDatabase = repoComponent.appDatabase();
         membersRepo = repoComponent.membersRepo();
         sessionsRepo = repoComponent.sessionsRepo();
-        signsRepo = new RealSignsRepo(appDatabase.getMemberDao(), appDatabase.getSessionDao(),
-                appDatabase.getSignInDao(), appDatabase.getSignDao());
+        signsRepo = repoComponent.signRepo();
     }
 
     @Test
-    public void runMembersRepoAddMemberInUIThread() {
+    public void runMembersRepoAddMemberInUIThreadWithoutThrowing() {
 
         final CountDownLatch countDownLatch = new CountDownLatch(1);
         try {
@@ -92,7 +91,7 @@ public class RepoTest {
     }
 
     @Test
-    public void runSessionsRepoAddSessionInUIThread() {
+    public void runSessionsRepoAddSessionInUIThreadWithoutThrowing() {
 
         final CountDownLatch countDownLatch = new CountDownLatch(1);
         try {
@@ -111,7 +110,7 @@ public class RepoTest {
     }
 
     @Test
-    public void runSignsRepoSignInInUIThread() {
+    public void runSignsRepoSignInInUIThreadWithoutThrowing() {
 
         final CountDownLatch countDownLatch = new CountDownLatch(1);
         try {
