@@ -1,5 +1,8 @@
 package dz.deepwork.gamemn02.presenceregister.data;
 
+import java.util.concurrent.Executor;
+import java.util.concurrent.Executors;
+
 import dz.deepwork.gamemn02.presenceregister.data.members.MemberDao;
 import dz.deepwork.gamemn02.presenceregister.data.sessions.Session;
 import dz.deepwork.gamemn02.presenceregister.data.sessions.SessionDao;
@@ -22,8 +25,14 @@ public class RealSignsRepo {
         mSignDao = signDao;
     }
 
-    public void signIn(SignIn signIn) {
-        mSignInDao.insert(signIn);
+    public void signIn(final SignIn signIn) {
+        Executor executor = Executors.newSingleThreadExecutor();
+        executor.execute(new Runnable() {
+            @Override
+            public void run() {
+                mSignInDao.insert(signIn);
+            }
+        });
     }
 
     public SignIn findSignIn(long sessionId) {

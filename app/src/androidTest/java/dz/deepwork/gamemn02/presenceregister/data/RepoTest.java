@@ -27,6 +27,7 @@ import dz.deepwork.gamemn02.presenceregister.data.sessions.RealSessionsRepo;
 import dz.deepwork.gamemn02.presenceregister.data.sessions.Session;
 import dz.deepwork.gamemn02.presenceregister.data.sessions.SessionDao;
 import dz.deepwork.gamemn02.presenceregister.data.sessions.SessionsRepo;
+import dz.deepwork.gamemn02.presenceregister.data.signins.SignIn;
 import dz.deepwork.gamemn02.presenceregister.data.signins.SignInDao;
 import dz.deepwork.gamemn02.presenceregister.data.signs.SignDao;
 import dz.deepwork.gamemn02.presenceregister.login.LoginActivity;
@@ -42,6 +43,8 @@ public class RepoTest {
     private static final Session[] TEST_SESSIONS = {
             new Session(1, 2, 1, "B001", "Rec E147")
     };
+    private static final SignIn TEST_SIGN_IN = new SignIn(1, 1, "B007");
+
     @Rule
     public ActivityTestRule<LoginActivity> mActivityRule = new ActivityTestRule<>(
             LoginActivity.class);
@@ -50,6 +53,7 @@ public class RepoTest {
     AppDatabase appDatabase;
     MembersRepo membersRepo;
     SessionsRepo sessionsRepo;
+    RealSignsRepo signsRepo;
 
     @Before
     public void setUpDatabase() {
@@ -64,6 +68,8 @@ public class RepoTest {
         appDatabase = repoComponent.appDatabase();
         membersRepo = repoComponent.membersRepo();
         sessionsRepo = repoComponent.sessionsRepo();
+        signsRepo = new RealSignsRepo(appDatabase.getMemberDao(), appDatabase.getSessionDao(),
+                appDatabase.getSignInDao(), appDatabase.getSignDao());
     }
 
     @Test
@@ -94,6 +100,25 @@ public class RepoTest {
                 @Override
                 public void run() {
                     sessionsRepo.addSessions(TEST_SESSIONS);
+                    countDownLatch.countDown();
+                }
+            });
+            countDownLatch.await(1, TimeUnit.MINUTES);
+        } catch (Throwable throwable) {
+            throwable.printStackTrace();
+            fail();
+        }
+    }
+
+    @Test
+    public void runSignsRepoSignInInUIThread() {
+
+        final CountDownLatch countDownLatch = new CountDownLatch(1);
+        try {
+            mActivityRule.runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    signsRepo.signIn(TEST_SIGN_IN);
                     countDownLatch.countDown();
                 }
             });
