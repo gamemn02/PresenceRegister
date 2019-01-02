@@ -3,6 +3,7 @@ package dz.deepwork.gamemn02.presenceregister.data;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
+import dz.deepwork.gamemn02.presenceregister.data.members.Member;
 import dz.deepwork.gamemn02.presenceregister.data.members.MemberDao;
 import dz.deepwork.gamemn02.presenceregister.data.sessions.Session;
 import dz.deepwork.gamemn02.presenceregister.data.sessions.SessionDao;
@@ -48,11 +49,16 @@ public class RealSignsRepo implements SignsRepo {
             public void run() {
                 mSignInDao.delete(signIn);
                 Session session = mSessionDao.get(signIn.sessionId);
-                String memberName = mMemberDao.get(session.memberId).name;
-                long signOutTime = signIn.time + 1;
-                String details = session.details;
-                Sign sign = new Sign(memberName, signIn.time, signOutTime, signIn.room, details);
-                mSignDao.insert(sign);
+                if (session != null) {
+                    Member member = mMemberDao.get(session.memberId);
+                    if (member != null) {
+                        String memberName = member.name;
+                        long signOutTime = signIn.time + 1;
+                        String details = session.details;
+                        Sign sign = new Sign(memberName, signIn.time, signOutTime, signIn.room, details);
+                        mSignDao.insert(sign);
+                    }
+                }
             }
         });
     }
