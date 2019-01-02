@@ -26,7 +26,17 @@ public class MainActivity extends AppCompatActivity {
             registerFragment = new RegisterFragment();
             fragmentManager
                     .beginTransaction()
-                    .add(R.id.frame_register, registerFragment)
+                    .add(R.id.frame_register, registerFragment, TAG_REGISTER_FRAGMENT)
+                    .commit();
+        }
+
+        LoginFragment loginFragment = (LoginFragment) fragmentManager.findFragmentByTag(TAG_LOGIN_FRAGMENT);
+        ViewGroup loginLayout = findViewById(R.id.frame_login);
+        if (loginFragment == null && loginLayout != null) {
+            loginFragment = new LoginFragment();
+            fragmentManager
+                    .beginTransaction()
+                    .add(R.id.frame_login, loginFragment, TAG_LOGIN_FRAGMENT)
                     .commit();
         }
     }

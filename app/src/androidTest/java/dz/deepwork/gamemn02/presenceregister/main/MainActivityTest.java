@@ -14,6 +14,7 @@ import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
+import static android.support.test.espresso.matcher.ViewMatchers.withParent;
 
 @RunWith(AndroidJUnit4.class)
 public class MainActivityTest {
@@ -27,6 +28,19 @@ public class MainActivityTest {
         mainActivityTestRule.getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         onView(withId(R.id.layout_register)).check(matches(isDisplayed()));
+        onView(withId(R.id.layout_register)).check(matches(withParent(withId(R.id.frame_register))));
     }
+
+    @Test
+    public void showLoginAndRegisterOnLandscape() {
+        mainActivityTestRule.getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+
+        onView(withId(R.id.layout_login)).check(matches(isDisplayed()));
+        onView(withId(R.id.layout_login)).check(matches(withParent(withId(R.id.frame_login))));
+        onView(withId(R.id.layout_register)).check(matches(isDisplayed()));
+        onView(withId(R.id.layout_register)).check(matches(withParent(withId(R.id.frame_register))));
+
+    }
+
 
 }
