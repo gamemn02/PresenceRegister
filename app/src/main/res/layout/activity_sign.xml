@@ -6,6 +6,4 @@
     android:layout_height="match_parent"
     tools:context=".sign.SignActivity">
 
-    <include layout="@layout/content_sign" />
-
 </android.support.design.widget.CoordinatorLayout>

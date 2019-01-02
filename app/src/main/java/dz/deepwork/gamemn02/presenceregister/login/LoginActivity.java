@@ -21,19 +21,19 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
     }
 
-    public void onClickDigit(View view) {
-        Button digitButton = (Button) view;
-        addPassDigit(digitButton.getText().toString());
-    }
-
-    public void onClickClear(View view) {
-        EditText passNumberEdit = (EditText) findViewById(R.id.et_pass_number);
-        passNumberEdit.setText("");
-    }
-
-    public void addPassDigit(String digit) {
-        EditText passNumberEdit = (EditText) findViewById(R.id.et_pass_number);
-        String newPassNumber = passNumberEdit.getText() + digit;
-        passNumberEdit.setText(newPassNumber);
-    }
+//    public void onClickDigit(View view) {
+//        Button digitButton = (Button) view;
+//        addPassDigit(digitButton.getText().toString());
+//    }
+//
+//    public void onClickClear(View view) {
+//        EditText passNumberEdit = (EditText) findViewById(R.id.et_pass_number);
+//        passNumberEdit.setText("");
+//    }
+//
+//    public void addPassDigit(String digit) {
+//        EditText passNumberEdit = (EditText) findViewById(R.id.et_pass_number);
+//        String newPassNumber = passNumberEdit.getText() + digit;
+//        passNumberEdit.setText(newPassNumber);
+//    }
 }

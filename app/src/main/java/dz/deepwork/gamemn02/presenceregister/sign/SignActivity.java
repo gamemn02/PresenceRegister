@@ -30,25 +30,25 @@ public class SignActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign);
 
-        RepoComponent.Singleton.getInstance().inject(this);
-        findMember();
+//        RepoComponent.Singleton.getInstance().inject(this);
+//        findMember();
     }
 
-    private void findMember() {
-        String memberPassNumber = getIntent().getStringExtra(EXTRA_PASS_NUMBER);
-        mMembersRepo.findMember(memberPassNumber).observe(this, new Observer<Member>() {
-            @Override
-            public void onChanged(@Nullable Member member) {
-                setupLoggedInMember(member);
-            }
-        });
-    }
-
-    private void setupLoggedInMember(Member loggedInMember) {
-        mLoggedInMember = loggedInMember;
-        // Update UI
-        mMemberNameText = (TextView) findViewById(R.id.tv_member_name);
-        mMemberNameText.setText(mLoggedInMember.name);
-    }
+//    private void findMember() {
+//        String memberPassNumber = getIntent().getStringExtra(EXTRA_PASS_NUMBER);
+//        mMembersRepo.findMember(memberPassNumber).observe(this, new Observer<Member>() {
+//            @Override
+//            public void onChanged(@Nullable Member member) {
+//                setupLoggedInMember(member);
+//            }
+//        });
+//    }
+//
+//    private void setupLoggedInMember(Member loggedInMember) {
+//        mLoggedInMember = loggedInMember;
+//        // Update UI
+//        mMemberNameText = (TextView) findViewById(R.id.tv_member_name);
+//        mMemberNameText.setText(mLoggedInMember.name);
+//    }
 
 }
