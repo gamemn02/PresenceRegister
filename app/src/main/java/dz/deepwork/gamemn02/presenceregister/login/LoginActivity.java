@@ -3,6 +3,7 @@ package dz.deepwork.gamemn02.presenceregister.login;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -15,10 +16,22 @@ import dz.deepwork.gamemn02.presenceregister.R;
 
 public class LoginActivity extends AppCompatActivity {
 
+    private static final String TAG_LOGIN_FRAGMENT = LoginFragment.class.getName();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        LoginFragment loginFragment = (LoginFragment) fragmentManager.findFragmentByTag(TAG_LOGIN_FRAGMENT);
+        if (loginFragment == null) {
+            loginFragment = new LoginFragment();
+            fragmentManager
+                    .beginTransaction()
+                    .add(R.id.frame_login, loginFragment, TAG_LOGIN_FRAGMENT)
+                    .commit();
+        }
     }
 
 //    public void onClickDigit(View view) {
