@@ -1,11 +1,14 @@
 package dz.deepwork.gamemn02.presenceregister.main;
 
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.view.ViewGroup;
 
 import dz.deepwork.gamemn02.presenceregister.R;
+import dz.deepwork.gamemn02.presenceregister.login.LoginActivity;
 import dz.deepwork.gamemn02.presenceregister.login.LoginFragment;
 import dz.deepwork.gamemn02.presenceregister.register.RegisterFragment;
 
@@ -39,5 +42,9 @@ public class MainActivity extends AppCompatActivity {
                     .add(R.id.frame_login, loginFragment, TAG_LOGIN_FRAGMENT)
                     .commit();
         }
+    }
+
+    public void onClickSign(View view) {
+        startActivity(LoginActivity.createIntent(this));
     }
 }

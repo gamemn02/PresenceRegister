@@ -1,5 +1,7 @@
 package dz.deepwork.gamemn02.presenceregister.login;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -17,6 +19,10 @@ import dz.deepwork.gamemn02.presenceregister.R;
 public class LoginActivity extends AppCompatActivity {
 
     private static final String TAG_LOGIN_FRAGMENT = LoginFragment.class.getName();
+
+    public static Intent createIntent(Context context) {
+        return new Intent(context, LoginActivity.class);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
