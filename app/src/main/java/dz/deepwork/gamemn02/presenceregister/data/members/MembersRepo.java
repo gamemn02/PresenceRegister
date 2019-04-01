@@ -4,5 +4,8 @@ import android.arch.lifecycle.LiveData;
 
 public interface MembersRepo {
     LiveData<Member> findMember(String passNumber);
+
     void addMembers(Member... members);
+
+    void fetchMembers();
 }

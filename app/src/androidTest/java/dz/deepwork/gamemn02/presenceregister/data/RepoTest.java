@@ -1,5 +1,8 @@
 package dz.deepwork.gamemn02.presenceregister.data;
 
+import android.arch.lifecycle.LiveData;
+import android.arch.lifecycle.Observer;
+import android.support.annotation.Nullable;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 
@@ -173,6 +176,27 @@ public class RepoTest {
         } catch (Throwable throwable) {
             throwable.printStackTrace();
             fail();
+        }
+    }
+
+    private CountDownLatch countDownLatch;
+
+    @Test
+    public void fetchMembersInsertsToDatabase() throws InterruptedException {
+        //when
+        membersRepo.fetchMembers();
+        Thread.sleep(100);
+
+        //then
+        for (Member expectedMember : TestData.MEMBERS) {
+            countDownLatch = new CountDownLatch(1);
+            LiveData<Member> actualMemberLiveData = membersRepo.findMember(TestData.PASS_NUMBER_1);
+            actualMemberLiveData.observeForever(member -> countDownLatch.countDown());
+            countDownLatch.await();
+            Member actualMember = actualMemberLiveData.getValue();
+            actualMember.uId = 0;
+            System.out.println(actualMember.name);
+            assertEquals(TestData.MEMBERS[0], actualMemberLiveData.getValue());
         }
     }
 

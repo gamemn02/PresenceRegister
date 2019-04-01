@@ -1,6 +1,11 @@
 package dz.deepwork.gamemn02.presenceregister.data.members;
 
+import android.arch.core.executor.testing.InstantTaskExecutorRule;
+import android.arch.lifecycle.LiveData;
+
+import org.junit.Assert;
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -22,8 +27,9 @@ public class RealMembersRepoTest {
     MemberDao memberDao;
 
     Executor mDbExecutor = Executors.newSingleThreadExecutor();
+    TestMemberNetworkService memberNetworkService = new TestMemberNetworkService(mDbExecutor);
     @InjectMocks
-    RealMembersRepo realMembersRepo = new RealMembersRepo(memberDao, mDbExecutor);
+    RealMembersRepo realMembersRepo = new RealMembersRepo(memberDao, mDbExecutor, memberNetworkService);
 
     @Test
     public void addMembersCallsMemberDaoInsert() throws InterruptedException {
@@ -45,5 +51,18 @@ public class RealMembersRepoTest {
 
         //then
         verify(memberDao).find(TestData.MEMBER1_PASS_NUMBER);
+    }
+
+    @Rule
+    public InstantTaskExecutorRule instantTaskExecutorRule = new InstantTaskExecutorRule();
+
+    @Test
+    public void fetchMembersCallsMemberDaoInsert() throws InterruptedException {
+        //when
+        realMembersRepo.fetchMembers();
+        Thread.sleep(100);
+
+        //then
+        verify(memberDao).insert(TestData.MEMBERS);
     }
 }
