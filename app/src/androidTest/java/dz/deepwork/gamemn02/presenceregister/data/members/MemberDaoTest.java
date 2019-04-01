@@ -38,13 +38,11 @@ public class MemberDaoTest {
     @Test
     public void insertAndFind() throws InterruptedException {
         //when
-        long[] ids = memberDao.insert(TestData.MEMBERS);
+        memberDao.insert(TestData.MEMBERS);
         LiveData<Member> actualMemberLiveData = memberDao.find(TestData.MEMBERS[1].passNumber);
         Member actualMember = LiveDataTestUtils.getValue(actualMemberLiveData);
         Member expectedMember = TestData.MEMBERS[1];
         Member wrongMember = TestData.MEMBERS[2];
-        expectedMember.uId = ids[1];
-        wrongMember.uId = ids[2];
 
         //then
         assertEquals("actual member does't match the expected member", expectedMember, actualMember);
@@ -59,8 +57,6 @@ public class MemberDaoTest {
         Member actualMember = memberDao.get(ids[1]);
         Member expectedMember = TestData.MEMBERS[1];
         Member wrongMember = TestData.MEMBERS[2];
-        expectedMember.uId = ids[1];
-        wrongMember.uId = ids[2];
 
         //then
         assertEquals("actual member does't match the expected member", expectedMember, actualMember);

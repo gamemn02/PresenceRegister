@@ -41,9 +41,6 @@ public class SessionTest {
                 TestData.SESSION1_MEMBER_ID, TestData.SESSION1_ROOM, TestData.SESSION1_DETAILS);
         Session notEqualSession = new Session(TestData.SESSION2_BEGIN_TIME, TestData.SESSION2_END_TIME,
                 TestData.SESSION2_MEMBER_ID, TestData.SESSION2_ROOM, TestData.SESSION2_DETAILS);
-        session.uId = 1;
-        equalSession.uId = 1;
-        notEqualSession.uId = 2;
 
         //then
         assertEquals(session, equalSession);

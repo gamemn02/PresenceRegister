@@ -25,8 +25,7 @@ public class SignIn {
     @Override
     public boolean equals(Object obj) {
         SignIn signIn = (SignIn) obj;
-        return uId == signIn.uId &&
-                sessionId == signIn.sessionId &&
+        return sessionId == signIn.sessionId &&
                 time == signIn.time &&
                 room.equals(signIn.room);
     }

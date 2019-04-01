@@ -32,8 +32,7 @@ public class Sign {
     @Override
     public boolean equals(Object obj) {
         Sign sign = (Sign) obj;
-        return uId == sign.uId &&
-                memberName.equals(sign.memberName) &&
+        return memberName.equals(sign.memberName) &&
                 signInTime == sign.signInTime &&
                 signOutTime == signOutTime &&
                 room.equals(sign.room) &&

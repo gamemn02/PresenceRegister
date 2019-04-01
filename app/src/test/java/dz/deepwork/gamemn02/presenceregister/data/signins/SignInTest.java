@@ -33,9 +33,6 @@ public class SignInTest {
         SignIn signIn = new SignIn(TestData.SIGN_IN_1_SESSION_ID, TestData.SIGN_IN_1_TIME, TestData.SIGN_IN_1_ROOM);
         SignIn equalSignIn = new SignIn(TestData.SIGN_IN_1_SESSION_ID, TestData.SIGN_IN_1_TIME, TestData.SIGN_IN_1_ROOM);
         SignIn notEqualSignIn = new SignIn(TestData.SIGN_IN_2_SESSION_ID, TestData.SIGN_IN_2_TIME, TestData.SIGN_IN_2_ROOM);
-        signIn.uId = 1;
-        equalSignIn.uId = 1;
-        notEqualSignIn.uId = 2;
 
         //then
         assertEquals(signIn, equalSignIn);

@@ -36,13 +36,11 @@ public class SessionDaoTest {
     @Test
     public void insertAndFind() throws InterruptedException {
         //when
-        long[] ids = sessionDao.insert(TestData.SESSIONS);
+        sessionDao.insert(TestData.SESSIONS);
         LiveData<Session> actualSessionLiveData = sessionDao.find(TestData.SESSIONS[1].memberId);
         Session actualSession = LiveDataTestUtils.getValue(actualSessionLiveData);
         Session expectedSession = TestData.SESSIONS[1];
         Session wrongSession = TestData.SESSIONS[2];
-        expectedSession.uId = ids[1];
-        wrongSession.uId = ids[2];
 
         //then
         assertEquals("actual session does't match the expected session", expectedSession, actualSession);
@@ -56,8 +54,6 @@ public class SessionDaoTest {
         Session actualSession = sessionDao.get(ids[1]);
         Session expectedSession = TestData.SESSIONS[1];
         Session wrongSession = TestData.SESSIONS[2];
-        expectedSession.uId = ids[1];
-        wrongSession.uId = ids[2];
 
         //then
         assertEquals("actual session does't match the expected session", expectedSession, actualSession);

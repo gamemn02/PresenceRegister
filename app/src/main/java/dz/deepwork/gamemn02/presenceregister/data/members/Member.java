@@ -29,8 +29,7 @@ public class Member {
     @Override
     public boolean equals(Object obj) {
         Member member = (Member) obj;
-        return uId == member.uId &&
-                name.equals(member.name) &&
+        return name.equals(member.name) &&
                 passNumber.equals(member.passNumber) &&
                 isAdmin == member.isAdmin;
     }

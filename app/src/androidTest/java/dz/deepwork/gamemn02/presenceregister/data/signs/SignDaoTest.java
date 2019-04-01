@@ -34,12 +34,9 @@ public class SignDaoTest {
     public void insertAndFind() {
         //when
         int i = 0;
-        long ids[] = signDao.insert(TestData.SIGNS);
+        signDao.insert(TestData.SIGNS);
         Sign[] actualSigns = signDao.queryAll();
         Sign[] expectedSigns = TestData.SIGNS;
-        for(i = 0; i < actualSigns.length; i++) {
-            expectedSigns[i].uId = ids[i];
-        }
 
         //then
         for(i = 0; i < TestData.SIGNS.length; i++) {

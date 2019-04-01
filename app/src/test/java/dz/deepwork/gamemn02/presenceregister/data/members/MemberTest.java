@@ -32,9 +32,6 @@ public class MemberTest {
         Member member = new Member(TestData.MEMBER1_NAME, TestData.MEMBER1_PASS_NUMBER, TestData.MEMBER1_IS_ADMIN);
         Member equalMember = new Member(TestData.MEMBER1_NAME, TestData.MEMBER1_PASS_NUMBER, TestData.MEMBER1_IS_ADMIN);
         Member NotEqualMember3 = new Member(TestData.MEMBER2_NAME, TestData.MEMBER2_PASS_NUMBER, TestData.MEMBER2_IS_ADMIN);
-        member.uId = 1;
-        equalMember.uId = 1;
-        NotEqualMember3.uId = 2;
 
         //then
         assertEquals(member, equalMember);

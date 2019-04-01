@@ -37,9 +37,6 @@ public class SignTest {
                 TestData.SIGN_1_SIGN_OUT_TIME, TestData.SIGN_1_ROOM, TestData.SIGN_1_DETAILS);
         Sign notEqualSign = new Sign(TestData.SIGN_2_MEMBER_NAME, TestData.SIGN_2_SIGN_IN_TIME,
                 TestData.SIGN_2_SIGN_OUT_TIME, TestData.SIGN_2_ROOM, TestData.SIGN_2_DETAILS);
-        sign.uId = 1;
-        equalSign.uId = 1;
-        notEqualSign.uId = 2;
 
         //then
         assertEquals(sign, equalSign);
