@@ -19,7 +19,13 @@ public class MembersModule {
 
     @Singleton
     @Provides
-    public MembersRepo provideMembersRepo(MemberDao memberDao, Executor dbExecutor) {
-        return new RealMembersRepo(memberDao, dbExecutor);
+    public MemberNetworkService provideMemberNetworkService(Executor networkExecutor) {
+        return new MemberNetworkService(networkExecutor);
+    }
+
+    @Singleton
+    @Provides
+    public MembersRepo provideMembersRepo(MemberDao memberDao, Executor dbExecutor, MemberNetworkService memberNetworkService) {
+        return new RealMembersRepo(memberDao, dbExecutor, memberNetworkService);
     }
 }
