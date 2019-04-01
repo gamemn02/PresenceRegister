@@ -1,3 +1,8 @@
 <resources>
     <dimen name="margin_fab_sign">22dp</dimen>
+    <dimen name="text_size_login_numbers">32sp</dimen>
+    <dimen name="margin_bottom_login_button">8dp</dimen>
+    <dimen name="margin_bottom_login_hint">22dp</dimen>
+    <dimen name="size_login_btn_clear">48dp</dimen>
+    <dimen name="text_size_login_edit_text">64sp</dimen>
 </resources>
