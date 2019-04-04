@@ -12,6 +12,8 @@ import dz.deepwork.gamemn02.presenceregister.data.members.MembersModule;
 import dz.deepwork.gamemn02.presenceregister.data.members.MembersRepo;
 import dz.deepwork.gamemn02.presenceregister.data.sessions.SessionsModule;
 import dz.deepwork.gamemn02.presenceregister.data.sessions.SessionsRepo;
+import dz.deepwork.gamemn02.presenceregister.login.LoginFragment;
+import dz.deepwork.gamemn02.presenceregister.login.LoginViewModel;
 import dz.deepwork.gamemn02.presenceregister.sign.SignActivity;
 
 @Singleton
@@ -24,6 +26,7 @@ import dz.deepwork.gamemn02.presenceregister.sign.SignActivity;
         AppDatabaseModule.class})
 public interface RepoComponent {
 
+    void inject(LoginViewModel loginViewModel);
     void inject(SignActivity signActivity);
     MembersRepo membersRepo();
     SessionsRepo sessionsRepo();

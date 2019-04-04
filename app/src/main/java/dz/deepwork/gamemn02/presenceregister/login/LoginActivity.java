@@ -15,10 +15,9 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import dz.deepwork.gamemn02.presenceregister.R;
+import dz.deepwork.gamemn02.presenceregister.sign.SignActivity;
 
-public class LoginActivity extends AppCompatActivity {
-
-    private static final String TAG_LOGIN_FRAGMENT = LoginFragment.class.getName();
+public class LoginActivity extends AppCompatActivity implements LoginResultListener {
 
     public static Intent createIntent(Context context) {
         return new Intent(context, LoginActivity.class);
@@ -30,14 +29,20 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         FragmentManager fragmentManager = getSupportFragmentManager();
-        LoginFragment loginFragment = (LoginFragment) fragmentManager.findFragmentByTag(TAG_LOGIN_FRAGMENT);
+        LoginFragment loginFragment = (LoginFragment) fragmentManager.findFragmentById(R.id.frame_login);
         if (loginFragment == null) {
             loginFragment = new LoginFragment();
             fragmentManager
                     .beginTransaction()
-                    .add(R.id.frame_login, loginFragment, TAG_LOGIN_FRAGMENT)
+                    .add(R.id.frame_login, loginFragment)
                     .commit();
         }
     }
 
+    @Override
+    public void launchSignFragment(String passNumber) {
+        Intent intent = SignActivity.createIntent(this, passNumber);
+        startActivity(intent);
+        finish();
+    }
 }

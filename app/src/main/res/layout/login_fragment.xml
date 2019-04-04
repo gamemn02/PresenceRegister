@@ -4,8 +4,7 @@
     xmlns:bind="http://schemas.android.com/apk/res-auto">
 
     <data>
-        <variable name="viewmodel" type="dz.deepwork.gamemn02.presenceregister.login.LoginViewModel"/>
-        <variable name="controller" type="dz.deepwork.gamemn02.presenceregister.login.LoginUiController"/>
+        <variable name="ux" type="dz.deepwork.gamemn02.presenceregister.login.LoginUx"/>
     </data>
 
     <FrameLayout
@@ -16,8 +15,7 @@
 
         <include android:id="@+id/content"
             layout="@layout/content_login"
-            bind:viewmodel="@{viewmodel}"
-            bind:controller="@{controller}"/>
+            bind:ux="@{ux}"/>
 
     </FrameLayout>
 </layout>
