@@ -8,6 +8,8 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import java.util.concurrent.CountDownLatch;
+
 import dz.deepwork.gamemn02.presenceregister.TestApplicationContextModule;
 import dz.deepwork.gamemn02.presenceregister.data.AppDatabase;
 import dz.deepwork.gamemn02.presenceregister.data.DaggerAppDatabaseComponent;
@@ -17,6 +19,7 @@ import dz.deepwork.gamemn02.presenceregister.data.TestData;
 
 import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertNotNull;
+import static junit.framework.Assert.assertNull;
 import static org.junit.Assert.assertNotEquals;
 
 @RunWith(AndroidJUnit4.class)
@@ -59,6 +62,24 @@ public class MemberDaoTest {
         //then
         assertEquals("actual member does't match the expected member", expectedMember, actualMember);
         assertNotEquals("actual member matches the wrong member", wrongMember, actualMember);
+    }
+
+    private CountDownLatch countDownLatch;
+
+    @Test
+    public void delete() throws InterruptedException {
+        //when
+        memberDao.insert(TestData.MEMBERS);
+        memberDao.deleteAll();
+
+        //then
+        for (Member expectedMember : TestData.MEMBERS) {
+            countDownLatch = new CountDownLatch(1);
+            LiveData<Member> actualMemberLiveData = memberDao.find(expectedMember.passNumber);
+            actualMemberLiveData.observeForever(member -> countDownLatch.countDown());
+            countDownLatch.await();
+            assertNull(actualMemberLiveData.getValue());
+        }
     }
 
     @After
