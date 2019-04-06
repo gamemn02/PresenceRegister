@@ -1,7 +1,5 @@
 package dz.deepwork.gamemn02.presenceregister.data.members;
 
-import android.arch.lifecycle.LiveData;
-
 import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.Executor;

@@ -5,8 +5,6 @@ import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 
 import dz.deepwork.gamemn02.presenceregister.data.TestData;
-import dz.deepwork.gamemn02.presenceregister.data.signins.SignIn;
-import dz.deepwork.gamemn02.presenceregister.data.signs.Sign;
 
 import static junit.framework.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;

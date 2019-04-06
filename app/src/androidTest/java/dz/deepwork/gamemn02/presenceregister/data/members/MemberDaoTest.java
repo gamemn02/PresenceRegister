@@ -8,10 +8,8 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import dz.deepwork.gamemn02.presenceregister.ApplicationContextModule;
 import dz.deepwork.gamemn02.presenceregister.TestApplicationContextModule;
 import dz.deepwork.gamemn02.presenceregister.data.AppDatabase;
-import dz.deepwork.gamemn02.presenceregister.data.AppDatabaseModule;
 import dz.deepwork.gamemn02.presenceregister.data.DaggerAppDatabaseComponent;
 import dz.deepwork.gamemn02.presenceregister.data.LiveDataTestUtils;
 import dz.deepwork.gamemn02.presenceregister.data.TestAppDatabaseModule;

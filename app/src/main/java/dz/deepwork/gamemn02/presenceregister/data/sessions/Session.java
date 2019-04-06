@@ -9,10 +9,10 @@ public class Session {
 
     @PrimaryKey(autoGenerate = true)
     public long uId;
-    @ColumnInfo(name = "begin_time")
-    public int beginTime;
-    @ColumnInfo(name = "end_time")
-    public int endTime;
+    @ColumnInfo(name = "time")
+    public SessionTime time;
+    @ColumnInfo(name = "size")
+    public int size;
     @ColumnInfo(name = "member_Id")
     public long memberId;
     @ColumnInfo(name = "room")
@@ -20,9 +20,9 @@ public class Session {
     @ColumnInfo(name = "details")
     public String details;
 
-    public Session(int beginTime, int endTime, long memberId, String room, String details) {
-        this.beginTime = beginTime;
-        this.endTime = endTime;
+    public Session(SessionTime time, int size, long memberId, String room, String details) {
+        this.time = time;
+        this.size = size;
         this.memberId = memberId;
         this.room = room;
         this.details = details;
@@ -31,8 +31,8 @@ public class Session {
     @Override
     public boolean equals(Object obj) {
         Session session = (Session) obj;
-        return beginTime == session.beginTime &&
-                endTime == session.endTime &&
+        return time.equals(session.time) &&
+                size == session.size &&
                 memberId == session.memberId &&
                 room.equals(session.room) &&
                 details.equals(session.details);

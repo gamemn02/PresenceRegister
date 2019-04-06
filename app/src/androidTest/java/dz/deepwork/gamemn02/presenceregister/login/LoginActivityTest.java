@@ -2,7 +2,6 @@ package dz.deepwork.gamemn02.presenceregister.login;
 
 import android.content.ComponentName;
 import android.support.test.espresso.intent.rule.IntentsTestRule;
-import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 
 import org.junit.Rule;
@@ -10,12 +9,10 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import dz.deepwork.gamemn02.presenceregister.R;
-import dz.deepwork.gamemn02.presenceregister.data.TestData;
 import dz.deepwork.gamemn02.presenceregister.sign.SignActivity;
 
 import static android.support.test.InstrumentationRegistry.getTargetContext;
 import static android.support.test.espresso.Espresso.onView;
-import static android.support.test.espresso.Espresso.pressBack;
 import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.intent.Intents.intended;
@@ -45,7 +42,7 @@ public class LoginActivityTest {
         onView(withId(R.id.btn_digit_4)).check(matches(isDisplayed())).perform(click());
         onView(withId(R.id.btn_digit_5)).check(matches(isDisplayed())).perform(click());
         // Check pass number field
-        onView(withId(R.id.et_pass_number)).check(matches(isDisplayed())).check(matches(withText(TestData.PASS_NUMBER_4)));
+        onView(withId(R.id.et_pass_number)).check(matches(isDisplayed())).check(matches(withText("98745")));
 
         // Press clear button
         onView(withId(R.id.btn_clear)).check(matches(isDisplayed())).perform(click());

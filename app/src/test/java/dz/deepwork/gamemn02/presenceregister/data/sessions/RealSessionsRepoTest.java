@@ -1,6 +1,5 @@
 package dz.deepwork.gamemn02.presenceregister.data.sessions;
 
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;

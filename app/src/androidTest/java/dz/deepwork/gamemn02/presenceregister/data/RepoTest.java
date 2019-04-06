@@ -190,7 +190,7 @@ public class RepoTest {
         //then
         for (Member expectedMember : TestData.MEMBERS) {
             countDownLatch = new CountDownLatch(1);
-            LiveData<Member> actualMemberLiveData = membersRepo.findMember(TestData.PASS_NUMBER_1);
+            LiveData<Member> actualMemberLiveData = membersRepo.findMember(TestData.MEMBER1_PASS_NUMBER);
             actualMemberLiveData.observeForever(member -> countDownLatch.countDown());
             countDownLatch.await();
             Member actualMember = actualMemberLiveData.getValue();

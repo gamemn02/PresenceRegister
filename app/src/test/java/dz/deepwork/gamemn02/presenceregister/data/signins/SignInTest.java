@@ -1,14 +1,10 @@
 package dz.deepwork.gamemn02.presenceregister.data.signins;
 
-import junit.framework.Assert;
-
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 
 import dz.deepwork.gamemn02.presenceregister.data.TestData;
-import dz.deepwork.gamemn02.presenceregister.data.members.Member;
-import dz.deepwork.gamemn02.presenceregister.data.signins.SignIn;
 
 import static junit.framework.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
