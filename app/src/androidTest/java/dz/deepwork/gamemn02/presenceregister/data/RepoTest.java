@@ -187,15 +187,13 @@ public class RepoTest {
         membersRepo.fetchMembers();
         Thread.sleep(100);
 
-        //then
         for (Member expectedMember : TestData.MEMBERS) {
             countDownLatch = new CountDownLatch(1);
             LiveData<Member> actualMemberLiveData = membersRepo.findMember(TestData.MEMBER1_PASS_NUMBER);
             actualMemberLiveData.observeForever(member -> countDownLatch.countDown());
             countDownLatch.await();
-            Member actualMember = actualMemberLiveData.getValue();
-            actualMember.uId = 0;
-            System.out.println(actualMember.name);
+
+            //then
             assertEquals(TestData.MEMBERS[0], actualMemberLiveData.getValue());
         }
     }

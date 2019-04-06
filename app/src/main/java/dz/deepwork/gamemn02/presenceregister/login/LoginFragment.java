@@ -1,6 +1,5 @@
 package dz.deepwork.gamemn02.presenceregister.login;
 
-import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.databinding.DataBindingUtil;
@@ -13,12 +12,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 
-import javax.inject.Inject;
-
 import dz.deepwork.gamemn02.presenceregister.R;
-import dz.deepwork.gamemn02.presenceregister.data.RepoComponent;
 import dz.deepwork.gamemn02.presenceregister.data.members.Member;
-import dz.deepwork.gamemn02.presenceregister.data.members.MembersRepo;
 import dz.deepwork.gamemn02.presenceregister.databinding.LoginFragmentBinding;
 
 public class LoginFragment extends Fragment {
@@ -50,7 +45,7 @@ public class LoginFragment extends Fragment {
     }
 
     public void checkPassNumber(String passNumber, Observer<Member> resultObserver) {
-        mViewModel.checkPassNumber(passNumber).observe(this, resultObserver);
+        mViewModel.findMember(passNumber).observe(this, resultObserver);
     }
 
     public void launchSign(String passNumber) {

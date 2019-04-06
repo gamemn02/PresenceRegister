@@ -19,4 +19,7 @@ public interface MemberDao {
 
     @Query("SELECT * FROM members WHERE uId = :memberId")
     Member get(long memberId);
+
+    @Query("DELETE FROM members")
+    void deleteAll();
 }

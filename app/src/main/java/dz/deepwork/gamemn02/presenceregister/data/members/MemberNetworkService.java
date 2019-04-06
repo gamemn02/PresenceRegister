@@ -7,13 +7,9 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.Executor;
 
-public class MemberNetworkService {
+import dz.deepwork.gamemn02.presenceregister.data.TestData;
 
-    private static final List<Member> MEMBERS_EXAMPLE = Arrays.asList(
-            new Member("name1", "123456", false),
-            new Member("name2", "012345", false),
-            new Member("name3", "987456", true),
-            new Member("name4", "547126", false));
+public class MemberNetworkService {
 
     private Executor mNetworkExecutor;
 
@@ -33,6 +29,6 @@ public class MemberNetworkService {
     }
 
     public List<Member> getExampleMembers() {
-        return MEMBERS_EXAMPLE;
+        return Arrays.asList(TestData.MEMBERS);
     }
 }

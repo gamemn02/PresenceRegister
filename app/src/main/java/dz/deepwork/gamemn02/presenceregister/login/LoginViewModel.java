@@ -18,7 +18,7 @@ public class LoginViewModel extends ViewModel {
         RepoComponent.Singleton.getInstance().inject(this);
     }
 
-    public LiveData<Member> checkPassNumber(String passNumber) {
+    public LiveData<Member> findMember(String passNumber) {
         return mMembersRepo.findMember(passNumber);
     }
 }
