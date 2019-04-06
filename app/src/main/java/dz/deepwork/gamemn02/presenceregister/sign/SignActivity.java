@@ -27,8 +27,6 @@ public class SignActivity extends AppCompatActivity {
     private TextView mMemberNameText;
     private Member mLoggedInMember;
 
-    @Inject
-    MembersRepo mMembersRepo;
 
     public static Intent createIntent(Context context, String passNumber) {
         Intent intent = new Intent(context, SignActivity.class);
@@ -50,9 +48,6 @@ public class SignActivity extends AppCompatActivity {
                     .add(R.id.frame_sign, signFragment)
                     .commit();
         }
-
-//        RepoComponent.Singleton.getInstance().inject(this);
-//        findMember();
     }
 
 //    private void findMember() {
