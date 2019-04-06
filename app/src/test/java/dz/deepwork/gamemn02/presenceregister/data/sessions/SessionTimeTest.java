@@ -4,6 +4,9 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 
+import java.util.Calendar;
+import java.util.TimeZone;
+
 import dz.deepwork.gamemn02.presenceregister.data.TestData;
 
 import static junit.framework.Assert.assertEquals;
@@ -38,4 +41,24 @@ public class SessionTimeTest {
         assertEquals(expectedSessionTime2, actualSessionTime2);
     }
 
+    @Test
+    public void testGetCurrentSessionTimeMethod() {
+        //when
+        Calendar calendar1 = new Calendar.Builder()
+                .setWeekDate(0, 0, Calendar.SUNDAY)
+                .setTimeOfDay(12, 49, 0)
+                .build();
+        Calendar calendar2 = new Calendar.Builder()
+                .setWeekDate(0, 0, Calendar.SATURDAY)
+                .setTimeOfDay(12, 50, 0)
+                .build();
+        SessionTime sessionTime1 = SessionTime.getCurrentSessionTime(calendar1);
+        SessionTime sessionTime2 = SessionTime.getCurrentSessionTime(calendar2);
+
+        //then
+        assertEquals(sessionTime1.getDay(), Calendar.SUNDAY);
+        assertEquals(sessionTime2.getDay(), Calendar.SATURDAY);
+        assertEquals(sessionTime1.getHourNumber(), 2);
+        assertEquals(sessionTime2.getHourNumber(), 3);
+    }
 }
