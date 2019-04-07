@@ -119,7 +119,7 @@ public class RepoTest {
         final CountDownLatch countDownLatch = new CountDownLatch(1);
         try {
             mActivityRule.runOnUiThread(() -> {
-                sessionsRepo.findSession(TestData.SESSION1_MEMBER_ID);
+                sessionsRepo.findSession(TestData.SESSION1_MEMBER_ID, TestData.SESSION1_TIME);
                 countDownLatch.countDown();
             });
             countDownLatch.await(1, TimeUnit.MINUTES);

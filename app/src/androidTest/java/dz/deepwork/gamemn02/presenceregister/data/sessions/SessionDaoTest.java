@@ -35,16 +35,34 @@ public class SessionDaoTest {
 
     @Test
     public void insertAndFind() throws InterruptedException {
+//        //when
+//        sessionDao.insert(TestData.SESSIONS);
+//        LiveData<Session> actualSessionLiveData = sessionDao.find(TestData.SESSIONS[1].memberId);
+//        Session actualSession = LiveDataTestUtils.getValue(actualSessionLiveData);
+//        Session expectedSession = TestData.SESSIONS[1];
+//        Session wrongSession = TestData.SESSIONS[2];
+//
+//        //then
+//        assertEquals("actual session does't match the expected session", expectedSession, actualSession);
+//        assertNotEquals("actual session matches the wrong session", wrongSession, actualSession);
+    }
+
+    @Test
+    public void insertAndFindCurrentSession() throws InterruptedException {
         //when
         sessionDao.insert(TestData.SESSIONS);
-        LiveData<Session> actualSessionLiveData = sessionDao.find(TestData.SESSIONS[1].memberId);
+        LiveData<Session> actualSessionLiveData =
+                sessionDao.find(TestData.SESSION1_MEMBER_ID, TestData.SESSION1_TIME);
+        LiveData<Session> actualSessionLiveData2 =
+                sessionDao.find(TestData.SESSION2_MEMBER_ID, SessionTime.toSessionTime(TestData.SESSION2_TIME_SESSION_NUMBER+1));
         Session actualSession = LiveDataTestUtils.getValue(actualSessionLiveData);
-        Session expectedSession = TestData.SESSIONS[1];
-        Session wrongSession = TestData.SESSIONS[2];
+        Session actualSession2 = LiveDataTestUtils.getValue(actualSessionLiveData2);
+        Session expectedSession = TestData.SESSIONS[0];
+        Session expectedSession2 = TestData.SESSIONS[1];
 
         //then
-        assertEquals("actual session does't match the expected session", expectedSession, actualSession);
-        assertNotEquals("actual session matches the wrong session", wrongSession, actualSession);
+        assertEquals(expectedSession, actualSession);
+        assertEquals(expectedSession2, actualSession2);
     }
 
     @Test

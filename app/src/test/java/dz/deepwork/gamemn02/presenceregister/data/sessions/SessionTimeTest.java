@@ -18,10 +18,10 @@ public class SessionTimeTest {
     @Test
     public void testToSessionNumberMethod() {
         // when
-        int actualSessionNumber1 = SessionTime.toSessionNumber(TestData.SESSION_TIME1);
-        int expectedSessionNumber1 = TestData.SESSION_TIME1_SESSION_NUMBER;
-        int actualSessionNumber2 = SessionTime.toSessionNumber(TestData.SESSION_TIME2);
-        int expectedSessionNumber2 = TestData.SESSION_TIME2_SESSION_NUMBER;
+        int actualSessionNumber1 = SessionTime.toSessionNumber(TestData.SESSION1_TIME);
+        int expectedSessionNumber1 = TestData.SESSION1_TIME_SESSION_NUMBER;
+        int actualSessionNumber2 = SessionTime.toSessionNumber(TestData.SESSION2_TIME);
+        int expectedSessionNumber2 = TestData.SESSION2_TIME_SESSION_NUMBER;
 
         // then
         assertEquals(expectedSessionNumber1, actualSessionNumber1);
@@ -31,10 +31,10 @@ public class SessionTimeTest {
     @Test
     public void testToSessionTimeMethod() {
         // when
-        SessionTime actualSessionTime1 = SessionTime.toSessionTime(TestData.SESSION_TIME1_SESSION_NUMBER);
-        SessionTime expectedSessionTime1 = TestData.SESSION_TIME1;
-        SessionTime actualSessionTime2 = SessionTime.toSessionTime(TestData.SESSION_TIME2_SESSION_NUMBER);
-        SessionTime expectedSessionTime2 = TestData.SESSION_TIME2;
+        SessionTime actualSessionTime1 = SessionTime.toSessionTime(TestData.SESSION1_TIME_SESSION_NUMBER);
+        SessionTime expectedSessionTime1 = TestData.SESSION1_TIME;
+        SessionTime actualSessionTime2 = SessionTime.toSessionTime(TestData.SESSION1_TIME_SESSION_NUMBER);
+        SessionTime expectedSessionTime2 = TestData.SESSION1_TIME;
 
         // then
         assertEquals(expectedSessionTime1, actualSessionTime1);

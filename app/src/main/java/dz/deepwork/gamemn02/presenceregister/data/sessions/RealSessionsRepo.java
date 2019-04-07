@@ -15,8 +15,8 @@ public class RealSessionsRepo implements SessionsRepo{
         this.mDbExecutor = dbExecutor;
     }
 
-    public LiveData<Session> findSession(long memberId) {
-        return mSessionDao.find(memberId);
+    public LiveData<Session> findSession(long memberId, SessionTime sessionTime) {
+        return mSessionDao.find(memberId, sessionTime);
     }
 
     public void addSessions(final Session... sessions) {

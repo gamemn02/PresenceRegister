@@ -25,17 +25,20 @@ public class TestData {
             new Member(MEMBER3_NAME, MEMBER3_PASS_NUMBER, MEMBER3_IS_ADMIN),
     };
 
+    public static final int SESSION1_TIME_SESSION_NUMBER = 0;
     public static final SessionTime SESSION1_TIME = new SessionTime(0, 0);
     public static final int SESSION1_SIZE = 2;
     public static final int SESSION1_MEMBER_ID = 1;
     public static final String SESSION1_ROOM = "B007";
     public static final String SESSION1_DETAILS = "Recitation E415";
-    public static final SessionTime SESSION2_TIME = new SessionTime(3, 1);
+    public static final int SESSION2_TIME_SESSION_NUMBER = 3;
+    public static final SessionTime SESSION2_TIME = new SessionTime(3, 0);
     public static final int SESSION2_SIZE = 3;
     public static final int SESSION2_MEMBER_ID = 2;
     public static final String SESSION2_ROOM = "C101";
     public static final String SESSION2_DETAILS = "Recitation E111";
-    public static final SessionTime SESSION3_TIME = new SessionTime(2, 2);
+    public static final int SESSION3_TIME_SESSION_NUMBER = 16;
+    public static final SessionTime SESSION3_TIME = new SessionTime(4, 2);
     public static final int SESSION3_SIZE = 4;
     public static final int SESSION3_MEMBER_ID = 3;
     public static final String SESSION3_ROOM = "A308";
@@ -90,9 +93,4 @@ public class TestData {
             new Sign(SIGN_3_MEMBER_NAME, SIGN_3_SIGN_IN_TIME,
                     SIGN_3_SIGN_OUT_TIME, SIGN_3_ROOM, SIGN_3_DETAILS)
     };
-
-    public static final SessionTime SESSION_TIME1 = new SessionTime(3, 0);
-    public static final SessionTime SESSION_TIME2 = new SessionTime(4, 2);
-    public static final int SESSION_TIME1_SESSION_NUMBER = 3;
-    public static final int SESSION_TIME2_SESSION_NUMBER = 16;
 }
