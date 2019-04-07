@@ -70,12 +70,9 @@ public class RepoTest {
 
         final CountDownLatch countDownLatch = new CountDownLatch(1);
         try {
-            mActivityRule.runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    membersRepo.addMembers(TestData.MEMBERS);
-                    countDownLatch.countDown();
-                }
+            mActivityRule.runOnUiThread(() -> {
+                membersRepo.addMembers(TestData.MEMBERS);
+                countDownLatch.countDown();
             });
             countDownLatch.await(1, TimeUnit.MINUTES);
         } catch (Throwable throwable) {
@@ -89,12 +86,9 @@ public class RepoTest {
 
         final CountDownLatch countDownLatch = new CountDownLatch(1);
         try {
-            mActivityRule.runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    membersRepo.findMember(TestData.MEMBER1_PASS_NUMBER);
-                    countDownLatch.countDown();
-                }
+            mActivityRule.runOnUiThread(() -> {
+                membersRepo.findMember(TestData.MEMBER1_PASS_NUMBER);
+                countDownLatch.countDown();
             });
             countDownLatch.await(1, TimeUnit.MINUTES);
         } catch (Throwable throwable) {
@@ -108,12 +102,9 @@ public class RepoTest {
 
         final CountDownLatch countDownLatch = new CountDownLatch(1);
         try {
-            mActivityRule.runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    sessionsRepo.addSessions(TestData.SESSIONS);
-                    countDownLatch.countDown();
-                }
+            mActivityRule.runOnUiThread(() -> {
+                sessionsRepo.addSessions(TestData.SESSIONS);
+                countDownLatch.countDown();
             });
             countDownLatch.await(1, TimeUnit.MINUTES);
         } catch (Throwable throwable) {
@@ -127,12 +118,9 @@ public class RepoTest {
 
         final CountDownLatch countDownLatch = new CountDownLatch(1);
         try {
-            mActivityRule.runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    sessionsRepo.findSession(TestData.SESSION1_MEMBER_ID);
-                    countDownLatch.countDown();
-                }
+            mActivityRule.runOnUiThread(() -> {
+                sessionsRepo.findSession(TestData.SESSION1_MEMBER_ID);
+                countDownLatch.countDown();
             });
             countDownLatch.await(1, TimeUnit.MINUTES);
         } catch (Throwable throwable) {
@@ -146,12 +134,9 @@ public class RepoTest {
 
         final CountDownLatch countDownLatch = new CountDownLatch(1);
         try {
-            mActivityRule.runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    signsRepo.signIn(TestData.SIGN_INS[0]);
-                    countDownLatch.countDown();
-                }
+            mActivityRule.runOnUiThread(() -> {
+                signsRepo.signIn(TestData.SIGN_INS[0]);
+                countDownLatch.countDown();
             });
             countDownLatch.await(1, TimeUnit.MINUTES);
         } catch (Throwable throwable) {
@@ -165,12 +150,9 @@ public class RepoTest {
 
         final CountDownLatch countDownLatch = new CountDownLatch(1);
         try {
-            mActivityRule.runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    signsRepo.signOut(TestData.SIGN_INS[0]);
-                    countDownLatch.countDown();
-                }
+            mActivityRule.runOnUiThread(() -> {
+                signsRepo.signOut(TestData.SIGN_INS[0]);
+                countDownLatch.countDown();
             });
             countDownLatch.await(1, TimeUnit.MINUTES);
         } catch (Throwable throwable) {

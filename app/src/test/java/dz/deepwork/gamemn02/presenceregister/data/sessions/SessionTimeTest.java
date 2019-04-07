@@ -60,5 +60,6 @@ public class SessionTimeTest {
         assertEquals(sessionTime2.getDay(), Calendar.SATURDAY);
         assertEquals(sessionTime1.getHourNumber(), 2);
         assertEquals(sessionTime2.getHourNumber(), 3);
+        // TODO: use TestData to store constants
     }
 }

@@ -30,12 +30,7 @@ public class RealSignsRepo implements SignsRepo {
     }
 
     public void signIn(final SignIn signIn) {
-        mDbExecutor.execute(new Runnable() {
-            @Override
-            public void run() {
-                mSignInDao.insert(signIn);
-            }
-        });
+        mDbExecutor.execute(() -> mSignInDao.insert(signIn));
     }
 
     public SignIn findSignIn(long sessionId) {
@@ -44,20 +39,17 @@ public class RealSignsRepo implements SignsRepo {
 
     public void signOut(final SignIn signIn) {
 
-        mDbExecutor.execute(new Runnable() {
-            @Override
-            public void run() {
-                mSignInDao.delete(signIn);
-                Session session = mSessionDao.get(signIn.sessionId);
-                if (session != null) {
-                    Member member = mMemberDao.get(session.memberId);
-                    if (member != null) {
-                        String memberName = member.name;
-                        long signOutTime = signIn.time + 1;
-                        String details = session.details;
-                        Sign sign = new Sign(memberName, signIn.time, signOutTime, signIn.room, details);
-                        mSignDao.insert(sign);
-                    }
+        mDbExecutor.execute(() -> {
+            mSignInDao.delete(signIn);
+            Session session = mSessionDao.get(signIn.sessionId);
+            if (session != null) {
+                Member member = mMemberDao.get(session.memberId);
+                if (member != null) {
+                    String memberName = member.name;
+                    long signOutTime = signIn.time + 1;
+                    String details = session.details;
+                    Sign sign = new Sign(memberName, signIn.time, signOutTime, signIn.room, details);
+                    mSignDao.insert(sign);
                 }
             }
         });

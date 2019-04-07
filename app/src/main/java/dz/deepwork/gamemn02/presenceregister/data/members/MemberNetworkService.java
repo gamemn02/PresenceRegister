@@ -19,12 +19,7 @@ public class MemberNetworkService {
 
     public LiveData<List<Member>> fetchMembers() {
         final MutableLiveData<List<Member>> fetchedMembers = new MutableLiveData<>();
-        mNetworkExecutor.execute(new Runnable() {
-            @Override
-            public void run() {
-                fetchedMembers.postValue(getExampleMembers());
-            }
-        });
+        mNetworkExecutor.execute(() -> fetchedMembers.postValue(getExampleMembers()));
         return fetchedMembers;
     }
 

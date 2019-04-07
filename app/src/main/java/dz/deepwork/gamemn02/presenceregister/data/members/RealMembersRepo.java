@@ -29,29 +29,16 @@ public class RealMembersRepo implements MembersRepo{
 
     @Override
     public void addMembers(final Member... members) {
-        mDbExecutor.execute(new Runnable() {
-            @Override
-            public void run() {
-                mMemberDao.insert(members);
-            }
-        });
+        mDbExecutor.execute(() -> mMemberDao.insert(members));
     }
 
     // TODO: change all to lambda
 
     @Override
     public void fetchMembers() {
-        mMemberNetworkService.fetchMembers().observeForever(new Observer<List<Member>>() {
-            @Override
-            public void onChanged(@Nullable List<Member> members) {
-                mDbExecutor.execute(new Runnable() {
-                    @Override
-                    public void run() {
-                        mMemberDao.deleteAll();
-                        mMemberDao.insert((Member[]) members.toArray());
-                    }
-                });
-            }
-        });
+        mMemberNetworkService.fetchMembers().observeForever(members -> mDbExecutor.execute(() -> {
+            mMemberDao.deleteAll();
+            mMemberDao.insert((Member[]) members.toArray());
+        }));
     }
 }
