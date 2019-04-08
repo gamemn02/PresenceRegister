@@ -1,15 +1,11 @@
 package dz.deepwork.gamemn02.presenceregister.data;
 
-import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MutableLiveData;
 
 import java.util.concurrent.Executor;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 import dz.deepwork.gamemn02.presenceregister.data.members.Member;
 import dz.deepwork.gamemn02.presenceregister.data.members.MemberDao;
-import dz.deepwork.gamemn02.presenceregister.data.members.MemberNetworkService;
 import dz.deepwork.gamemn02.presenceregister.data.members.MembersRepo;
 import dz.deepwork.gamemn02.presenceregister.data.members.MembersModule;
 
@@ -19,7 +15,7 @@ import static org.mockito.Mockito.when;
 public class TestMembersModule extends MembersModule {
 
     @Override
-    public MembersRepo provideMembersRepo(MemberDao memberDao, Executor dbExecutor, MemberNetworkService memberNetworkService) {
+    public MembersRepo provideMembersRepo(MemberDao memberDao, Executor dbExecutor, NetworkService networkService) {
         MembersRepo mockedMembersRepo = mock(MembersRepo.class);
         final MutableLiveData<Member> testedMemberLiveData = new MutableLiveData<>();
         testedMemberLiveData.postValue(getTestedMember());

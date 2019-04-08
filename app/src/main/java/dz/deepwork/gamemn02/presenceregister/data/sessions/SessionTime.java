@@ -47,7 +47,7 @@ public class SessionTime {
         return new SessionTime(hourNumber, day);
     }
 
-    public static SessionTime getCurrentSessionTime(Calendar calendar) {
+    public static SessionTime fromCalendar(Calendar calendar) {
         int hour = calendar.get(Calendar.HOUR_OF_DAY);
         int minute = calendar.get(Calendar.MINUTE);
         int totalMinutes = (hour * MINUTES_IN_HOUR) + minute;

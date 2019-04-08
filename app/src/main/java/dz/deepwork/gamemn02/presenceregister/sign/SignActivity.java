@@ -1,28 +1,18 @@
 package dz.deepwork.gamemn02.presenceregister.sign;
 
-import android.arch.lifecycle.LifecycleOwner;
-import android.arch.lifecycle.Observer;
-import android.arch.lifecycle.ViewModelProvider;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
 
-import javax.inject.Inject;
-
 import dz.deepwork.gamemn02.presenceregister.R;
-import dz.deepwork.gamemn02.presenceregister.data.RepoComponent;
 import dz.deepwork.gamemn02.presenceregister.data.members.Member;
-import dz.deepwork.gamemn02.presenceregister.data.members.MembersRepo;
-import dz.deepwork.gamemn02.presenceregister.login.LoginActivity;
-import dz.deepwork.gamemn02.presenceregister.login.LoginFragment;
 
 public class SignActivity extends AppCompatActivity {
 
-    public static final String EXTRA_PASS_NUMBER = "dz.deepwork.gamemn02.extra-pass-number";
+    private static final String EXTRA_MEMBER_PASS_NUMBER = "dz.deepwork.gamemn02.extra-member-pass-number";
 
     private TextView mMemberNameText;
     private Member mLoggedInMember;
@@ -30,7 +20,7 @@ public class SignActivity extends AppCompatActivity {
 
     public static Intent createIntent(Context context, String passNumber) {
         Intent intent = new Intent(context, SignActivity.class);
-        intent.putExtra(EXTRA_PASS_NUMBER, passNumber);
+        intent.putExtra(EXTRA_MEMBER_PASS_NUMBER, passNumber);
         return intent;
     }
 
@@ -39,10 +29,16 @@ public class SignActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign);
 
+        String passNumber = getIntent().getStringExtra(EXTRA_MEMBER_PASS_NUMBER);
+        if (passNumber == null) {
+            finish();
+            return;
+        }
+
         FragmentManager fragmentManager = getSupportFragmentManager();
         SignFragment signFragment = (SignFragment) fragmentManager.findFragmentById(R.id.frame_sign);
         if (signFragment == null) {
-            signFragment = new SignFragment();
+            signFragment = SignFragment.newInstance(passNumber);
             fragmentManager
                     .beginTransaction()
                     .add(R.id.frame_sign, signFragment)
@@ -51,7 +47,7 @@ public class SignActivity extends AppCompatActivity {
     }
 
 //    private void findMember() {
-//        String memberPassNumber = getIntent().getStringExtra(EXTRA_PASS_NUMBER);
+//        String memberPassNumber = getIntent().getStringExtra(EXTRA_MEMBER_PASS_NUMBER);
 //        mMembersRepo.findMember(memberPassNumber).observe(this, new Observer<Member>() {
 //            @Override
 //            public void onChanged(@Nullable Member member) {

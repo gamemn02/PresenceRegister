@@ -1,25 +1,23 @@
 package dz.deepwork.gamemn02.presenceregister.data.members;
 
 import android.arch.lifecycle.LiveData;
-import android.arch.lifecycle.Observer;
-import android.support.annotation.Nullable;
 
-import java.util.List;
 import java.util.concurrent.Executor;
-import java.util.concurrent.Executors;
 
 import javax.inject.Inject;
+
+import dz.deepwork.gamemn02.presenceregister.data.NetworkService;
 
 public class RealMembersRepo implements MembersRepo{
     private MemberDao mMemberDao;
     private Executor mDbExecutor;
-    private MemberNetworkService mMemberNetworkService;
+    private NetworkService mNetworkService;
 
     @Inject
-    public RealMembersRepo(MemberDao memberDao, Executor dbExecutor, MemberNetworkService memberNetworkService) {
+    public RealMembersRepo(MemberDao memberDao, Executor dbExecutor, NetworkService networkService) {
         this.mMemberDao = memberDao;
         this.mDbExecutor = dbExecutor;
-        this.mMemberNetworkService = memberNetworkService;
+        this.mNetworkService = networkService;
     }
 
     @Override
@@ -36,7 +34,7 @@ public class RealMembersRepo implements MembersRepo{
 
     @Override
     public void fetchMembers() {
-        mMemberNetworkService.fetchMembers().observeForever(members -> mDbExecutor.execute(() -> {
+        mNetworkService.fetchMembers().observeForever(members -> mDbExecutor.execute(() -> {
             mMemberDao.deleteAll();
             mMemberDao.insert((Member[]) members.toArray());
         }));

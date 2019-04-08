@@ -28,7 +28,8 @@ public class LoginFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        mLoginFragmentBinding = DataBindingUtil.inflate(inflater, R.layout.login_fragment, container, false);
+        mLoginFragmentBinding =
+                DataBindingUtil.inflate(inflater, R.layout.login_fragment, container, false);
         mLoginFragmentBinding.setUx(new LoginUx(this));
         return mLoginFragmentBinding.getRoot();
     }

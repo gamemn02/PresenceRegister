@@ -1,11 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/layout_sign"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".sign.SignFragment">
+    xmlns:bind="http://schemas.android.com/apk/res-auto">
 
-    <include layout="@layout/content_sign" />
+    <data>
+        <variable name="member" type="dz.deepwork.gamemn02.presenceregister.data.members.Member" />
+        <variable name="session" type="dz.deepwork.gamemn02.presenceregister.data.sessions.Session" />
+    </data>
 
-</FrameLayout>
+    <FrameLayout
+        android:id="@+id/layout_sign"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".sign.SignFragment">
+
+        <include layout="@layout/content_sign"
+            bind:member="@{member}"
+            bind:session="@{session}"/>
+
+    </FrameLayout>
+</layout>

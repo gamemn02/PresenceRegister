@@ -1,4 +1,4 @@
-package dz.deepwork.gamemn02.presenceregister.data.members;
+package dz.deepwork.gamemn02.presenceregister.data;
 
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MutableLiveData;
@@ -8,12 +8,13 @@ import java.util.List;
 import java.util.concurrent.Executor;
 
 import dz.deepwork.gamemn02.presenceregister.data.TestData;
+import dz.deepwork.gamemn02.presenceregister.data.members.Member;
 
-public class MemberNetworkService {
+public class NetworkService {
 
     private Executor mNetworkExecutor;
 
-    public MemberNetworkService(Executor networkExecutor) {
+    public NetworkService(Executor networkExecutor) {
         mNetworkExecutor = networkExecutor;
     }
 

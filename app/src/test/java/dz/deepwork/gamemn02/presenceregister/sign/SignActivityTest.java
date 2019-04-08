@@ -25,19 +25,19 @@ public class SignActivityTest {
 
     @Before
     public void before() {
-        RepoComponent daggerRepoComponent = DaggerRepoComponent
-                .builder()
-                .applicationContextModule(new ApplicationContextModule(RuntimeEnvironment.application))
-                .appDatabaseModule(new AppDatabaseModule())
-                .membersModule(new TestMembersModule())
-                .build();
-        RepoComponent.Singleton.set(daggerRepoComponent);
-
-        Intent intent = new Intent(Intent.ACTION_VIEW);
-        intent.putExtra(SignActivity.EXTRA_PASS_NUMBER, TestMembersModule.getTestedPassNumber());
-        mSignActivityController = Robolectric.buildActivity(SignActivity.class, intent).create();
-        mSignActivity = mSignActivityController.get();
-        mSignActivityController.start().resume();
+//        RepoComponent daggerRepoComponent = DaggerRepoComponent
+//                .builder()
+//                .applicationContextModule(new ApplicationContextModule(RuntimeEnvironment.application))
+//                .appDatabaseModule(new AppDatabaseModule())
+//                .membersModule(new TestMembersModule())
+//                .build();
+//        RepoComponent.Singleton.set(daggerRepoComponent);
+//
+//        Intent intent = new Intent(Intent.ACTION_VIEW);
+//        intent.putExtra(SignActivity.EXTRA_MEMBER_PASS_NUMBER, TestMembersModule.getTestedPassNumber());
+//        mSignActivityController = Robolectric.buildActivity(SignActivity.class, intent).create();
+//        mSignActivity = mSignActivityController.get();
+//        mSignActivityController.start().resume();
     }
 
 //    @Test
@@ -53,6 +53,6 @@ public class SignActivityTest {
 
     @After
     public void after() {
-        mSignActivityController.pause().stop().destroy();
+//        mSignActivityController.pause().stop().destroy();
     }
 }

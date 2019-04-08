@@ -10,6 +10,8 @@ import javax.inject.Inject;
 import dz.deepwork.gamemn02.presenceregister.data.RepoComponent;
 import dz.deepwork.gamemn02.presenceregister.data.members.Member;
 import dz.deepwork.gamemn02.presenceregister.data.members.MembersRepo;
+import dz.deepwork.gamemn02.presenceregister.data.sessions.Session;
+import dz.deepwork.gamemn02.presenceregister.data.sessions.SessionTime;
 import dz.deepwork.gamemn02.presenceregister.data.sessions.SessionsRepo;
 
 public class SignViewModel extends ViewModel {
@@ -28,7 +30,7 @@ public class SignViewModel extends ViewModel {
         return mMembersRepo.findMember(passNumber);
     }
 
-    public LiveData<Member> findCurSession(Member member) {
-        return null;
+    public LiveData<Session> findCurSession(Member member) {
+        return mSessionRepo.findSession(member.uId, SessionTime.fromCalendar(mCurCalendar));
     }
 }

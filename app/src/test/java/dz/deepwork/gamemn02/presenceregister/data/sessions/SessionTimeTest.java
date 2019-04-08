@@ -5,7 +5,6 @@ import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 
 import java.util.Calendar;
-import java.util.TimeZone;
 
 import dz.deepwork.gamemn02.presenceregister.data.TestData;
 
@@ -42,7 +41,7 @@ public class SessionTimeTest {
     }
 
     @Test
-    public void testGetCurrentSessionTimeMethod() {
+    public void testFromCalendarMethod() {
         //when
         Calendar calendar1 = new Calendar.Builder()
                 .setWeekDate(0, 0, Calendar.SUNDAY)
@@ -52,8 +51,8 @@ public class SessionTimeTest {
                 .setWeekDate(0, 0, Calendar.SATURDAY)
                 .setTimeOfDay(12, 50, 0)
                 .build();
-        SessionTime sessionTime1 = SessionTime.getCurrentSessionTime(calendar1);
-        SessionTime sessionTime2 = SessionTime.getCurrentSessionTime(calendar2);
+        SessionTime sessionTime1 = SessionTime.fromCalendar(calendar1);
+        SessionTime sessionTime2 = SessionTime.fromCalendar(calendar2);
 
         //then
         assertEquals(sessionTime1.getDay(), Calendar.SUNDAY);

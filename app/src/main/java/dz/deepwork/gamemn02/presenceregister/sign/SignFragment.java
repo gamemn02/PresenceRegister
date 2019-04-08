@@ -1,6 +1,7 @@
 package dz.deepwork.gamemn02.presenceregister.sign;
 
 import android.arch.lifecycle.ViewModelProviders;
+import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -10,26 +11,48 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import dz.deepwork.gamemn02.presenceregister.R;
+import dz.deepwork.gamemn02.presenceregister.data.members.Member;
+import dz.deepwork.gamemn02.presenceregister.data.sessions.Session;
+import dz.deepwork.gamemn02.presenceregister.databinding.SignFragmentBinding;
 
 public class SignFragment extends Fragment {
 
-    private SignViewModel mViewModel;
+    private static final String BUNDLE_MEMBER_PASS_NUMBER = "bundle-member-pass-number";
 
-    public static SignFragment newInstance() {
-        return new SignFragment();
+    private SignViewModel mViewModel;
+    private String mMemberPassNumber;
+    private Member mLoginMember;
+    private Session mCurSession;
+    private SignFragmentBinding mSignFragmentBinding;
+
+    public static SignFragment newInstance(String memberPassNumber) {
+        Bundle bundle = new Bundle();
+        bundle.putString(BUNDLE_MEMBER_PASS_NUMBER, memberPassNumber);
+        SignFragment signFragment = new SignFragment();
+        signFragment.setArguments(bundle);
+        return signFragment;
     }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.sign_fragment, container, false);
+        mMemberPassNumber = getArguments().getString(BUNDLE_MEMBER_PASS_NUMBER);
+        mSignFragmentBinding = DataBindingUtil.inflate(inflater, R.layout.sign_fragment, container, false);
+        return mSignFragmentBinding.getRoot();
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         mViewModel = ViewModelProviders.of(this).get(SignViewModel.class);
-
+        mViewModel.findMember(mMemberPassNumber).observe(this, member -> {
+            mLoginMember = member;
+            mSignFragmentBinding.setMember(member);
+            mViewModel.findCurSession(member).observe(this, session -> {
+                mCurSession = session;
+                mSignFragmentBinding.setSession(session);
+            });
+        });
     }
 
 }

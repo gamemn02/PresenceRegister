@@ -24,7 +24,7 @@ public class RealMembersRepoTest {
     MemberDao memberDao;
 
     Executor mDbExecutor = Executors.newSingleThreadExecutor();
-    TestMemberNetworkService memberNetworkService = new TestMemberNetworkService(mDbExecutor);
+    TestNetworkService memberNetworkService = new TestNetworkService(mDbExecutor);
     @InjectMocks
     RealMembersRepo realMembersRepo = new RealMembersRepo(memberDao, mDbExecutor, memberNetworkService);
 
