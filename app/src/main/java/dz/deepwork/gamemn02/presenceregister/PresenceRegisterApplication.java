@@ -27,6 +27,7 @@ public class PresenceRegisterApplication extends Application {
         RepoComponent.Singleton.set(daggerRepoComponent);
 
         daggerRepoComponent.membersRepo().fetchMembers();
+        daggerRepoComponent.sessionsRepo().fetchSessions();
     }
 
 }

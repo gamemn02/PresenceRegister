@@ -54,7 +54,7 @@ public class MemberDaoTest {
     private CountDownLatch countDownLatch;
 
     @Test
-    public void delete() throws InterruptedException {
+    public void deleteAll() throws InterruptedException {
         //when
         memberDao.insert(TestData.MEMBERS);
         memberDao.deleteAll();

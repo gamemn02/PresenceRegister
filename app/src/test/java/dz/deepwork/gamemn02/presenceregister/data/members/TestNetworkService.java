@@ -12,9 +12,4 @@ public class TestNetworkService extends NetworkService {
     public TestNetworkService(Executor networkExecutor) {
         super(networkExecutor);
     }
-
-    @Override
-    public List<Member> getExampleMembers() {
-        return Arrays.asList(TestData.MEMBERS);
-    }
 }

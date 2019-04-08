@@ -8,6 +8,8 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import java.util.concurrent.CountDownLatch;
+
 import dz.deepwork.gamemn02.presenceregister.TestApplicationContextModule;
 import dz.deepwork.gamemn02.presenceregister.data.AppDatabase;
 import dz.deepwork.gamemn02.presenceregister.data.DaggerAppDatabaseComponent;
@@ -15,6 +17,7 @@ import dz.deepwork.gamemn02.presenceregister.data.LiveDataTestUtils;
 import dz.deepwork.gamemn02.presenceregister.data.TestAppDatabaseModule;
 import dz.deepwork.gamemn02.presenceregister.data.TestData;
 
+import static junit.framework.Assert.assertNull;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNotNull;
@@ -76,6 +79,24 @@ public class SessionDaoTest {
         //then
         assertEquals("actual session does't match the expected session", expectedSession, actualSession);
         assertNotEquals("actual session matches the wrong session", wrongSession, actualSession);
+    }
+
+    private CountDownLatch countDownLatch;
+
+    @Test
+    public void deleteAll() throws InterruptedException {
+        //when
+        sessionDao.insert(TestData.SESSIONS);
+        sessionDao.deleteAll();
+
+        //then
+        for (Session expectedSession : TestData.SESSIONS) {
+            countDownLatch = new CountDownLatch(1);
+            LiveData<Session> actualSessionLiveData = sessionDao.find(expectedSession.memberPassNumber, expectedSession.time);
+            actualSessionLiveData.observeForever(session -> countDownLatch.countDown());
+            countDownLatch.await();
+            assertNull(actualSessionLiveData.getValue());
+        }
     }
 
     @After

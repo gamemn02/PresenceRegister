@@ -16,4 +16,7 @@ public interface SessionDao {
 
     @Query("SELECT * FROM sessions WHERE uId = :sessionId")
     Session get(long sessionId);
+
+    @Query("DELETE FROM sessions")
+    void deleteAll();
 }

@@ -4,6 +4,7 @@ import android.content.Intent;
 
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.robolectric.Robolectric;
 import org.robolectric.RobolectricTestRunner;
@@ -40,8 +41,8 @@ public class SignActivityTest {
 //        mSignActivityController.start().resume();
     }
 
-//    @Test
-//    public void showMemberNameBasedOnIntent() {
+    @Test
+    public void showMemberNameBasedOnIntent() {
 //
 //        // when
 //        TextView memberNameText = (TextView) mSignActivity.findViewById(R.id.tv_member_name);
@@ -49,7 +50,7 @@ public class SignActivityTest {
 //        String actualMemberName = memberNameText.getText().toString();
 //        // then
 //        assertEquals(expectedMemberName, actualMemberName);
-//    }
+    }
 
     @After
     public void after() {

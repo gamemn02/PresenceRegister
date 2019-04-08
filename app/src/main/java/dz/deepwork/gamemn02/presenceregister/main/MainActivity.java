@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity implements LoginResultListen
             if (mLoginPassNumber == null) {
                 ft.replace(R.id.frame_login, new LoginFragment());
             } else {
-                ft.replace(R.id.frame_login, new SignFragment());
+                ft.replace(R.id.frame_login, SignFragment.newInstance(mLoginPassNumber));
             }
             ft.commit();
         } else {
@@ -81,7 +81,7 @@ public class MainActivity extends AppCompatActivity implements LoginResultListen
     public void launchSignFragment(String passNumber) {
         Fragment curFragment = mFragmentManager.findFragmentById(R.id.frame_login);
         FragmentTransaction ft = mFragmentManager.beginTransaction();
-        ft.replace(R.id.frame_login, new SignFragment());
+        ft.replace(R.id.frame_login, SignFragment.newInstance(passNumber));
         ft.commit();
 
         mLoginPassNumber = passNumber;

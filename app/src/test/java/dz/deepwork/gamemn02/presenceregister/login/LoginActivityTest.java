@@ -1,13 +1,14 @@
 package dz.deepwork.gamemn02.presenceregister.login;
 
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.robolectric.RobolectricTestRunner;
 
 @RunWith(RobolectricTestRunner.class)
 public class LoginActivityTest {
 
-//    @Test
-//    public void maxPassNumberLengthIsCorrect() {
+    @Test
+    public void maxPassNumberLengthIsCorrect() {
 //        // when
 //        LoginActivity loginActivity = setupActivity(LoginActivity.class);
 //        int maxLength = 6;
@@ -23,6 +24,6 @@ public class LoginActivityTest {
 //        // than
 //        assertEquals("021454", ((EditText) loginActivity.findViewById(R.id.et_pass_number))
 //                .getText().toString());
-//    }
+    }
 
 }

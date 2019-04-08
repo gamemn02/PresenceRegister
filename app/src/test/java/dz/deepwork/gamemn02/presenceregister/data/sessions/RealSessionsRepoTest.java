@@ -10,6 +10,7 @@ import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
 import dz.deepwork.gamemn02.presenceregister.data.TestData;
+import dz.deepwork.gamemn02.presenceregister.data.members.TestNetworkService;
 
 import static org.mockito.Mockito.verify;
 
@@ -20,8 +21,9 @@ public class RealSessionsRepoTest {
     SessionDao sessionDao;
 
     Executor mDbExecutor = Executors.newSingleThreadExecutor();
+    TestNetworkService memberNetworkService = new TestNetworkService(mDbExecutor);
     @InjectMocks
-    RealSessionsRepo realSessionsRepo = new RealSessionsRepo(sessionDao, mDbExecutor);
+    RealSessionsRepo realSessionsRepo = new RealSessionsRepo(sessionDao, mDbExecutor, memberNetworkService);
 
     @Test
     public void findSessionCallsSessionDaoFind() throws InterruptedException {

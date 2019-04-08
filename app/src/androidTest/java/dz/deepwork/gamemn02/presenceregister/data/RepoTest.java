@@ -16,6 +16,7 @@ import dz.deepwork.gamemn02.presenceregister.TestApplicationContextModule;
 import dz.deepwork.gamemn02.presenceregister.data.members.Member;
 import dz.deepwork.gamemn02.presenceregister.data.members.MembersModule;
 import dz.deepwork.gamemn02.presenceregister.data.members.MembersRepo;
+import dz.deepwork.gamemn02.presenceregister.data.sessions.Session;
 import dz.deepwork.gamemn02.presenceregister.data.sessions.SessionsRepo;
 import dz.deepwork.gamemn02.presenceregister.login.LoginActivity;
 
@@ -155,12 +156,31 @@ public class RepoTest {
 
         for (Member expectedMember : TestData.MEMBERS) {
             countDownLatch = new CountDownLatch(1);
-            LiveData<Member> actualMemberLiveData = membersRepo.findMember(TestData.MEMBER1_PASS_NUMBER);
+            LiveData<Member> actualMemberLiveData =
+                    membersRepo.findMember(expectedMember.passNumber);
             actualMemberLiveData.observeForever(member -> countDownLatch.countDown());
             countDownLatch.await();
 
             //then
-            assertEquals(TestData.MEMBERS[0], actualMemberLiveData.getValue());
+            assertEquals(expectedMember, actualMemberLiveData.getValue());
+        }
+    }
+
+    @Test
+    public void fetchSessionsInsertsToDatabase() throws InterruptedException {
+        //when
+        sessionsRepo.fetchSessions();
+        Thread.sleep(100);
+
+        for (Session expectedSession : TestData.SESSIONS) {
+            countDownLatch = new CountDownLatch(1);
+            LiveData<Session> actualSessionLiveData =
+                    sessionsRepo.findSession(expectedSession.memberPassNumber, expectedSession.time);
+            actualSessionLiveData.observeForever(session -> countDownLatch.countDown());
+            countDownLatch.await();
+
+            //then
+            assertEquals(expectedSession, actualSessionLiveData.getValue());
         }
     }
 

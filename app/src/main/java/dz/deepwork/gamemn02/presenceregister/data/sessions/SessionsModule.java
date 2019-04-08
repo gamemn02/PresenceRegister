@@ -7,6 +7,7 @@ import javax.inject.Singleton;
 import dagger.Module;
 import dagger.Provides;
 import dz.deepwork.gamemn02.presenceregister.data.AppDatabase;
+import dz.deepwork.gamemn02.presenceregister.data.NetworkService;
 
 @Module
 public class SessionsModule {
@@ -19,7 +20,7 @@ public class SessionsModule {
 
     @Singleton
     @Provides
-    public SessionsRepo provideMembersRepo(SessionDao sessionDao, Executor dbExecutor) {
-        return new RealSessionsRepo(sessionDao, dbExecutor);
+    public SessionsRepo provideMembersRepo(SessionDao sessionDao, Executor dbExecutor, NetworkService networkService) {
+        return new RealSessionsRepo(sessionDao, dbExecutor, networkService);
     }
 }

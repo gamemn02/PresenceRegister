@@ -20,12 +20,6 @@ public class MembersModule {
 
     @Singleton
     @Provides
-    public NetworkService provideMemberNetworkService(Executor networkExecutor) {
-        return new NetworkService(networkExecutor);
-    }
-
-    @Singleton
-    @Provides
     public MembersRepo provideMembersRepo(MemberDao memberDao, Executor dbExecutor, NetworkService networkService) {
         return new RealMembersRepo(memberDao, dbExecutor, networkService);
     }

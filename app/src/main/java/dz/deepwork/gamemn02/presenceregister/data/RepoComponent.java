@@ -27,6 +27,7 @@ import dz.deepwork.gamemn02.presenceregister.sign.SignViewModel;
         AppExecutorsModule.class,
         ApplicationContextModule.class,
         AppDatabaseModule.class,
+        NetworkServiceModule.class,
         CalendarModule.class})
 public interface RepoComponent {
 
