@@ -13,17 +13,17 @@ public class Session {
     public SessionTime time;
     @ColumnInfo(name = "size")
     public int size;
-    @ColumnInfo(name = "member_Id")
-    public long memberId;
+    @ColumnInfo(name = "member_pass_number")
+    public String memberPassNumber;
     @ColumnInfo(name = "room")
     public String room;
     @ColumnInfo(name = "details")
     public String details;
 
-    public Session(SessionTime time, int size, long memberId, String room, String details) {
+    public Session(SessionTime time, int size, String memberPassNumber, String room, String details) {
         this.time = time;
         this.size = size;
-        this.memberId = memberId;
+        this.memberPassNumber = memberPassNumber;
         this.room = room;
         this.details = details;
     }
@@ -33,7 +33,7 @@ public class Session {
         Session session = (Session) obj;
         return time.equals(session.time) &&
                 size == session.size &&
-                memberId == session.memberId &&
+                memberPassNumber.equals(session.memberPassNumber) &&
                 room.equals(session.room) &&
                 details.equals(session.details);
     }

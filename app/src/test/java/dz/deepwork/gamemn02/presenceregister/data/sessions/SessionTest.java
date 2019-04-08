@@ -17,12 +17,12 @@ public class SessionTest {
     public void createSession() {
         //when
         Session session = new Session(TestData.SESSION1_TIME, TestData.SESSION1_SIZE,
-                TestData.SESSION1_MEMBER_ID, TestData.SESSION1_ROOM, TestData.SESSION1_DETAILS);
+                TestData.SESSION1_MEMBER_PASS_NUMBER, TestData.SESSION1_ROOM, TestData.SESSION1_DETAILS);
 
         //then
         assertEquals(session.time, TestData.SESSION1_TIME);
         assertEquals(session.size, TestData.SESSION1_SIZE);
-        assertEquals(session.memberId, TestData.SESSION1_MEMBER_ID);
+        assertEquals(session.memberPassNumber, TestData.SESSION1_MEMBER_PASS_NUMBER);
         assertEquals(session.room, TestData.SESSION1_ROOM);
         assertEquals(session.details, TestData.SESSION1_DETAILS);
     }
@@ -31,11 +31,11 @@ public class SessionTest {
     public void equals() {
         //when
         Session session = new Session(TestData.SESSION1_TIME, TestData.SESSION1_SIZE,
-                TestData.SESSION1_MEMBER_ID, TestData.SESSION1_ROOM, TestData.SESSION1_DETAILS);
+                TestData.SESSION1_MEMBER_PASS_NUMBER, TestData.SESSION1_ROOM, TestData.SESSION1_DETAILS);
         Session equalSession = new Session(TestData.SESSION1_TIME, TestData.SESSION1_SIZE,
-                TestData.SESSION1_MEMBER_ID, TestData.SESSION1_ROOM, TestData.SESSION1_DETAILS);
+                TestData.SESSION1_MEMBER_PASS_NUMBER, TestData.SESSION1_ROOM, TestData.SESSION1_DETAILS);
         Session notEqualSession = new Session(TestData.SESSION2_TIME, TestData.SESSION2_SIZE,
-                TestData.SESSION2_MEMBER_ID, TestData.SESSION2_ROOM, TestData.SESSION2_DETAILS);
+                TestData.SESSION2_MEMBER_PASS_NUMBER, TestData.SESSION2_ROOM, TestData.SESSION2_DETAILS);
 
         //then
         assertEquals(session, equalSession);

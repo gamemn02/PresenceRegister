@@ -8,14 +8,14 @@ import android.support.annotation.NonNull;
 @Entity(tableName = "members")
 public class Member {
 
-    public static final int ID_NOT_MEMBER = -1;
-
-    @PrimaryKey(autoGenerate = true)
-    public long uId;
+    @NonNull
+    @PrimaryKey()
     @ColumnInfo(name = "pass_number")
     public String passNumber;
+
     @ColumnInfo(name = "name")
     public String name;
+
     @ColumnInfo(name = "is_admin")
     public boolean isAdmin;
 

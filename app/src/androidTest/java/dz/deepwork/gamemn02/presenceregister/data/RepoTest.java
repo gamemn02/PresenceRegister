@@ -1,38 +1,22 @@
 package dz.deepwork.gamemn02.presenceregister.data;
 
 import android.arch.lifecycle.LiveData;
-import android.arch.lifecycle.Observer;
-import android.support.annotation.Nullable;
 import android.support.test.rule.ActivityTestRule;
-import android.support.test.runner.AndroidJUnit4;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 
 import dz.deepwork.gamemn02.presenceregister.AppExecutorsModule;
 import dz.deepwork.gamemn02.presenceregister.TestApplicationContextModule;
-import dz.deepwork.gamemn02.presenceregister.data.AppDatabase;
-import dz.deepwork.gamemn02.presenceregister.data.AppDatabaseModule;
-import dz.deepwork.gamemn02.presenceregister.data.DaggerAppDatabaseComponent;
-import dz.deepwork.gamemn02.presenceregister.data.TestAppDatabaseModule;
 import dz.deepwork.gamemn02.presenceregister.data.members.Member;
-import dz.deepwork.gamemn02.presenceregister.data.members.MemberDao;
 import dz.deepwork.gamemn02.presenceregister.data.members.MembersModule;
 import dz.deepwork.gamemn02.presenceregister.data.members.MembersRepo;
-import dz.deepwork.gamemn02.presenceregister.data.members.RealMembersRepo;
-import dz.deepwork.gamemn02.presenceregister.data.sessions.RealSessionsRepo;
-import dz.deepwork.gamemn02.presenceregister.data.sessions.Session;
-import dz.deepwork.gamemn02.presenceregister.data.sessions.SessionDao;
 import dz.deepwork.gamemn02.presenceregister.data.sessions.SessionsRepo;
-import dz.deepwork.gamemn02.presenceregister.data.signins.SignIn;
-import dz.deepwork.gamemn02.presenceregister.data.signins.SignInDao;
-import dz.deepwork.gamemn02.presenceregister.data.signs.SignDao;
 import dz.deepwork.gamemn02.presenceregister.login.LoginActivity;
 
 import static junit.framework.Assert.assertNotNull;
@@ -119,7 +103,7 @@ public class RepoTest {
         final CountDownLatch countDownLatch = new CountDownLatch(1);
         try {
             mActivityRule.runOnUiThread(() -> {
-                sessionsRepo.findSession(TestData.SESSION1_MEMBER_ID, TestData.SESSION1_TIME);
+                sessionsRepo.findSession(TestData.SESSION1_MEMBER_PASS_NUMBER, TestData.SESSION1_TIME);
                 countDownLatch.countDown();
             });
             countDownLatch.await(1, TimeUnit.MINUTES);

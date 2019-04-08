@@ -30,8 +30,6 @@ public class RealMembersRepo implements MembersRepo{
         mDbExecutor.execute(() -> mMemberDao.insert(members));
     }
 
-    // TODO: change all to lambda
-
     @Override
     public void fetchMembers() {
         mNetworkService.fetchMembers().observeForever(members -> mDbExecutor.execute(() -> {

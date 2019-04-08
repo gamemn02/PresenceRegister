@@ -48,7 +48,7 @@ public class SignFragment extends Fragment {
         mViewModel.findMember(mMemberPassNumber).observe(this, member -> {
             mLoginMember = member;
             mSignFragmentBinding.setMember(member);
-            mViewModel.findCurSession(member).observe(this, session -> {
+            mViewModel.findCurSession(mMemberPassNumber).observe(this, session -> {
                 mCurSession = session;
                 mSignFragmentBinding.setSession(session);
             });

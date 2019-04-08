@@ -28,29 +28,29 @@ public class TestData {
     public static final int SESSION1_TIME_SESSION_NUMBER = 0;
     public static final SessionTime SESSION1_TIME = new SessionTime(0, 0);
     public static final int SESSION1_SIZE = 2;
-    public static final int SESSION1_MEMBER_ID = 1;
+    public static final String SESSION1_MEMBER_PASS_NUMBER = MEMBER1_PASS_NUMBER;
     public static final String SESSION1_ROOM = "B007";
     public static final String SESSION1_DETAILS = "Recitation E415";
     public static final int SESSION2_TIME_SESSION_NUMBER = 3;
     public static final SessionTime SESSION2_TIME = new SessionTime(3, 0);
     public static final int SESSION2_SIZE = 3;
-    public static final int SESSION2_MEMBER_ID = 2;
+    public static final String SESSION2_MEMBER_PASS_NUMBER = MEMBER2_PASS_NUMBER;
     public static final String SESSION2_ROOM = "C101";
     public static final String SESSION2_DETAILS = "Recitation E111";
     public static final int SESSION3_TIME_SESSION_NUMBER = 16;
     public static final SessionTime SESSION3_TIME = new SessionTime(4, 2);
     public static final int SESSION3_SIZE = 4;
-    public static final int SESSION3_MEMBER_ID = 3;
+    public static final String SESSION3_MEMBER_PASS_NUMBER = MEMBER3_PASS_NUMBER;
     public static final String SESSION3_ROOM = "A308";
     public static final String SESSION3_DETAILS = "Lab E223";
 
     public static final Session[] SESSIONS = {
             new Session(SESSION1_TIME, SESSION1_SIZE,
-                    SESSION1_MEMBER_ID, SESSION1_ROOM, SESSION1_DETAILS),
+                    SESSION1_MEMBER_PASS_NUMBER, SESSION1_ROOM, SESSION1_DETAILS),
             new Session(SESSION2_TIME, SESSION2_SIZE,
-                    SESSION2_MEMBER_ID, SESSION2_ROOM, SESSION2_DETAILS),
+                    SESSION2_MEMBER_PASS_NUMBER, SESSION2_ROOM, SESSION2_DETAILS),
             new Session(SESSION3_TIME, SESSION3_SIZE,
-                    SESSION3_MEMBER_ID, SESSION3_ROOM, SESSION3_DETAILS),
+                    SESSION3_MEMBER_PASS_NUMBER, SESSION3_ROOM, SESSION3_DETAILS),
     };
 
     public static final int SIGN_IN_1_SESSION_ID = 1;

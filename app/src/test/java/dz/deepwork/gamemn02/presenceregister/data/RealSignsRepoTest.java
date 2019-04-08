@@ -1,11 +1,15 @@
 package dz.deepwork.gamemn02.presenceregister.data;
 
+import android.arch.core.executor.testing.InstantTaskExecutorRule;
+import android.arch.lifecycle.LiveData;
+import android.arch.lifecycle.MutableLiveData;
+
 import org.junit.Assert;
+import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Spy;
 import org.mockito.junit.MockitoJUnitRunner;
 
 import java.util.concurrent.Executor;
@@ -13,11 +17,9 @@ import java.util.concurrent.Executors;
 
 import dz.deepwork.gamemn02.presenceregister.data.members.Member;
 import dz.deepwork.gamemn02.presenceregister.data.members.MemberDao;
-import dz.deepwork.gamemn02.presenceregister.data.sessions.Session;
 import dz.deepwork.gamemn02.presenceregister.data.sessions.SessionDao;
 import dz.deepwork.gamemn02.presenceregister.data.signins.SignIn;
 import dz.deepwork.gamemn02.presenceregister.data.signins.SignInDao;
-import dz.deepwork.gamemn02.presenceregister.data.signs.Sign;
 import dz.deepwork.gamemn02.presenceregister.data.signs.SignDao;
 
 import static org.mockito.Mockito.verify;
@@ -64,13 +66,19 @@ public class RealSignsRepoTest {
         Assert.assertEquals(TestData.SIGN_INS[0], returnedSignIn);
     }
 
+    @Rule
+    public InstantTaskExecutorRule instantTaskExecutorRule = new InstantTaskExecutorRule();
+
     @Test
     public void signOutCallsSignInDaoDeleteAndSignDaoInsert() throws InterruptedException {
 
         //when
-        when(memberDao.get(TestData.SESSIONS[0].memberId)).thenReturn(TestData.MEMBERS[0]);
+        MutableLiveData<Member> memberLiveData = new MutableLiveData<>();
+        when(memberDao.find(TestData.SESSIONS[0].memberPassNumber)).thenReturn(memberLiveData);
         when(sessionDao.get(TestData.SIGN_INS[0].sessionId)).thenReturn(TestData.SESSIONS[0]);
+
         realSignsRepo.signOut(TestData.SIGN_INS[0]);
+        memberLiveData.postValue(TestData.MEMBERS[0]);
         Thread.sleep(100);
 
         //then

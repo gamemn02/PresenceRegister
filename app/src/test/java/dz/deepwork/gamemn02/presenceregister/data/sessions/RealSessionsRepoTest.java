@@ -27,11 +27,11 @@ public class RealSessionsRepoTest {
     public void findSessionCallsSessionDaoFind() throws InterruptedException {
 
         //when
-        realSessionsRepo.findSession(TestData.SESSIONS[0].memberId, TestData.SESSIONS[0].time);
+        realSessionsRepo.findSession(TestData.SESSIONS[0].memberPassNumber, TestData.SESSIONS[0].time);
         Thread.sleep(100);
 
         //then
-        verify(sessionDao).find(TestData.SESSIONS[0].memberId, TestData.SESSIONS[0].time);
+        verify(sessionDao).find(TestData.SESSIONS[0].memberPassNumber, TestData.SESSIONS[0].time);
     }
 
     @Test

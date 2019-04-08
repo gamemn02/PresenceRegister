@@ -11,8 +11,8 @@ public interface SessionDao {
     @Insert
     long[] insert(Session... sessions);
 
-    @Query("SELECT * FROM sessions WHERE member_Id = :memberId AND :sessionTime BETWEEN time AND time + size")
-    LiveData<Session> find(long memberId, SessionTime sessionTime);
+    @Query("SELECT * FROM sessions WHERE member_pass_number = :memberPassNumber AND :sessionTime BETWEEN time AND time + size")
+    LiveData<Session> find(String memberPassNumber, SessionTime sessionTime);
 
     @Query("SELECT * FROM sessions WHERE uId = :sessionId")
     Session get(long sessionId);

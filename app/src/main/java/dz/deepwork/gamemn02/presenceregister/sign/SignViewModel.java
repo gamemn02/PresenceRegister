@@ -30,7 +30,7 @@ public class SignViewModel extends ViewModel {
         return mMembersRepo.findMember(passNumber);
     }
 
-    public LiveData<Session> findCurSession(Member member) {
-        return mSessionRepo.findSession(member.uId, SessionTime.fromCalendar(mCurCalendar));
+    public LiveData<Session> findCurSession(String passNumber) {
+        return mSessionRepo.findSession(passNumber, SessionTime.fromCalendar(mCurCalendar));
     }
 }

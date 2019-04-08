@@ -37,7 +37,7 @@ public class SessionDaoTest {
     public void insertAndFind() throws InterruptedException {
 //        //when
 //        sessionDao.insert(TestData.SESSIONS);
-//        LiveData<Session> actualSessionLiveData = sessionDao.find(TestData.SESSIONS[1].memberId);
+//        LiveData<Session> actualSessionLiveData = sessionDao.find(TestData.SESSIONS[1].memberPassNumber);
 //        Session actualSession = LiveDataTestUtils.getValue(actualSessionLiveData);
 //        Session expectedSession = TestData.SESSIONS[1];
 //        Session wrongSession = TestData.SESSIONS[2];
@@ -52,9 +52,9 @@ public class SessionDaoTest {
         //when
         sessionDao.insert(TestData.SESSIONS);
         LiveData<Session> actualSessionLiveData =
-                sessionDao.find(TestData.SESSION1_MEMBER_ID, TestData.SESSION1_TIME);
+                sessionDao.find(TestData.SESSION1_MEMBER_PASS_NUMBER, TestData.SESSION1_TIME);
         LiveData<Session> actualSessionLiveData2 =
-                sessionDao.find(TestData.SESSION2_MEMBER_ID, SessionTime.toSessionTime(TestData.SESSION2_TIME_SESSION_NUMBER+1));
+                sessionDao.find(TestData.SESSION2_MEMBER_PASS_NUMBER, SessionTime.toSessionTime(TestData.SESSION2_TIME_SESSION_NUMBER+1));
         Session actualSession = LiveDataTestUtils.getValue(actualSessionLiveData);
         Session actualSession2 = LiveDataTestUtils.getValue(actualSessionLiveData2);
         Session expectedSession = TestData.SESSIONS[0];

@@ -51,19 +51,6 @@ public class MemberDaoTest {
 
     }
 
-    @Test
-    public void get() {
-        //when
-        long[] ids = memberDao.insert(TestData.MEMBERS);
-        Member actualMember = memberDao.get(ids[1]);
-        Member expectedMember = TestData.MEMBERS[1];
-        Member wrongMember = TestData.MEMBERS[2];
-
-        //then
-        assertEquals("actual member does't match the expected member", expectedMember, actualMember);
-        assertNotEquals("actual member matches the wrong member", wrongMember, actualMember);
-    }
-
     private CountDownLatch countDownLatch;
 
     @Test
