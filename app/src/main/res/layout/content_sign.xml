@@ -5,6 +5,7 @@
 
     <data>
         <import type="dz.deepwork.gamemn02.presenceregister.data.sessions.SessionTime" />
+        <variable name="viewModel" type="dz.deepwork.gamemn02.presenceregister.sign.SignViewModel" />
         <variable name="member" type="dz.deepwork.gamemn02.presenceregister.data.members.Member" />
         <variable name="session" type="dz.deepwork.gamemn02.presenceregister.data.sessions.Session" />
     </data>
@@ -22,7 +23,7 @@
             android:layout_marginTop="8dp"
             android:layout_marginEnd="16dp"
             android:layout_marginRight="16dp"
-            android:text=""
+            android:text="@={viewModel.getCurrentDate()}"
             android:textStyle="bold"
             android:textSize="@dimen/text_size_info"
             android:fontFamily="sans-serif-smallcaps"

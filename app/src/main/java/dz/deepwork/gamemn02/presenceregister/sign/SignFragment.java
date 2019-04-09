@@ -38,6 +38,7 @@ public class SignFragment extends Fragment {
                              @Nullable Bundle savedInstanceState) {
         mMemberPassNumber = getArguments().getString(BUNDLE_MEMBER_PASS_NUMBER);
         mSignFragmentBinding = DataBindingUtil.inflate(inflater, R.layout.sign_fragment, container, false);
+        mSignFragmentBinding.setLifecycleOwner(this);
         return mSignFragmentBinding.getRoot();
     }
 
@@ -53,6 +54,7 @@ public class SignFragment extends Fragment {
                 mSignFragmentBinding.setSession(session);
             });
         });
+        mSignFragmentBinding.setViewModel(mViewModel);
     }
 
 }
