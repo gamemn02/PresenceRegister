@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+        <import type="dz.deepwork.gamemn02.presenceregister.data.sessions.SessionTime" />
         <variable name="member" type="dz.deepwork.gamemn02.presenceregister.data.members.Member" />
         <variable name="session" type="dz.deepwork.gamemn02.presenceregister.data.sessions.Session" />
     </data>
@@ -15,14 +16,162 @@
         tools:showIn="@layout/sign_fragment">
 
         <TextView
-            android:id="@+id/tv_title"
+            android:id="@+id/tv_current_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Sign Content"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp"
+            android:text=""
+            android:textStyle="bold"
+            android:textSize="@dimen/text_size_info"
+            android:fontFamily="sans-serif-smallcaps"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="12:18   09/04/2019" />
+
+        <View
+            android:id="@+id/view"
+            android:layout_width="3dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="32dp"
+            android:background="@color/colorPrimary"
+            app:layout_constraintBottom_toTopOf="@+id/button"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.30"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_current_date" />
+
+        <TextView
+            android:id="@+id/tv_member_name_indication"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:fontFamily="sans-serif-smallcaps"
+            android:text="@string/indication_member_name"
+            android:textSize="@dimen/text_size_info"
+            android:textStyle="bold"
+            android:textAlignment="center"
+            app:layout_constraintEnd_toStartOf="@+id/view"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/view" />
+
+        <TextView
+            android:id="@+id/tv_member_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-smallcaps"
+            android:text=""
+            android:textAlignment="center"
+            android:textSize="@dimen/text_size_info"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_member_name_indication"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/view"
+            app:layout_constraintTop_toTopOf="@+id/tv_member_name_indication"
+            tools:text="Dr. Bouchnef" />
+
+        <TextView
+            android:id="@+id/tv_session_room_indication"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:fontFamily="sans-serif-smallcaps"
+            android:text="@string/indication_session_room"
+            android:textAlignment="center"
+            android:textSize="@dimen/text_size_info"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toStartOf="@+id/view"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_member_name_indication" />
+
+        <TextView
+            android:id="@+id/tv_session_room"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-smallcaps"
+            android:text=""
+            android:textAlignment="center"
+            android:textSize="@dimen/text_size_info_large"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_session_room_indication"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/view"
+            app:layout_constraintTop_toTopOf="@+id/tv_session_room_indication"
+            tools:text="B007" />
+
+        <TextView
+            android:id="@+id/tv_session_time_indication"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:fontFamily="sans-serif-smallcaps"
+            android:text="@string/indication_session_time"
+            android:textAlignment="center"
+            android:textSize="@dimen/text_size_info"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toStartOf="@+id/view"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_session_room_indication" />
+
+        <TextView
+            android:id="@+id/tv_session_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-smallcaps"
+            android:text=""
+            android:textAlignment="center"
+            android:textSize="@dimen/text_size_info"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_session_time_indication"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/view"
+            app:layout_constraintTop_toTopOf="@+id/tv_session_time_indication"
+            tools:text="12:00 - 13:40" />
+
+        <TextView
+            android:id="@+id/tv_session_details_indication"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:fontFamily="sans-serif-smallcaps"
+            android:text="@string/indication_session_details"
+            android:textAlignment="center"
+            android:textSize="@dimen/text_size_info"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toStartOf="@+id/view"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_session_time_indication" />
+
+        <TextView
+            android:id="@+id/tv_session_details"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-smallcaps"
+            android:text=""
+            android:textAlignment="center"
+            android:textSize="@dimen/text_size_info"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_session_details_indication"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/view"
+            app:layout_constraintTop_toTopOf="@+id/tv_session_details_indication"
+            tools:text="Recitation E116" />
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="96dp"
+            android:layout_height="96dp"
+            android:background="@color/colorAccent"
+            android:text="Sign\nin"
+            android:textColor="@android:color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/view"
+            app:layout_constraintStart_toStartOf="@+id/view"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.75" />
+
 
     </android.support.constraint.ConstraintLayout>
 </layout>

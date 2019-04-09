@@ -5,4 +5,6 @@
     <dimen name="margin_bottom_login_hint">22dp</dimen>
     <dimen name="size_login_btn_clear">32dp</dimen>
     <dimen name="text_size_login_edit_text">48sp</dimen>
+    <dimen name="text_size_info">15sp</dimen>
+    <dimen name="text_size_info_large">24sp</dimen>
 </resources>

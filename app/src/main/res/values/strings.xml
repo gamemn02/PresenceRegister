@@ -16,4 +16,8 @@
     <string name="desc_clear_btn">click to clear this field</string>
     <string name="pass_number_field_hint">Enter your pass number</string>
     <string name="title_activity_sign">SignActivity</string>
+    <string name="indication_member_name">member\nname</string>
+    <string name="indication_session_room">room</string>
+    <string name="indication_session_time">session\ninterval</string>
+    <string name="indication_session_details">details</string>
 </resources>
