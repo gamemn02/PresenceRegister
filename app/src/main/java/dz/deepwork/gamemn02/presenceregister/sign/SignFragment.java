@@ -20,9 +20,6 @@ public class SignFragment extends Fragment {
     private static final String BUNDLE_MEMBER_PASS_NUMBER = "bundle-member-pass-number";
 
     private SignViewModel mViewModel;
-    private String mMemberPassNumber;
-    private Member mLoginMember;
-    private Session mCurSession;
     private SignFragmentBinding mSignFragmentBinding;
 
     public static SignFragment newInstance(String memberPassNumber) {
@@ -36,7 +33,6 @@ public class SignFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        mMemberPassNumber = getArguments().getString(BUNDLE_MEMBER_PASS_NUMBER);
         mSignFragmentBinding = DataBindingUtil.inflate(inflater, R.layout.sign_fragment, container, false);
         mSignFragmentBinding.setLifecycleOwner(this);
         return mSignFragmentBinding.getRoot();
@@ -45,15 +41,9 @@ public class SignFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        String memberPassNumber = getArguments().getString(BUNDLE_MEMBER_PASS_NUMBER);
         mViewModel = ViewModelProviders.of(this).get(SignViewModel.class);
-        mViewModel.findMember(mMemberPassNumber).observe(this, member -> {
-            mLoginMember = member;
-            mSignFragmentBinding.setMember(member);
-            mViewModel.findCurSession(mMemberPassNumber).observe(this, session -> {
-                mCurSession = session;
-                mSignFragmentBinding.setSession(session);
-            });
-        });
+        mViewModel.init(memberPassNumber);
         mSignFragmentBinding.setViewModel(mViewModel);
     }
 

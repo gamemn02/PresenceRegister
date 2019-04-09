@@ -6,8 +6,6 @@
     <data>
         <import type="dz.deepwork.gamemn02.presenceregister.data.sessions.SessionTime" />
         <variable name="viewModel" type="dz.deepwork.gamemn02.presenceregister.sign.SignViewModel" />
-        <variable name="member" type="dz.deepwork.gamemn02.presenceregister.data.members.Member" />
-        <variable name="session" type="dz.deepwork.gamemn02.presenceregister.data.sessions.Session" />
     </data>
 
     <android.support.constraint.ConstraintLayout
@@ -23,7 +21,7 @@
             android:layout_marginTop="8dp"
             android:layout_marginEnd="16dp"
             android:layout_marginRight="16dp"
-            android:text="@{viewModel.getCurrentDate()}"
+            android:text="@{viewModel.currentDate}"
             android:textStyle="bold"
             android:textSize="@dimen/text_size_info"
             android:fontFamily="sans-serif-smallcaps"
@@ -63,7 +61,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-smallcaps"
-            android:text="@{member.name}"
+            android:text="@{viewModel.memberName}"
             android:textAlignment="center"
             android:textSize="@dimen/text_size_info"
             android:textStyle="bold"
@@ -92,7 +90,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-smallcaps"
-            android:text="@{session.room}"
+            android:text="@{viewModel.sessionRoom}"
             android:textAlignment="center"
             android:textSize="@dimen/text_size_info_large"
             android:textStyle="bold"
@@ -121,7 +119,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-smallcaps"
-            android:text="@{SessionTime.toIntervalString(session.time, session.size)}"
+            android:text="@{viewModel.sessionInterval}"
             android:textAlignment="center"
             android:textSize="@dimen/text_size_info"
             android:textStyle="bold"
@@ -150,7 +148,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-smallcaps"
-            android:text="@{session.details}"
+            android:text="@{viewModel.sessionDetails}"
             android:textAlignment="center"
             android:textSize="@dimen/text_size_info"
             android:textStyle="bold"
