@@ -8,7 +8,6 @@ import java.util.TimeZone;
 public class SessionTime {
 
     public static final int SESSIONS_PER_DAY = 6;
-    public static final int DAYS_PER_WEEK = 6;
     public static final int STARTING_MINUTE = 8 * 60 - 10;
     private static final int MINUTES_IN_HOUR = 60;
 
@@ -42,11 +41,11 @@ public class SessionTime {
 
     @TypeConverter
     public static SessionTime toSessionTime(int sessionNumber) {
-        int day = sessionNumber / DAYS_PER_WEEK;
+        int day = sessionNumber / SESSIONS_PER_DAY;
         int hourNumber = sessionNumber - (day * SESSIONS_PER_DAY);
         return new SessionTime(hourNumber, day);
     }
-
+    // TODO: fix negative time bug
     public static SessionTime fromCalendar(Calendar calendar) {
         int hour = calendar.get(Calendar.HOUR_OF_DAY);
         int minute = calendar.get(Calendar.MINUTE);

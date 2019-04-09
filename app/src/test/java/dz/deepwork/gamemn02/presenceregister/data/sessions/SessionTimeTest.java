@@ -32,8 +32,8 @@ public class SessionTimeTest {
         // when
         SessionTime actualSessionTime1 = SessionTime.toSessionTime(TestData.SESSION1_TIME_SESSION_NUMBER);
         SessionTime expectedSessionTime1 = TestData.SESSION1_TIME;
-        SessionTime actualSessionTime2 = SessionTime.toSessionTime(TestData.SESSION1_TIME_SESSION_NUMBER);
-        SessionTime expectedSessionTime2 = TestData.SESSION1_TIME;
+        SessionTime actualSessionTime2 = SessionTime.toSessionTime(TestData.SESSION2_TIME_SESSION_NUMBER);
+        SessionTime expectedSessionTime2 = TestData.SESSION2_TIME;
 
         // then
         assertEquals(expectedSessionTime1, actualSessionTime1);
