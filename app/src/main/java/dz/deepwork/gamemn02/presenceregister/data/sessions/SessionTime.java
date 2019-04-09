@@ -3,13 +3,13 @@ package dz.deepwork.gamemn02.presenceregister.data.sessions;
 import android.arch.persistence.room.TypeConverter;
 
 import java.util.Calendar;
-import java.util.TimeZone;
 
 public class SessionTime {
 
-    public static final int SESSIONS_PER_DAY = 6;
-    public static final int STARTING_MINUTE = 8 * 60 - 10;
-    private static final int MINUTES_IN_HOUR = 60;
+    private static final int SESSIONS_PER_DAY = 6;
+    private static final int STARTING_MINUTE = 8 * 60 - 10;
+    private static final int MINUTES_PER_HOUR = 60;
+    private static final int MINUTES_PER_SESSION = 100;
 
     private int mHourNumber;
     private int mDay;
@@ -47,12 +47,22 @@ public class SessionTime {
     }
     // TODO: fix negative time bug
     public static SessionTime fromCalendar(Calendar calendar) {
-        int hour = calendar.get(Calendar.HOUR_OF_DAY);
-        int minute = calendar.get(Calendar.MINUTE);
-        int totalMinutes = (hour * MINUTES_IN_HOUR) + minute;
-        int hourNumber = (totalMinutes - STARTING_MINUTE) / 100;
+        int h = calendar.get(Calendar.HOUR_OF_DAY);
+        int m = calendar.get(Calendar.MINUTE);
+        int totalMinutes = (h * MINUTES_PER_HOUR) + m;
+        int hourNumber = (totalMinutes - STARTING_MINUTE) / MINUTES_PER_SESSION;
         int day = calendar.get(Calendar.DAY_OF_WEEK);
         return new SessionTime(hourNumber, day);
     }
 
+    static public String toIntervalString(SessionTime sessionTime, int size) {
+        if(sessionTime == null) return null;
+        int startMinutes = sessionTime.getHourNumber() * MINUTES_PER_SESSION + STARTING_MINUTE;
+        int endMinutes = startMinutes + size * MINUTES_PER_SESSION;
+        int hStart = startMinutes / MINUTES_PER_HOUR;
+        int mStart = startMinutes - hStart * MINUTES_PER_HOUR;
+        int hEnd = endMinutes / MINUTES_PER_HOUR;
+        int mEnd = endMinutes - hEnd * MINUTES_PER_HOUR;
+        return hStart + ":" + mStart + " - " + hEnd + ":" + mEnd;
+    }
 }

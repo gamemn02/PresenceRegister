@@ -61,4 +61,15 @@ public class SessionTimeTest {
         assertEquals(sessionTime2.getHourNumber(), 3);
         // TODO: use TestData to store constants
     }
+
+    @Test
+    public void testToIntervalStringMethod() {
+        //when
+        SessionTime sessionTime = TestData.INTERVAL_SESSION_TIME;
+        String actualString = SessionTime.toIntervalString(sessionTime, TestData.INTERVAL_SIZE);
+        String expectedString = TestData.INTERVAL_STRING;
+
+        //then
+        assertEquals(expectedString, actualString);
+    }
 }
