@@ -27,17 +27,18 @@ public class SignViewModel extends ViewModel {
     @Inject
     Calendar mCurCalendar;
     // TODO: remove calendar injection and use DateUtils instead
-    private ObservableField<String> mCurDateObservable;
+    private MutableLiveData<String> mCurDateLiveData;
 
     public SignViewModel() {
         RepoComponent.Singleton.getInstance().inject(this);
-        mCurDateObservable = new ObservableField<>();
+        mCurDateLiveData = new MutableLiveData<>();
         final Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
                 Calendar calendar = DateUtils.getCurrentCalendar();
-                mCurDateObservable.set(StringFormats.calendarToString(calendar));
+                String currentDate = StringFormats.calendarToString(calendar);
+                mCurDateLiveData.postValue(currentDate);
                 handler.postDelayed(this, 1000);
             }
         }, 1000);
@@ -51,7 +52,7 @@ public class SignViewModel extends ViewModel {
         return mSessionRepo.findSession(passNumber, SessionTime.fromCalendar(mCurCalendar));
     }
 
-    public ObservableField<String> getCurrentDate() {
-        return mCurDateObservable;
+    public LiveData<String> getCurrentDate() {
+        return mCurDateLiveData;
     }
 }
