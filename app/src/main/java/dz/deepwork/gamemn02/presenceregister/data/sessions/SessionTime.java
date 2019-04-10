@@ -47,7 +47,7 @@ public class SessionTime {
         int hourNumber = sessionNumber - (day * SESSIONS_PER_DAY);
         return new SessionTime(hourNumber, day);
     }
-    // TODO: fix negative time bug
+    // BUG: fix negative time bug
     public static SessionTime fromCalendar(Calendar calendar) {
         int h = calendar.get(Calendar.HOUR_OF_DAY);
         int m = calendar.get(Calendar.MINUTE);

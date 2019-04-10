@@ -24,9 +24,7 @@ public class SignViewModel extends ViewModel {
     MembersRepo mMembersRepo;
     @Inject
     SessionsRepo mSessionRepo;
-    @Inject
-    Calendar mCurCalendar;
-    // TODO: remove calendar injection and use DateUtils instead
+
     private LiveData<Member> mLoginMember;
     private LiveData<Session> mCurSession;
     private MutableLiveData<String> mCurDateLiveData;
@@ -49,7 +47,7 @@ public class SignViewModel extends ViewModel {
 
     public void init(String passNumber) {
         mLoginMember = mMembersRepo.findMember(passNumber);
-        mCurSession = mSessionRepo.findSession(passNumber, SessionTime.fromCalendar(mCurCalendar));
+        mCurSession = mSessionRepo.findSession(passNumber, SessionTime.fromCalendar(DateUtils.getCurrentCalendar()));
     }
 
     public LiveData<String> getCurrentDate() {
