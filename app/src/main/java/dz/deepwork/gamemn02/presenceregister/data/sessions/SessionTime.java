@@ -4,8 +4,6 @@ import android.arch.persistence.room.TypeConverter;
 
 import java.util.Calendar;
 
-import dz.deepwork.gamemn02.presenceregister.utils.FormatUtil;
-
 public class SessionTime {
 
     private static final int SESSIONS_PER_DAY = 6;
@@ -47,12 +45,13 @@ public class SessionTime {
         int hourNumber = sessionNumber - (day * SESSIONS_PER_DAY);
         return new SessionTime(hourNumber, day);
     }
-    // BUG: fix negative time bug
+
     public static SessionTime fromCalendar(Calendar calendar) {
         int h = calendar.get(Calendar.HOUR_OF_DAY);
         int m = calendar.get(Calendar.MINUTE);
         int totalMinutes = (h * MINUTES_PER_HOUR) + m;
         int hourNumber = (totalMinutes - STARTING_MINUTE) / MINUTES_PER_SESSION;
+        if(totalMinutes - STARTING_MINUTE < 0) hourNumber--;
         int day = calendar.get(Calendar.DAY_OF_WEEK);
         return new SessionTime(hourNumber, day);
     }

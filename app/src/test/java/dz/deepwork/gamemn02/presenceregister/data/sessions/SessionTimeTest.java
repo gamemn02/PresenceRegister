@@ -51,14 +51,20 @@ public class SessionTimeTest {
                 .setWeekDate(0, 0, Calendar.SATURDAY)
                 .setTimeOfDay(12, 50, 0)
                 .build();
+        Calendar calendar3 = new Calendar.Builder()
+                .setWeekDate(0, 0, Calendar.SATURDAY)
+                .setTimeOfDay(7, 0, 0)
+                .build();
         SessionTime sessionTime1 = SessionTime.fromCalendar(calendar1);
         SessionTime sessionTime2 = SessionTime.fromCalendar(calendar2);
+        SessionTime sessionTime3 = SessionTime.fromCalendar(calendar3);
 
         //then
         assertEquals(sessionTime1.getDay(), Calendar.SUNDAY);
         assertEquals(sessionTime2.getDay(), Calendar.SATURDAY);
         assertEquals(sessionTime1.getHourNumber(), 2);
         assertEquals(sessionTime2.getHourNumber(), 3);
+        assertEquals(sessionTime3.getHourNumber(), -1);
         // TODO: use TestData to store constants
     }
 
