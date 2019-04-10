@@ -318,7 +318,7 @@
             android:layout_height="48dp"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
-            android:src="@drawable/btn_clear"
+            android:src="@drawable/bg_btn_clear"
             android:clickable="true"
             android:focusable="true"
             android:onClick="@{ () -> ux.onClickClear()}"

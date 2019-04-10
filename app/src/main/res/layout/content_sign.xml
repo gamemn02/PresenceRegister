@@ -5,6 +5,7 @@
 
     <data>
         <import type="dz.deepwork.gamemn02.presenceregister.data.sessions.SessionTime" />
+        <import type="dz.deepwork.gamemn02.presenceregister.utils.FormatUtil" />
         <variable name="viewModel" type="dz.deepwork.gamemn02.presenceregister.sign.SignViewModel" />
     </data>
 
@@ -29,147 +30,91 @@
             app:layout_constraintTop_toTopOf="parent"
             tools:text="12:18   09/04/2019" />
 
-        <View
-            android:id="@+id/view"
-            android:layout_width="3dp"
-            android:layout_height="0dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="32dp"
-            android:background="@color/colorPrimary"
-            app:layout_constraintBottom_toTopOf="@+id/button"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.30"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_current_date" />
-
-        <TextView
-            android:id="@+id/tv_member_name_indication"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:fontFamily="sans-serif-smallcaps"
-            android:text="@string/indication_member_name"
-            android:textSize="@dimen/text_size_info"
-            android:textStyle="bold"
-            android:textAlignment="center"
-            app:layout_constraintEnd_toStartOf="@+id/view"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/view" />
-
         <TextView
             android:id="@+id/tv_member_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
             android:fontFamily="sans-serif-smallcaps"
             android:text="@{viewModel.memberName}"
             android:textAlignment="center"
-            android:textSize="@dimen/text_size_info"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@+id/tv_member_name_indication"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/view"
-            app:layout_constraintTop_toTopOf="@+id/tv_member_name_indication"
-            tools:text="Dr. Bouchnef" />
-
-        <TextView
-            android:id="@+id/tv_session_room_indication"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:fontFamily="sans-serif-smallcaps"
-            android:text="@string/indication_session_room"
-            android:textAlignment="center"
-            android:textSize="@dimen/text_size_info"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toStartOf="@+id/view"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_member_name_indication" />
-
-        <TextView
-            android:id="@+id/tv_session_room"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="sans-serif-smallcaps"
-            android:text="@{viewModel.sessionRoom}"
-            android:textAlignment="center"
             android:textSize="@dimen/text_size_info_large"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@+id/tv_session_room_indication"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/view"
-            app:layout_constraintTop_toTopOf="@+id/tv_session_room_indication"
-            tools:text="B007" />
-
-        <TextView
-            android:id="@+id/tv_session_time_indication"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:fontFamily="sans-serif-smallcaps"
-            android:text="@string/indication_session_time"
-            android:textAlignment="center"
-            android:textSize="@dimen/text_size_info"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toStartOf="@+id/view"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_session_room_indication" />
-
-        <TextView
-            android:id="@+id/tv_session_time"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="sans-serif-smallcaps"
-            android:text="@{viewModel.sessionInterval}"
-            android:textAlignment="center"
-            android:textSize="@dimen/text_size_info"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@+id/tv_session_time_indication"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/view"
-            app:layout_constraintTop_toTopOf="@+id/tv_session_time_indication"
-            tools:text="12:00 - 13:40" />
-
-        <TextView
-            android:id="@+id/tv_session_details_indication"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:fontFamily="sans-serif-smallcaps"
-            android:text="@string/indication_session_details"
-            android:textAlignment="center"
-            android:textSize="@dimen/text_size_info"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toStartOf="@+id/view"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_session_time_indication" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_current_date"
+            tools:text="Dr. bouchnef" />
 
         <TextView
             android:id="@+id/tv_session_details"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
             android:fontFamily="sans-serif-smallcaps"
             android:text="@{viewModel.sessionDetails}"
             android:textAlignment="center"
             android:textSize="@dimen/text_size_info"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@+id/tv_session_details_indication"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/view"
-            app:layout_constraintTop_toTopOf="@+id/tv_session_details_indication"
-            tools:text="Recitation E116" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_member_name"
+            tools:text="recitation E116" />
 
-        <Button
-            android:id="@+id/button"
+        <TextView
+            android:id="@+id/tv_session_room"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:fontFamily="sans-serif-smallcaps"
+            android:text="@{FormatUtil.roomToString(viewModel.sessionRoom)}"
+            android:textAlignment="center"
+            android:textSize="@dimen/text_size_info_large"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_session_details"
+            tools:text="in room B007" />
+
+        <TextView
+            android:id="@+id/tv_session_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:fontFamily="sans-serif-smallcaps"
+            android:text="@{FormatUtil.intervalToString(viewModel.sessionStart, viewModel.sessionEnd)}"
+            android:textAlignment="center"
+            android:textSize="@dimen/text_size_info"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_session_room"
+            tools:text="from 12:00 to 13:40" />
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/btn_sign_in"
             android:layout_width="96dp"
             android:layout_height="96dp"
-            android:background="@color/colorAccent"
-            android:text="Sign\nin"
+            android:layout_marginTop="32dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_session_time" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/sign_in_btn_label"
+            android:textSize="@dimen/text_size_info_large"
             android:textColor="@android:color/white"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/view"
-            app:layout_constraintStart_toStartOf="@+id/view"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.75" />
+            android:fontFamily="sans-serif-smallcaps"
+            android:textAlignment="center"
+            android:textStyle="bold"
+            android:elevation="16dp"
+            app:layout_constraintBottom_toBottomOf="@+id/btn_sign_in"
+            app:layout_constraintEnd_toEndOf="@+id/btn_sign_in"
+            app:layout_constraintStart_toStartOf="@+id/btn_sign_in"
+            app:layout_constraintTop_toTopOf="@+id/btn_sign_in" />
 
 
     </android.support.constraint.ConstraintLayout>

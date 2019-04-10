@@ -170,7 +170,7 @@ public class RepoTest {
     public void fetchSessionsInsertsToDatabase() throws InterruptedException {
         //when
         sessionsRepo.fetchSessions();
-        Thread.sleep(100);
+        Thread.sleep(200);
 
         for (Session expectedSession : TestData.SESSIONS) {
             countDownLatch = new CountDownLatch(1);

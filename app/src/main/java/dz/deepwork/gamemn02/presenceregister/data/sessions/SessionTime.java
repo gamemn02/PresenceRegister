@@ -4,6 +4,8 @@ import android.arch.persistence.room.TypeConverter;
 
 import java.util.Calendar;
 
+import dz.deepwork.gamemn02.presenceregister.utils.FormatUtil;
+
 public class SessionTime {
 
     private static final int SESSIONS_PER_DAY = 6;
@@ -55,14 +57,18 @@ public class SessionTime {
         return new SessionTime(hourNumber, day);
     }
 
-    static public String toIntervalString(SessionTime sessionTime, int size) {
-        if(sessionTime == null) return null;
-        int startMinutes = sessionTime.getHourNumber() * MINUTES_PER_SESSION + STARTING_MINUTE;
-        int endMinutes = startMinutes + size * MINUTES_PER_SESSION;
+     public String startToString() {
+        int startMinutes = mHourNumber * MINUTES_PER_SESSION + STARTING_MINUTE;
         int hStart = startMinutes / MINUTES_PER_HOUR;
         int mStart = startMinutes - hStart * MINUTES_PER_HOUR;
+        return hStart + ":" + mStart;
+    }
+
+     public String endToString(int size) {
+        int startMinutes = mHourNumber * MINUTES_PER_SESSION + STARTING_MINUTE;
+        int endMinutes = startMinutes + size * MINUTES_PER_SESSION;
         int hEnd = endMinutes / MINUTES_PER_HOUR;
         int mEnd = endMinutes - hEnd * MINUTES_PER_HOUR;
-        return hStart + ":" + mStart + " - " + hEnd + ":" + mEnd;
+        return hEnd + ":" + mEnd;
     }
 }

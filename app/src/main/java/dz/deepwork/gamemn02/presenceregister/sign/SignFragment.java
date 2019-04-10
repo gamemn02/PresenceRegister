@@ -35,6 +35,9 @@ public class SignFragment extends Fragment {
                              @Nullable Bundle savedInstanceState) {
         mSignFragmentBinding = DataBindingUtil.inflate(inflater, R.layout.sign_fragment, container, false);
         mSignFragmentBinding.setLifecycleOwner(this);
+        mSignFragmentBinding.contentSign.btnSignIn.setOnClickListener(view -> {
+
+        });
         return mSignFragmentBinding.getRoot();
     }
 

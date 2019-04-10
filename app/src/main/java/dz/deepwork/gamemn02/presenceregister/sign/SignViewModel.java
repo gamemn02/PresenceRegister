@@ -17,7 +17,7 @@ import dz.deepwork.gamemn02.presenceregister.data.sessions.Session;
 import dz.deepwork.gamemn02.presenceregister.data.sessions.SessionTime;
 import dz.deepwork.gamemn02.presenceregister.data.sessions.SessionsRepo;
 import dz.deepwork.gamemn02.presenceregister.utils.DateUtils;
-import dz.deepwork.gamemn02.presenceregister.utils.StringFormats;
+import dz.deepwork.gamemn02.presenceregister.utils.FormatUtil;
 
 public class SignViewModel extends ViewModel {
     @Inject
@@ -40,7 +40,7 @@ public class SignViewModel extends ViewModel {
             @Override
             public void run() {
                 Calendar calendar = DateUtils.getCurrentCalendar();
-                String currentDate = StringFormats.calendarToString(calendar);
+                String currentDate = FormatUtil.calendarToString(calendar);
                 mCurDateLiveData.postValue(currentDate);
                 handler.postDelayed(this, 1000);
             }
@@ -64,9 +64,14 @@ public class SignViewModel extends ViewModel {
         return Transformations.map(mCurSession, session -> session != null ? session.room : null);
     }
 
-    public LiveData<String> getSessionInterval() {
+    public LiveData<String> getSessionStart() {
         return Transformations.map(mCurSession,
-                session -> session != null ? SessionTime.toIntervalString(session.time, session.size) : null);
+                session -> session != null ? session.time.startToString() : null);
+    }
+
+    public LiveData<String> getSessionEnd() {
+        return Transformations.map(mCurSession,
+                session -> session != null ? session.time.endToString(session.size) : null);
     }
 
     public LiveData<String> getSessionDetails() {

@@ -13,7 +13,8 @@
         android:layout_height="match_parent"
         tools:context=".sign.SignFragment">
 
-        <include layout="@layout/content_sign"
+        <include android:id="@+id/content_sign"
+            layout="@layout/content_sign"
             bind:viewModel="@{viewModel}"/>
 
     </FrameLayout>
