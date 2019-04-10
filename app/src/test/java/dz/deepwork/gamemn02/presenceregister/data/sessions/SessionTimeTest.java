@@ -63,11 +63,22 @@ public class SessionTimeTest {
     }
 
     @Test
-    public void testToIntervalStringMethod() {
+    public void testStartToStringMethod() {
         //when
         SessionTime sessionTime = TestData.INTERVAL_SESSION_TIME;
-        String actualString = SessionTime.toIntervalString(sessionTime, TestData.INTERVAL_SIZE);
-        String expectedString = TestData.INTERVAL_STRING;
+        String actualString = sessionTime.startToString();
+        String expectedString = TestData.INTERVAL_START;
+
+        //then
+        assertEquals(expectedString, actualString);
+    }
+
+    @Test
+    public void testEndToStringMethod() {
+        //when
+        SessionTime sessionTime = TestData.INTERVAL_SESSION_TIME;
+        String actualString = sessionTime.endToString(TestData.INTERVAL_SIZE);
+        String expectedString = TestData.INTERVAL_END;
 
         //then
         assertEquals(expectedString, actualString);

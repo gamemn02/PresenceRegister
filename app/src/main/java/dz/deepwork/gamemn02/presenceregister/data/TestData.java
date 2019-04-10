@@ -27,7 +27,7 @@ public class TestData {
             new Member(MEMBER3_NAME, MEMBER3_PASS_NUMBER, MEMBER3_IS_ADMIN),
     };
 
-    public static final int SESSION1_TIME_SESSION_NUMBER = 20;
+    public static final int SESSION1_TIME_SESSION_NUMBER = 26;
     public static final SessionTime SESSION1_TIME = new SessionTime(2, Calendar.WEDNESDAY);
     public static final int SESSION1_SIZE = 1;
     public static final String SESSION1_MEMBER_PASS_NUMBER = MEMBER1_PASS_NUMBER;
@@ -97,5 +97,6 @@ public class TestData {
     };
     public static final SessionTime INTERVAL_SESSION_TIME = new SessionTime(1, 1);
     public static final int INTERVAL_SIZE = 2;
-    public static final String INTERVAL_STRING = "9:30 - 12:50";
+    public static final String INTERVAL_START = "9:30";
+    public static final String INTERVAL_END = "12:50";
 }
