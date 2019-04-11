@@ -123,9 +123,8 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_session_time" />
 
-        <!--TODO: hide with the float button-->
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/tv_sign"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:elevation="16dp"
@@ -135,6 +134,7 @@
             android:textColor="@android:color/white"
             android:textSize="@dimen/text_size_info_large"
             android:textStyle="bold"
+            android:visibility="@{ViewUtil.sessionToVisible(viewModel.isSessionExist)}"
             app:layout_constraintBottom_toBottomOf="@+id/btn_sign_in"
             app:layout_constraintEnd_toEndOf="@+id/btn_sign_in"
             app:layout_constraintStart_toStartOf="@+id/btn_sign_in"
