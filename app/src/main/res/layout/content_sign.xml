@@ -6,6 +6,7 @@
     <data>
         <import type="dz.deepwork.gamemn02.presenceregister.data.sessions.SessionTime" />
         <import type="dz.deepwork.gamemn02.presenceregister.utils.FormatUtil" />
+        <import type="dz.deepwork.gamemn02.presenceregister.utils.ViewUtil" />
         <variable name="viewModel" type="dz.deepwork.gamemn02.presenceregister.sign.SignViewModel" />
     </data>
 
@@ -55,6 +56,7 @@
             android:textAlignment="center"
             android:textSize="@dimen/text_size_info"
             android:textStyle="bold"
+            android:visibility="@{ViewUtil.sessionToVisible(viewModel.isSessionExist)}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_member_name"
@@ -70,10 +72,27 @@
             android:textAlignment="center"
             android:textSize="@dimen/text_size_info_large"
             android:textStyle="bold"
+            android:visibility="@{ViewUtil.sessionToVisible(viewModel.isSessionExist)}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_session_details"
             tools:text="in room B007" />
+
+        <TextView
+            android:id="@+id/tv_no_session"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:fontFamily="sans-serif-smallcaps"
+            android:text="@string/no_session"
+            android:textAlignment="center"
+            android:textSize="@dimen/text_size_info_large"
+            android:textStyle="bold"
+            android:visibility="@{ViewUtil.sessionToVisible(!viewModel.isSessionExist)}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_session_details"
+            tools:text="" />
 
         <TextView
             android:id="@+id/tv_session_time"
@@ -87,6 +106,7 @@
             android:textAlignment="center"
             android:textSize="@dimen/text_size_info"
             android:textStyle="bold"
+            android:visibility="@{ViewUtil.sessionToVisible(viewModel.isSessionExist)}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_session_room"

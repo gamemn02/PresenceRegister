@@ -75,4 +75,8 @@ public class SignViewModel extends ViewModel {
     public LiveData<String> getSessionDetails() {
         return Transformations.map(mCurSession, session -> session != null ? session.details : null);
     }
+
+    public LiveData<Boolean> getIsSessionExist() {
+        return Transformations.map(mCurSession, session -> session != null);
+    }
 }
