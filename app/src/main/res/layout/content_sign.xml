@@ -79,22 +79,6 @@
             tools:text="in room B007" />
 
         <TextView
-            android:id="@+id/tv_no_session"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:fontFamily="sans-serif-smallcaps"
-            android:text="@string/no_session"
-            android:textAlignment="center"
-            android:textSize="@dimen/text_size_info_large"
-            android:textStyle="bold"
-            android:visibility="@{ViewUtil.sessionToVisible(!viewModel.isSessionExist)}"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_session_details"
-            tools:text="" />
-
-        <TextView
             android:id="@+id/tv_session_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -112,25 +96,43 @@
             app:layout_constraintTop_toBottomOf="@+id/tv_session_room"
             tools:text="from 12:00 to 13:40" />
 
+        <TextView
+            android:id="@+id/tv_no_session"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-smallcaps"
+            android:text="@string/no_session"
+            android:textAlignment="center"
+            android:textSize="@dimen/text_size_info_large"
+            android:textStyle="bold"
+            android:visibility="@{ViewUtil.sessionToVisible(!viewModel.isSessionExist)}"
+            app:layout_constraintBottom_toBottomOf="@+id/btn_sign_in"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/btn_sign_in"
+            tools:text="" />
+
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/btn_sign_in"
             android:layout_width="96dp"
             android:layout_height="96dp"
             android:layout_marginTop="32dp"
+            android:visibility="@{ViewUtil.sessionToVisible(viewModel.isSessionExist)}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_session_time" />
 
         <TextView
+            android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/sign_in_btn_label"
-            android:textSize="@dimen/text_size_info_large"
-            android:textColor="@android:color/white"
-            android:fontFamily="sans-serif-smallcaps"
-            android:textAlignment="center"
-            android:textStyle="bold"
             android:elevation="16dp"
+            android:fontFamily="sans-serif-smallcaps"
+            android:text="@string/sign_in_btn_label"
+            android:textAlignment="center"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/text_size_info_large"
+            android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="@+id/btn_sign_in"
             app:layout_constraintEnd_toEndOf="@+id/btn_sign_in"
             app:layout_constraintStart_toStartOf="@+id/btn_sign_in"
