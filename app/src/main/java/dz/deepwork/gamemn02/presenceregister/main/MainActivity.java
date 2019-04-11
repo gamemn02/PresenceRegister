@@ -17,8 +17,9 @@ import dz.deepwork.gamemn02.presenceregister.login.LoginResultListener;
 import dz.deepwork.gamemn02.presenceregister.register.RegisterFragment;
 import dz.deepwork.gamemn02.presenceregister.sign.SignActivity;
 import dz.deepwork.gamemn02.presenceregister.sign.SignFragment;
+import dz.deepwork.gamemn02.presenceregister.sign.SignResultListener;
 
-public class MainActivity extends AppCompatActivity implements LoginResultListener {
+public class MainActivity extends AppCompatActivity implements LoginResultListener, SignResultListener {
 
     private static final String BUNDLE_LOGIN_PASS_NUMBER = "bundle-login-pass-number";
     private FragmentManager mFragmentManager;
@@ -78,8 +79,7 @@ public class MainActivity extends AppCompatActivity implements LoginResultListen
     }
 
     @Override
-    public void launchSignFragment(String passNumber) {
-        Fragment curFragment = mFragmentManager.findFragmentById(R.id.frame_login);
+    public void onCorrectPassNumber(String passNumber) {
         FragmentTransaction ft = mFragmentManager.beginTransaction();
         ft.replace(R.id.frame_login, SignFragment.newInstance(passNumber));
         ft.commit();
@@ -87,5 +87,12 @@ public class MainActivity extends AppCompatActivity implements LoginResultListen
         mLoginPassNumber = passNumber;
     }
 
+    @Override
+    public void onSignedIn() {
+        FragmentTransaction ft = mFragmentManager.beginTransaction();
+        ft.replace(R.id.frame_login, LoginFragment.newInstance());
+        ft.commit();
 
+        mLoginPassNumber = null;
+    }
 }

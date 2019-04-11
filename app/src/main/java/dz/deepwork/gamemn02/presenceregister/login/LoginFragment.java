@@ -50,6 +50,6 @@ public class LoginFragment extends Fragment {
     }
 
     public void launchSign(String passNumber) {
-        ((LoginResultListener) getActivity()).launchSignFragment(passNumber);
+        ((LoginResultListener) getActivity()).onCorrectPassNumber(passNumber);
     }
 }

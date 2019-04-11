@@ -118,10 +118,12 @@
             android:layout_height="96dp"
             android:layout_marginTop="32dp"
             android:visibility="@{ViewUtil.sessionToVisible(viewModel.isSessionExist)}"
+            android:onClick="@{() -> viewModel.onSignInClick()}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_session_time" />
 
+        <!--TODO: hide with the float button-->
         <TextView
             android:id="@+id/textView"
             android:layout_width="wrap_content"

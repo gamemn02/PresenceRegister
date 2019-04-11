@@ -10,12 +10,15 @@ import java.util.Calendar;
 
 import javax.inject.Inject;
 
+import dz.deepwork.gamemn02.presenceregister.data.Notified;
 import dz.deepwork.gamemn02.presenceregister.data.RepoComponent;
+import dz.deepwork.gamemn02.presenceregister.data.SignsRepo;
 import dz.deepwork.gamemn02.presenceregister.data.members.Member;
 import dz.deepwork.gamemn02.presenceregister.data.members.MembersRepo;
 import dz.deepwork.gamemn02.presenceregister.data.sessions.Session;
 import dz.deepwork.gamemn02.presenceregister.data.sessions.SessionTime;
 import dz.deepwork.gamemn02.presenceregister.data.sessions.SessionsRepo;
+import dz.deepwork.gamemn02.presenceregister.data.signins.SignIn;
 import dz.deepwork.gamemn02.presenceregister.utils.DateUtils;
 import dz.deepwork.gamemn02.presenceregister.utils.FormatUtil;
 
@@ -24,10 +27,14 @@ public class SignViewModel extends ViewModel {
     MembersRepo mMembersRepo;
     @Inject
     SessionsRepo mSessionRepo;
+    @Inject
+    SignsRepo mSignsRepo;
 
     private LiveData<Member> mLoginMember;
     private LiveData<Session> mCurSession;
     private MutableLiveData<String> mCurDateLiveData;
+    private Notified mSignInNotified;
+
 
     public SignViewModel() {
         RepoComponent.Singleton.getInstance().inject(this);
@@ -37,6 +44,7 @@ public class SignViewModel extends ViewModel {
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
+                // TODO: use FormatUtil in xml layout
                 Calendar calendar = DateUtils.getCurrentCalendar();
                 String currentDate = FormatUtil.calendarToString(calendar);
                 mCurDateLiveData.postValue(currentDate);
@@ -78,5 +86,16 @@ public class SignViewModel extends ViewModel {
 
     public LiveData<Boolean> getIsSessionExist() {
         return Transformations.map(mCurSession, session -> session != null);
+    }
+
+    public void setSignInNotified(Notified notified) {
+        mSignInNotified = notified;
+    }
+
+    public void onSignInClick() {
+        long utcTime = DateUtils.getCurrentCalendar().getTimeInMillis();
+        Session session = mCurSession.getValue();
+        SignIn signIn = new SignIn(session.uId, utcTime, session.room);
+        mSignsRepo.signIn(signIn, mSignInNotified);
     }
 }

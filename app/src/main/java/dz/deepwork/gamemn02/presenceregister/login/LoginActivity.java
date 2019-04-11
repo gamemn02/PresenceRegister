@@ -40,7 +40,7 @@ public class LoginActivity extends AppCompatActivity implements LoginResultListe
     }
 
     @Override
-    public void launchSignFragment(String passNumber) {
+    public void onCorrectPassNumber(String passNumber) {
         Intent intent = SignActivity.createIntent(this, passNumber);
         startActivity(intent);
         finish();

@@ -2,6 +2,7 @@ package dz.deepwork.gamemn02.presenceregister.data;
 
 import android.arch.lifecycle.LiveData;
 
+import java.util.Observable;
 import java.util.concurrent.Executor;
 
 import dz.deepwork.gamemn02.presenceregister.data.members.Member;
@@ -30,14 +31,20 @@ public class RealSignsRepo implements SignsRepo {
         mDbExecutor = dbExecutor;
     }
 
-    public void signIn(final SignIn signIn) {
-        mDbExecutor.execute(() -> mSignInDao.insert(signIn));
+    @Override
+    public void signIn(final SignIn signIn, Notified notified) {
+        mDbExecutor.execute(() -> {
+            mSignInDao.insert(signIn);
+            notified.onNotified();
+        });
     }
 
+    @Override
     public SignIn findSignIn(long sessionId) {
         return mSignInDao.find(sessionId);
     }
 
+    @Override
     public void signOut(final SignIn signIn) {
 
         mDbExecutor.execute(() -> {

@@ -10,7 +10,7 @@ import android.widget.TextView;
 import dz.deepwork.gamemn02.presenceregister.R;
 import dz.deepwork.gamemn02.presenceregister.data.members.Member;
 
-public class SignActivity extends AppCompatActivity {
+public class SignActivity extends AppCompatActivity implements SignResultListener {
 
     private static final String EXTRA_MEMBER_PASS_NUMBER = "dz.deepwork.gamemn02.extra-member-pass-number";
 
@@ -46,21 +46,8 @@ public class SignActivity extends AppCompatActivity {
         }
     }
 
-//    private void findMember() {
-//        String memberPassNumber = getIntent().getStringExtra(EXTRA_MEMBER_PASS_NUMBER);
-//        mMembersRepo.findMember(memberPassNumber).observe(this, new Observer<Member>() {
-//            @Override
-//            public void onChanged(@Nullable Member member) {
-//                setupLoggedInMember(member);
-//            }
-//        });
-//    }
-//
-//    private void setupLoggedInMember(Member loggedInMember) {
-//        mLoggedInMember = loggedInMember;
-//        // Update UI
-//        mMemberNameText = (TextView) findViewById(R.id.tv_member_name);
-//        mMemberNameText.setText(mLoggedInMember.name);
-//    }
-
+    @Override
+    public void onSignedIn() {
+        finish();
+    }
 }

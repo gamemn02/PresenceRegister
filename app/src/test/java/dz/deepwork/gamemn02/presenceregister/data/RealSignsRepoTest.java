@@ -12,6 +12,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 
+import java.util.Observable;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
@@ -46,7 +47,7 @@ public class RealSignsRepoTest {
     public void signInCallsSignInDaoInsert() throws InterruptedException {
 
         //when
-        realSignsRepo.signIn(TestData.SIGN_INS[0]);
+        realSignsRepo.signIn(TestData.SIGN_INS[0], () -> {});
         Thread.sleep(100);
 
         //then

@@ -8,6 +8,7 @@ import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 
+import java.util.Observable;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 
@@ -120,10 +121,11 @@ public class RepoTest {
         final CountDownLatch countDownLatch = new CountDownLatch(1);
         try {
             mActivityRule.runOnUiThread(() -> {
-                signsRepo.signIn(TestData.SIGN_INS[0]);
+                signsRepo.signIn(TestData.SIGN_INS[0], () -> {});
                 countDownLatch.countDown();
             });
             countDownLatch.await(1, TimeUnit.MINUTES);
+            // TODO: make all countDownLatch with 1 minute time out
         } catch (Throwable throwable) {
             throwable.printStackTrace();
             fail();
