@@ -10,7 +10,7 @@ import java.util.Calendar;
 
 import javax.inject.Inject;
 
-import dz.deepwork.gamemn02.presenceregister.data.Notified;
+import dz.deepwork.gamemn02.presenceregister.Notified;
 import dz.deepwork.gamemn02.presenceregister.data.RepoComponent;
 import dz.deepwork.gamemn02.presenceregister.data.SignsRepo;
 import dz.deepwork.gamemn02.presenceregister.data.members.Member;
@@ -20,7 +20,6 @@ import dz.deepwork.gamemn02.presenceregister.data.sessions.SessionTime;
 import dz.deepwork.gamemn02.presenceregister.data.sessions.SessionsRepo;
 import dz.deepwork.gamemn02.presenceregister.data.signins.SignIn;
 import dz.deepwork.gamemn02.presenceregister.utils.DateUtils;
-import dz.deepwork.gamemn02.presenceregister.utils.FormatUtil;
 
 public class SignViewModel extends ViewModel {
     @Inject
@@ -32,7 +31,7 @@ public class SignViewModel extends ViewModel {
 
     private LiveData<Member> mLoginMember;
     private LiveData<Session> mCurSession;
-    private MutableLiveData<String> mCurDateLiveData;
+    private MutableLiveData<Calendar> mCurDateLiveData;
     private Notified mSignInNotified;
 
 
@@ -44,10 +43,7 @@ public class SignViewModel extends ViewModel {
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                // TODO: use FormatUtil in xml layout
-                Calendar calendar = DateUtils.getCurrentCalendar();
-                String currentDate = FormatUtil.calendarToString(calendar);
-                mCurDateLiveData.postValue(currentDate);
+                mCurDateLiveData.postValue(DateUtils.getCurrentCalendar());
                 handler.postDelayed(this, 1000);
             }
         }, 1000);
@@ -58,7 +54,7 @@ public class SignViewModel extends ViewModel {
         mCurSession = mSessionRepo.findSession(passNumber, SessionTime.fromCalendar(DateUtils.getCurrentCalendar()));
     }
 
-    public LiveData<String> getCurrentDate() {
+    public LiveData<Calendar> getCurrentDate() {
         return mCurDateLiveData;
     }
 
@@ -70,14 +66,14 @@ public class SignViewModel extends ViewModel {
         return Transformations.map(mCurSession, session -> session != null ? session.room : null);
     }
 
-    public LiveData<String> getSessionStart() {
+    public LiveData<SessionTime> getSessionTime() {
         return Transformations.map(mCurSession,
-                session -> session != null ? session.time.startToString() : null);
+                session -> session != null ? session.time : null);
     }
 
-    public LiveData<String> getSessionEnd() {
+    public LiveData<Integer> getSessionSize() {
         return Transformations.map(mCurSession,
-                session -> session != null ? session.time.endToString(session.size) : null);
+                session -> session != null ? session.size : null);
     }
 
     public LiveData<String> getSessionDetails() {

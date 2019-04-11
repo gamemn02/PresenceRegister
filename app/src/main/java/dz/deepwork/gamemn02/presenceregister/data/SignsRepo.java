@@ -1,7 +1,6 @@
 package dz.deepwork.gamemn02.presenceregister.data;
 
-import java.util.Observable;
-
+import dz.deepwork.gamemn02.presenceregister.Notified;
 import dz.deepwork.gamemn02.presenceregister.data.signins.SignIn;
 
 public interface SignsRepo {

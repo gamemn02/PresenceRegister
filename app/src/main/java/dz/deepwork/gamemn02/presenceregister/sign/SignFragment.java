@@ -5,21 +5,14 @@ import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import java.util.Observable;
-import java.util.Observer;
-
 import dz.deepwork.gamemn02.presenceregister.R;
-import dz.deepwork.gamemn02.presenceregister.data.Notified;
-import dz.deepwork.gamemn02.presenceregister.data.members.Member;
-import dz.deepwork.gamemn02.presenceregister.data.sessions.Session;
+import dz.deepwork.gamemn02.presenceregister.Notified;
 import dz.deepwork.gamemn02.presenceregister.databinding.SignFragmentBinding;
-import dz.deepwork.gamemn02.presenceregister.login.LoginActivity;
 
 public class SignFragment extends Fragment implements Notified {
 

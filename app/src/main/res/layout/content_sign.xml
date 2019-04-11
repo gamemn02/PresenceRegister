@@ -5,8 +5,7 @@
 
     <data>
         <import type="dz.deepwork.gamemn02.presenceregister.data.sessions.SessionTime" />
-        <import type="dz.deepwork.gamemn02.presenceregister.utils.FormatUtil" />
-        <import type="dz.deepwork.gamemn02.presenceregister.utils.ViewUtil" />
+        <import type="dz.deepwork.gamemn02.presenceregister.utils.BindingUtil" />
         <variable name="viewModel" type="dz.deepwork.gamemn02.presenceregister.sign.SignViewModel" />
     </data>
 
@@ -23,10 +22,10 @@
             android:layout_marginTop="8dp"
             android:layout_marginEnd="16dp"
             android:layout_marginRight="16dp"
-            android:text="@{viewModel.currentDate}"
             android:textStyle="bold"
             android:textSize="@dimen/text_size_info"
             android:fontFamily="sans-serif-smallcaps"
+            app:calendar="@{viewModel.currentDate}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="12:18   09/04/2019" />
@@ -37,10 +36,11 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
             android:fontFamily="sans-serif-smallcaps"
-            android:text="@{viewModel.memberName}"
             android:textAlignment="center"
             android:textSize="@dimen/text_size_info_large"
             android:textStyle="bold"
+            app:nameFormat="@{@string/format_member_name}"
+            app:name="@{viewModel.memberName}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_current_date"
@@ -52,11 +52,12 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:fontFamily="sans-serif-smallcaps"
-            android:text="@{viewModel.sessionDetails}"
             android:textAlignment="center"
             android:textSize="@dimen/text_size_info"
             android:textStyle="bold"
-            android:visibility="@{ViewUtil.sessionToVisible(viewModel.isSessionExist)}"
+            app:show="@{viewModel.isSessionExist}"
+            app:detailsFormat="@{@string/format_session_details}"
+            app:details="@{viewModel.sessionDetails}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_member_name"
@@ -68,29 +69,32 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:fontFamily="sans-serif-smallcaps"
-            android:text="@{FormatUtil.roomToString(viewModel.sessionRoom)}"
             android:textAlignment="center"
             android:textSize="@dimen/text_size_info_large"
             android:textStyle="bold"
-            android:visibility="@{ViewUtil.sessionToVisible(viewModel.isSessionExist)}"
+            app:show="@{viewModel.isSessionExist}"
+            app:roomFormat="@{@string/format_session_room}"
+            app:room="@{viewModel.sessionRoom}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_session_details"
             tools:text="in room B007" />
 
         <TextView
-            android:id="@+id/tv_session_time"
+            android:id="@+id/tv_session_interval"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
             android:layout_marginTop="8dp"
             android:fontFamily="sans-serif-smallcaps"
-            android:text="@{FormatUtil.intervalToString(viewModel.sessionStart, viewModel.sessionEnd)}"
             android:textAlignment="center"
             android:textSize="@dimen/text_size_info"
             android:textStyle="bold"
-            android:visibility="@{ViewUtil.sessionToVisible(viewModel.isSessionExist)}"
+            app:show="@{viewModel.isSessionExist}"
+            app:sessionIntervalFormat="@{@string/format_session_interval}"
+            app:sessionTime="@{viewModel.sessionTime}"
+            app:sessionSize="@{viewModel.sessionSize}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_session_room"
@@ -101,11 +105,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-smallcaps"
-            android:text="@string/no_session"
             android:textAlignment="center"
             android:textSize="@dimen/text_size_info_large"
             android:textStyle="bold"
-            android:visibility="@{ViewUtil.sessionToVisible(!viewModel.isSessionExist)}"
+            android:text="@string/no_session"
+            app:hide="@{viewModel.isSessionExist}"
             app:layout_constraintBottom_toBottomOf="@+id/btn_sign_in"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -117,11 +121,10 @@
             android:layout_width="96dp"
             android:layout_height="96dp"
             android:layout_marginTop="32dp"
-            android:visibility="@{ViewUtil.sessionToVisible(viewModel.isSessionExist)}"
             android:onClick="@{() -> viewModel.onSignInClick()}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_session_time" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_session_interval" />
 
         <TextView
             android:id="@+id/tv_sign"
@@ -134,7 +137,7 @@
             android:textColor="@android:color/white"
             android:textSize="@dimen/text_size_info_large"
             android:textStyle="bold"
-            android:visibility="@{ViewUtil.sessionToVisible(viewModel.isSessionExist)}"
+            app:show="@{viewModel.isSessionExist}"
             app:layout_constraintBottom_toBottomOf="@+id/btn_sign_in"
             app:layout_constraintEnd_toEndOf="@+id/btn_sign_in"
             app:layout_constraintStart_toStartOf="@+id/btn_sign_in"

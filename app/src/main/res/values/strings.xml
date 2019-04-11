@@ -24,4 +24,8 @@
     <string name="indication_session_details">details</string>
     <string name="sign_in_btn_label">sign\nin</string>
     <string name="no_session">no session in this time</string>
+    <string name="format_member_name">%s</string>
+    <string name="format_session_details">%s</string>
+    <string name="format_session_room">in room %s</string>
+    <string name="format_session_interval">from %s to %s</string>
 </resources>

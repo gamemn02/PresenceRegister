@@ -1,11 +1,8 @@
 package dz.deepwork.gamemn02.presenceregister.data;
 
-import android.arch.lifecycle.LiveData;
-
-import java.util.Observable;
 import java.util.concurrent.Executor;
 
-import dz.deepwork.gamemn02.presenceregister.data.members.Member;
+import dz.deepwork.gamemn02.presenceregister.Notified;
 import dz.deepwork.gamemn02.presenceregister.data.members.MemberDao;
 import dz.deepwork.gamemn02.presenceregister.data.sessions.Session;
 import dz.deepwork.gamemn02.presenceregister.data.sessions.SessionDao;

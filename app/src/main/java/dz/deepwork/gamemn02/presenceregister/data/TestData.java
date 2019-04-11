@@ -27,8 +27,8 @@ public class TestData {
             new Member(MEMBER3_NAME, MEMBER3_PASS_NUMBER, MEMBER3_IS_ADMIN),
     };
 
-    public static final int SESSION1_TIME_SESSION_NUMBER = 32;
-    public static final SessionTime SESSION1_TIME = new SessionTime(2, Calendar.THURSDAY);
+    public static final int SESSION1_TIME_SESSION_NUMBER = 34;
+    public static final SessionTime SESSION1_TIME = new SessionTime(4, Calendar.THURSDAY);
     public static final int SESSION1_SIZE = 1;
     public static final String SESSION1_MEMBER_PASS_NUMBER = MEMBER1_PASS_NUMBER;
     public static final String SESSION1_ROOM = "B007";
